@@ -1,0 +1,246 @@
+<html>
+<style>
+	.indiv-player {
+	    width: auto;
+	    display: inline;
+	    float: left;
+	    padding: 0.2em 0.4em;
+	    margin: 0.1em;
+	    background: #FFF none repeat scroll 0% 0%;
+	    border: 1px solid #EEE;
+	    font-family: Arial,Helvetica,sans-serif;
+	    font-size: 0.8em;
+	    color: #999;
+	    border-radius: 5px;
+	}
+	.selectedyes {
+	    background: #333 none repeat scroll 0% 0%;
+	    color: #FFF;
+	}
+	.chapter {
+	    width: 100%;
+	    display: inline;
+	    float: left;
+	    margin-bottom: 1em;
+	}
+	.price-chap {
+	    width: 29%;
+	    display: inline;
+	    float: left;
+	    min-width: 100px;
+	    margin: 0px 2%;
+	    text-align: center;
+	    margin-right: 10px;
+	}
+	.label {
+	    font-family: "Benton Sans Bold",Arial,Helvetica,sans-serif;
+	    width: 100%;
+	    display: inline;
+	    float: left;
+	    margin-bottom: 0.4em;
+	    margin-top: 1.5em;
+	    letter-spacing: -0.05em;
+	}
+	.ytnumbers {
+	    font-family: "Miller Headline Bold","Times New Roman",Georgia,serif;
+	    font-size: 1.5em;
+	    letter-spacing: -0.05em;
+	}
+	.myplayer {
+	    display: inline-block;
+	    min-width: 100px;
+	    width: 17%;
+	    margin: 2.5em 2.5%;
+	    margin-right: 10px;
+	}
+	.mypname {
+	    font-family: "Miller Headline Bold","Times New Roman",Georgia,serif;
+	    font-size: 1.2em;
+	}
+	.myppos {
+    	font-family: "Miller Headline Bold","Times New Roman",Georgia,serif;
+    	font-style: italic;
+	}
+	.mypsalary {
+    	font-family: "Miller Headline Bold","Times New Roman",Georgia,serif;
+	}
+	.delplayer {
+	    position: absolute;
+	    background: #900 none repeat scroll 0% 0%;
+	        background-color: #900;
+	        background-image: none;
+	        background-repeat: repeat;
+	        background-attachment: scroll;
+	        background-position: 0% 0%;
+	        background-clip: border-box;
+	        background-origin: padding-box;
+	        background-size: auto auto;
+	    color: #FFF;
+	    text-align: center;
+	    width: auto;
+	    padding: 0.5em 2.5%;
+	        padding-top: 0.5em;
+	        padding-right: 2.5%;
+	        padding-bottom: 0.5em;
+	        padding-left: 2.5%;
+	    margin-top: 1em;
+	    margin-left: -5.5%;
+	    border-radius: 0px 15px 15px 0px;
+	        border-top-left-radius: 0px;
+	        border-top-right-radius: 15px;
+	        border-bottom-right-radius: 15px;
+	        border-bottom-left-radius: 0px;
+	    font-size: 0.8em;
+	    font-family: "Benton Sans Bold",Arial,Helvetica,sans-serif;
+	}
+</style>
+<script>
+function addPlayer(x) {
+	if(document.getElementById("p" + x.toString()).className == "indiv-player selectedyes"){
+		document.getElementById("p" + x.toString()).className = "indiv-player";
+		var removedplayer = document.getElementById("sp" + x.toString());
+		removedplayer.parentNode.removeChild(removedplayer);
+		var oldpay = Number(document.getElementById("payroll").innerHTML.replace(/[^0-9\.]+/g,""));
+		var newpay = oldpay - Number(document.getElementById("p" + x.toString()).innerHTML.split(" | ")[2].replace(/[^0-9\.]+/g,""));
+	    document.getElementById("payroll").innerHTML = "$" + numberWithCommas(newpay);
+	    var numofplayers = Number(document.getElementById("numoplayers").innerHTML) - 1;
+	    document.getElementById("numoplayers").innerHTML = numofplayers.toString();
+	    if(numofplayers < 7){
+			document.getElementById("teamok").style = "display: none;"
+		}
+	    var oldmoney = Number(document.getElementById("left").innerHTML.replace(/[^0-9\.]+/g,""));
+	    if(document.getElementById("left").innerHTML.indexOf("-") != -1){
+			oldmoney = oldmoney * -1;
+		}
+		var newmoney = oldmoney + Number(document.getElementById("p" + x.toString()).innerHTML.split(" | ")[2].replace(/[^0-9\.]+/g,""));
+		if(newmoney > 0){
+			document.getElementById("teamnotok").style = "display: none;"
+		}
+	    document.getElementById("left").innerHTML = "$" + numberWithCommas(newmoney);
+	}
+	else{
+		if(Number(document.getElementById("numoplayers").innerHTML) == 7){
+			return;
+		}
+		document.getElementById("p" + x.toString()).className = "indiv-player selectedyes";
+		var addedplayer = document.createElement("div");
+		addedplayer.className = "myplayer";
+		addedplayer.id = "sp" + x.toString();
+		addedplayer.onclick = function() {addPlayer(x)};
+		var name = document.createElement("div");
+		name.className = "mypname";
+		name.innerHTML = document.getElementById("p" + x.toString()).innerHTML.split(" | ")[0];
+		var pos = document.createElement("div");
+		pos.className = "myppos";
+		if(document.getElementById("p" + x.toString()).innerHTML.split(" | ")[1] == "RHP"){
+			pos.innerHTML = "Right Handed Pitcher";
+		}
+		else{
+			pos.innerHTML = "Left Handed Pitcher";
+		}
+		var salary = document.createElement("div");
+		salary.className = "mypsalary";
+		salary.innerHTML = document.getElementById("p" + x.toString()).innerHTML.split(" | ")[2];
+		addedplayer.appendChild(name);
+		addedplayer.appendChild(pos);
+		addedplayer.appendChild(salary);
+		document.getElementById("mylist").appendChild(addedplayer);
+		var oldpay = Number(document.getElementById("payroll").innerHTML.replace(/[^0-9\.]+/g,""));
+		var newpay = oldpay + Number(salary.innerHTML.replace(/[^0-9\.]+/g,""));
+	    document.getElementById("payroll").innerHTML = "$" + numberWithCommas(newpay);
+	   	var numofplayers = Number(document.getElementById("numoplayers").innerHTML) + 1;
+	    document.getElementById("numoplayers").innerHTML = numofplayers.toString();
+	    if(numofplayers == 7){
+			document.getElementById("teamok").style = "display: inline;"
+		}
+	   	var oldmoney = Number(document.getElementById("left").innerHTML.replace(/[^0-9\.]+/g,""));
+	   	if(document.getElementById("left").innerHTML.indexOf("-") != -1){
+			oldmoney = oldmoney * -1;
+		}
+		var newmoney = oldmoney - Number(salary.innerHTML.replace(/[^0-9\.]+/g,""));
+		if(newmoney < 0){
+			document.getElementById("teamok").style = "display: none;"
+			document.getElementById("teamnotok").style = "display: inline;";
+		}
+	    document.getElementById("left").innerHTML = "$" + numberWithCommas(newmoney);
+	}
+}
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+</script>
+<div id="your-team" class="chapter">
+		<div class="chapter" id="roster-price">
+			<div class="price-chap" id="final-price">
+				<div class="label">Current payroll</div>
+				<div id="payroll" class="ytnumbers">$0</div>
+			</div>
+			<div class="price-chap" id="money-left">
+				<div class="label">Money left</div>
+				<div id="left" class="ytnumbers">$35,000,000</div>
+			</div>
+			<div class="price-chap" id="numofplayers">
+				<div class="label">Players</div>
+				<div id="numoplayers" class="ytnumbers">0</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div style="display: inline;" id="confirm-team" class="chapter">
+		<div style="display: none;" class="label" id="teamok">Congratulations, you have a full bullpen, let's go win the NL East! </div>
+		<div style="display: none;" class="label" id="teamnotok">The Lerners are beyond tapped out, you need to pick some new players, fast!</div>
+</div>
+<div id="selposition" class="chapter">
+	<span style="cursor:pointer">
+	<div id="mylist">
+<!-- 		<div class="myplayer" id="sp13" onclick="addPlayer(13)">
+			<div style="visibility: hidden;" class="delplayer">CUT PLAYER</div>
+			<div class="mypname">Stephen Curry</div>
+			<div class="mypsalary">$9,887,642</div>
+		</div> -->
+	</div>
+	</span>
+</div>
+<span style="cursor:pointer">
+<div class="label">Already Nationals</div>
+<div class="indiv-player" id="p10" onclick="addPlayer(10)">Jonathan Papelbon | RHP | $11,000,000</div>
+<div class="indiv-player" id="p11" onclick="addPlayer(11)">Drew Storen | RHP | $8,800,000</div>
+<div class="indiv-player" id="p12" onclick="addPlayer(12)">Craig Stammen | RHP | $2,400,000</div>
+<div class="indiv-player" id="p22" onclick="addPlayer(22)">Aaron Barrett | RHP | $507,500</div>
+<div class="indiv-player" id="p23" onclick="addPlayer(23)">Felipe Rivero | LHP | $507,500</div>
+<div class="indiv-player" id="p24" onclick="addPlayer(24)">Blake Treinen | RHP | $507,500</div>
+<div class="indiv-player" id="p25" onclick="addPlayer(25)">Matt Grace | LHP | $507,500</div>
+<div class="indiv-player" id="p26" onclick="addPlayer(26)">Sammy Solis | LHP | $507,500</div>
+<div class="indiv-player" id="p27" onclick="addPlayer(27)">Rafael Martin | RHP | $507,500</div>
+<div class="indiv-player" id="p28" onclick="addPlayer(28)">A.J. Cole | RHP | $507,500</div>
+<div class="indiv-player" id="p29" onclick="addPlayer(29)">Reynaldo Lopez | RHP | $507,500</div>
+<div class="indiv-player" id="p30" onclick="addPlayer(30)">Taylor Jordan | RHP | $507,500</div>
+<div class="indiv-player" id="p31" onclick="addPlayer(31)">Abel De Los Santos | RHP | $507,500</div>
+<div class="indiv-player" id="p32" onclick="addPlayer(32)">Taylor Hill | RHP | $507,500</div>
+<div class="indiv-player" id="p33" onclick="addPlayer(33)">Lucas Giolito | RHP | $507,500</div>
+<div class="indiv-player" id="p34" onclick="addPlayer(34)">Sean Burnett | LHP | $507,500</div>
+<div class="label">Free Agents</div>
+<div class="indiv-player" id="p14" onclick="addPlayer(14)">Darren O'Day | RHP | $7,000,000</div>
+<div class="indiv-player" id="p15" onclick="addPlayer(15)">Joakim Soria | RHP | $7,000,000</div>
+<div class="indiv-player" id="p16" onclick="addPlayer(16)">Tyler Clippard | RHP | $7,000,000</div>
+<div class="indiv-player" id="p46" onclick="addPlayer(46)">Tony Sipp | LHP | $5,000,000</div>
+<div class="indiv-player" id="p35" onclick="addPlayer(35)">Antonio Bastardo | LHP | $4,000,000</div>
+<div class="indiv-player" id="p36" onclick="addPlayer(36)">Shawn Kelley | RHP | $4,000,000</div>
+<div class="indiv-player" id="p37" onclick="addPlayer(37)">Tommy Hunter | RHP | $5,000,000</div>
+<div class="indiv-player" id="p38" onclick="addPlayer(38)">Trevor Cahill | RHP | $5,000,000</div>
+<div class="indiv-player" id="p39" onclick="addPlayer(39)">Ryan Madson | RHP | $5,000,000</div>
+<div class="indiv-player" id="p40" onclick="addPlayer(40)">Jonathan Broxton | RHP | $4,000,000</div>
+<div class="indiv-player" id="p41" onclick="addPlayer(41)">Matt Thornton | LHP | $2,000,000</div>
+<div class="label">Trade Candidates</div>
+<div class="indiv-player" id="p18" onclick="addPlayer(18)">Aroldis Chapman | LHP | $12,900,000</div>
+<div class="indiv-player" id="p19" onclick="addPlayer(19)">Brad Boxberger | RHP | $507,500</div>
+<div class="indiv-player" id="p20" onclick="addPlayer(20)">Jake McGee | LHP | $4,700,000</div>
+<div class="indiv-player" id="p21" onclick="addPlayer(21)">Andrew Miller | LHP | $9,000,000</div>
+<div class="indiv-player" id="p42" onclick="addPlayer(42)">Francisco Rodriguez | RHP | $5,500,000</div>
+<div class="indiv-player" id="p43" onclick="addPlayer(43)">Brad Ziegler | RHP | $5,500,000</div>
+<div class="indiv-player" id="p44" onclick="addPlayer(44)">Will Smith | LHP | $1,200,000</div>
+<div class="indiv-player" id="p45" onclick="addPlayer(45)">Ken Giles | RHP | $507,500</div>
+<div class="indiv-player" id="p47" onclick="addPlayer(47)">Mark Melancon | RHP | $10,000,000</div>
+<div class="indiv-player" id="p48" onclick="addPlayer(48)">Shawn Tolleson | RHP | $2,600,000</div>
+</span>
+</html>
