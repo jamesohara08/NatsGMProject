@@ -1,21 +1,6 @@
 <!DOCTYPE HTML>
 <html>
 <style>
-	.chapter {
-	    width: 100%;
-	    display: inline;
-	    float: left;
-	    margin-bottom: 1em;
-	}
-	.price-chap {
-	    width: 29%;
-	    display: inline;
-	    float: left;
-	    min-width: 100px;
-	    margin: 0px 2%;
-	    text-align: center;
-	    margin-right: 10px;
-	}
 	.ytnumbers {
 	    font-family: "Miller Headline Bold","Times New Roman",Georgia,serif;
 	    font-size: 1.5em;
@@ -25,6 +10,7 @@
 <script>
 	var activeDisplay = "";
 	var activeElement = null;
+
 	function addPlayer(x) {
 		var player = document.getElementById(x);
 		var position = player.getAttribute("data-position");
@@ -83,6 +69,7 @@
 		luxurytax.innerHTML = "$" + numberWithCommas(newluxuryamount);
 		moneyleft.innerHTML = "$" + numberWithCommas(newmoneyleft);
 
+		if(newmoneyleft < 0) document.getElementById("error").hidden = false;
 	}
 	function displayPlayers(elem,x) {
 		if(elem.getAttribute("data-salary") != "0") {
@@ -103,8 +90,8 @@
 			}
 			removePlayer(elem);
 		}
-		if(activeDisplay != "")document.getElementById(activeDisplay).style = "display: none;";
-		document.getElementById(x).style = "display: inline;";
+		if(activeDisplay != "")document.getElementById(activeDisplay).hidden = true;
+		document.getElementById(x).hidden = false;
 		activeDisplay = x;
 		activeElement = elem;
 
@@ -127,6 +114,8 @@
 		elem.setAttribute("data-luxury","0");
 		elem.setAttribute("data-id","");
 		elem.innerHTML = elem.getAttribute("data-position");
+
+		if(newmoneyleft >= 0) document.getElementById("error").hidden = true;
 	}
 	function enablePlayer(player){	
 		player.setAttribute("class","btn btn-light");
@@ -148,30 +137,33 @@
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <div class="container-fluid">
 	<div class="row">
-		<div class="col">
-			<div id="your-team" class="chapter">
-				<div class="chapter" id="roster-price">
-					<div class="price-chap" id="final-price">
-						<div class="label">Current payroll</div>
-						<div id="payroll" class="ytnumbers" data-payroll="109200000">$109,200,000</div>
-					</div>
-					<div class="price-chap" id="final-luxury">
-						<div class="label">Current luxury tax</div>
-						<div id="luxury-tax" class="ytnumbers" data-lt="122300000">$122,300,000</div>
-					</div>
-					<div class="price-chap" id="money-left">
-						<div class="label">Money remaining</div>
-						<div id="left" class="ytnumbers" data-left="83700000">$83,700,000</div>
-					</div>
-				</div>
-			</div>
+		<div class ="col text-center">
+			<h2>Be Your Own Nats GM</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class = "col text-center">
+			<p>Select an open position on the left and players who can fill that role will appear on the right (or below on mobile). Select a player and they'll be added to your roster along with their 2019 salary and luxury tax hit. Clicking on that spot again will remove them, or you can select a new player and they'll fill it. Trade candidates are included sans prospect cost, so choose what you think is reasonable. But be careful, the Lerners don't want to exceed the luxury tax and won't be happy if you try to!</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col text-center">
+			<div class="label">Current payroll</div>
+			<div id="payroll" class="ytnumbers" data-payroll="115200000">$115,200,000</div>
+		</div>
+		<div class="col text-center">
+			<div class="label assign-middle">Current luxury tax</div>
+			<div id="luxury-tax" class="ytnumbers" data-lt="122300000">$122,300,000</div>
+		</div>
+		<div class="col text-center">
+			<div class="label assign-middle">Money remaining</div>
+			<div id="left" class="ytnumbers" data-left="83700000">$83,700,000</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col">
-			<div style="display: inline;" id="confirm-team" class="chapter">
-				<div style="display: none;" class="label" id="teamok">Congratulations, you have a full bullpen, let's go win the NL East! </div>
-				<div style="display: none;" class="label" id="teamnotok">The Lerners are beyond tapped out, you need to pick some new players, fast!</div>
+			<div class="alert alert-danger" id="error" role="alert" hidden>
+ 				The Lerners are beyond tapped out, you need to pick some new players, fast!
 			</div>
 		</div>
 	</div>
@@ -195,7 +187,7 @@
 		</div>
 		<div class="col">
 			<div class="btn-group-vertical" id="pitchers">
-				<button class="btn btn-outline-dark disabled" data-position="SP" data-salary="24300000" data-luxury="28700000">SP | Max Scherzer | $24,300,000 | $28,700,000</button>
+				<button class="btn btn-outline-dark disabled" data-position="SP" data-salary="24300000" data-luxury="28700000">SP | Max Scherzer | $30,300,000 | $28,700,000</button>
 				<button class="btn btn-outline-dark disabled" data-position="SP" data-salary="15000000" data-luxury="25000000">SP | Stephen Strasburg |  $15,000,000 | $25,000,000</button>
 				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'starter')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
 				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'starter')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
@@ -211,7 +203,7 @@
 			</div>
 		</div>
 		<div class="col">
-			<div style="display: none;" id="catcher"> 
+			<div id="catcher" hidden> 
 				<div class="label">Already Nationals</div>
 					<button class="btn btn-light" id="p20" onclick="addPlayer('p20')" data-name="Spencer Kieboom" data-position="C" data-salary="550000" data-luxury="550000">C | Spencer Kieboom | $550,000 | $550,000</button>
 				<div class="label">Free Agents</div>
@@ -227,7 +219,7 @@
 					<button class="btn btn-light" id="p75" onclick="addPlayer('p75')" data-name="J.T. Realmuto" data-position="C" data-salary="6100000" data-luxury="6100000">C | J.T. Realmuto | $6,100,000 | $6,100,000</button>
 					<button class="btn btn-light" id="p80" onclick="addPlayer('p80')"  data-name="Francisco Cervelli" data-position="C" data-salary="11500000" data-luxury="10330000">C | Francisco Cervelli | $11,500,000 | $10,330,000</button>
 			</div>
-			<div style="display: none;" id="second"> 
+			<div id="second" hidden> 
 				<div class="label">Already Nationals</div>
 					<button class="btn btn-light" id="p2" onclick="addPlayer('p2')" data-name="Howie Kendrick" data-position="2B" data-salary="4000000" data-luxury="3500000">2B | Howie Kendrick | $4,000,000 | $3,500,000</button>
 				<div class="label">Free Agents</div>
@@ -240,13 +232,13 @@
 					<button class="btn btn-light" id="p43" onclick="addPlayer('p43')" data-name="Marwin Gonzalez" data-position="2B" data-salary="10000000" data-luxury="10000000">2B | Marwin Gonzalez | $10,000,000 | $10,000,000</button>
 					<button class="btn btn-light" id="p49" onclick="addPlayer('p49')"  data-name="Josh Harrison" data-position="2B" data-salary="7500000" data-luxury="7500000">2B | Josh Harrison | $7,500,000 | $7,500,000</button>
 			</div>
-			<div style="display: none;" id="right"> 
+			<div id="right" hidden> 
 				<div class="label">Already Nationals</div>
 					<button class="btn btn-light" id="p25" onclick="addPlayer('p25')" data-name="Adam Eaton" data-position="RF" data-salary="8400000" data-luxury="4700000">RF | Adam Eaton | $8,400,000 | $4,700,000</button>
 				<div class="label">Free Agents</div>
 					<button class="btn btn-light" id="p7" onclick="addPlayer('p7')" data-name="Bryce Harper" data-position="RF" data-salary="28000000" data-luxury="33000000">RF | Bryce Harper | $28,000,000 | $33,000,000</button>
 			</div>
-			<div style="display: none;" id="infield"> 
+			<div id="infield" hidden> 
 				<div class="label">Already Nationals</div>
 					<button class="btn btn-light" id="p22" onclick="addPlayer('p22')" data-name="Wilmer Difo" data-position="IF" data-salary="550000" data-luxury="550000">IF | Wilmer Difo | $550,000 | $550,000</button>
 				<div class="label">Free Agents</div>
@@ -256,7 +248,7 @@
 					<button class="btn btn-light" id="p59" onclick="addPlayer('p59')" data-name="Logan Morrison" data-position="IF" data-salary="2500000" data-luxury="2500000">IF | Logan Morrison | $2,500,000 | $2,500,000</button>
 					<button class="btn btn-light" id="p64" onclick="addPlayer('p64')" data-name="Steve Pearce" data-position="IF" data-salary="6500000" data-luxury="6500000">IF | Steve Pearce | $6,500,000 | $6,500,000</button>
 			</div>
-			<div style="display: none;" id="outfield"> 
+			<div id="outfield" hidden> 
 				<div class="label">Already Nationals</div>
 					<button class="btn btn-light" id="p24" onclick="addPlayer('p24')" data-name="Andrew Stevenson" data-position="OF" data-salary="550000" data-luxury="550000">OF | Andrew Stevenson | $550,000 | $550,000</button>
 					<button class="btn btn-light" id="p26" onclick="addPlayer('p26')" data-name="Michael A. Taylor" data-position="OF" data-salary="3200000" data-luxury="3200000">OF | Michael A. Taylor | $3,200,000 | $3,200,000</button>
@@ -267,7 +259,7 @@
 					<button class="btn btn-light" id="p58" onclick="addPlayer('p58')" data-name="Curtis Granderson" data-position="OF" data-salary="3000000" data-luxury="3000000">OF | Curtis Granderson | $3,000,000 | $3,000,000</button>
 					<button class="btn btn-light" id="p60" onclick="addPlayer('p60')" data-name="Matt Joyce" data-position="OF" data-salary="2000000" data-luxury="2000000">OF | Matt Joyce | $2,000,000 | $2,000,000</button>
 			</div>
-			<div style="display: none;" id="starter"> 
+			<div id="starter" hidden> 
 				<div class="label">Already Nationals</div>
 					<button class="btn btn-light" id="p11" onclick="addPlayer('p11')" data-name="Tanner Roark" data-position="SP" data-salary="9800000" data-luxury="9800000">SP | Tanner Roark | $9,800,000 | $9,800,000</button>
 					<button class="btn btn-light" id="p12" onclick="addPlayer('p12')" data-name="Joe Ross" data-position="SP" data-salary="1500000" data-luxury="1500000">SP | Joe Ross | $1,500,000 | $1,500,000</button>
@@ -296,7 +288,7 @@
 					<button class="btn btn-light" id="p78" onclick="addPlayer('p78')" data-name="Danny Duffy" data-position="SP" data-salary="15000000" data-luxury="25000000">SP | Danny Duffy | $15,000,000 | $25,000,000</button>
 					<button class="btn btn-light" id="p79" onclick="addPlayer('p79')" data-name="Jake Odorizzi" data-position="SP" data-salary="9400000" data-luxury="9400000">SP | Jake Odorizzi | $9,400,000 | $9,400,000</button>
 			</div>
-			<div style="display: none;" id="reliever"> 
+			<div id="reliever" hidden> 
 				<div class="label">Already Nationals</div>
 					<button class="btn btn-light" id="p16" onclick="addPlayer('p16')" data-name="Justin Miller" data-position="RP" data-salary="550000" data-luxury="550000">RP | Justin Miller | $550,000 | $550,000</button>
 					<button class="btn btn-light" id="p17" onclick="addPlayer('p17')" data-name="Koda Glover" data-position="RP" data-salary="550000" data-luxury="550000">RP | Koda Glover | $550,000 | $550,000</button>
@@ -319,4 +311,10 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class = "col text-center">
+			<p>Created by James O'Hara (<a href="https://twitter.com/thisyeardc">@thisyeardc</a>). Contract and salary data referenced from <a href="https://www.baseball-reference.com/">Baseball Reference</a>. Arbitration projections referenced from <a href="https://www.mlbtraderumors.com/2018/10/mlb-arbitration-salaries-2019.html">MLB Trade Rumors</a>. Free agent salary estimates taken from a combination of <a href="https://www.fangraphs.com/tools/free-agent-tracker">FanGraphs</a> and <a href="https://fancredsports.com/Articles/inside-baseball-predicting-the-deals-for-131-of">Jon Heyman</a>. Player benefits cost referenced from <a href="http://www.espn.com/mlb/story/_/id/23297301/boston-red-sox-washington-nationals-only-teams-track-pay-luxury-tax">Associated Press</a>. Max Scherzer's contract values referenced from <a href="https://legacy.baseballprospectus.com/compensation/cots/national-league/washington-nationals/">Cot's Baseball Contracts</a>.</p>
+		</div>
+	</div>
+</div>
 </html>
