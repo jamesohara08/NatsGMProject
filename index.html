@@ -51,7 +51,7 @@
 			}
 			removePlayer(activeElement);
 		}
-		activeElement.innerHTML = position + " | " + name + " | $" + addCommasToString(salary) + " | $" + addCommasToString(luxury);
+		activeElement.innerHTML = player.innerHTML;
 		activeElement.setAttribute("data-salary",salary);
 		activeElement.setAttribute("data-luxury",luxury);
 		activeElement.setAttribute("data-id",x)
@@ -231,6 +231,8 @@
 					<button class="btn btn-light" id="p42" onclick="addPlayer('p42')" data-name="Ian Kinsler" data-position="2B" data-salary="8000000" data-luxury="8000000">2B | Ian Kinsler | $8,000,000 | $8,000,000</button>
 					<button class="btn btn-light" id="p43" onclick="addPlayer('p43')" data-name="Marwin Gonzalez" data-position="2B" data-salary="10000000" data-luxury="10000000">2B | Marwin Gonzalez | $10,000,000 | $10,000,000</button>
 					<button class="btn btn-light" id="p49" onclick="addPlayer('p49')"  data-name="Josh Harrison" data-position="2B" data-salary="7500000" data-luxury="7500000">2B | Josh Harrison | $7,500,000 | $7,500,000</button>
+				<div class="label">Trade Candidates</div>
+					<button class="btn btn-light" id="p89" onclick="addPlayer('p89')"  data-name="Scooter Gennett" data-position="2B" data-salary="10700000" data-luxury="10700000">2B | Scooter Gennett | $10,700,000 | $10,700,000</button>			
 			</div>
 			<div id="right" hidden> 
 				<div class="label">Already Nationals</div>
@@ -294,7 +296,9 @@
 					<button class="btn btn-light" id="p17" onclick="addPlayer('p17')" data-name="Koda Glover" data-position="RP" data-salary="550000" data-luxury="550000">RP | Koda Glover | $550,000 | $550,000</button>
 					<button class="btn btn-light" id="p18" onclick="addPlayer('p18')" data-name="Wander Suero" data-position="RP" data-salary="550000" data-luxury="550000">RP | Wander Suero | $550,000 | $550,000</button>
 					<button class="btn btn-light" id="p19" onclick="addPlayer('p19')" data-name="Matt Grace" data-position="RP" data-salary="550000" data-luxury="550000">RP | Matt Grace | $550,000 | $550,000</button>
-					<button class="btn btn-light" id="p84" onclick="addPlayer('p84')" data-name="Joe Ross" data-position="RP" data-salary="1500000" data-luxury="1500000">RP | Joe Ross | $1,500,000 | $1,500,000</button>			
+					<button class="btn btn-light" id="p84" onclick="addPlayer('p84')" data-name="Joe Ross" data-position="RP" data-salary="1500000" data-luxury="1500000">RP | Joe Ross | $1,500,000 | $1,500,000</button>		
+					<button class="btn btn-light" id="p85" onclick="addPlayer('p85')" data-name="Sammy Solis" data-position="RP" data-salary="900000" data-luxury="900000">RP | Sammy Solis | $900,000 | $900,000</button>
+					<button class="btn btn-light" id="p86" onclick="addPlayer('p86')" data-name="Trevor Gott" data-position="RP" data-salary="550000" data-luxury="550000">RP | Trevor Gott | $550,000 | $550,000</button>			
 				<div class="label">Free Agents</div>
 					<button class="btn btn-light" id="p37" onclick="addPlayer('p37')" data-name="Tim Collins" data-position="RP" data-salary="1000000" data-luxury="1000000">RP | Tim Collins | $1,000,000 | $1,000,000</button>
 					<button class="btn btn-light" id="p61" onclick="addPlayer('p61')" data-name="Jerry Blevins" data-position="RP" data-salary="2000000" data-luxury="2000000">RP | Jerry Blevins | $2,000,000 | $2,000,000</button>
@@ -308,6 +312,9 @@
 					<button class="btn btn-light" id="p71" onclick="addPlayer('p71')" data-name="Jeurys Familia" data-position="RP" data-salary="10000000" data-luxury="10000000">RP | Jeurys Familia | $10,000,000 | $10,000,000</button>
 				<div class="label">Trade Candidates</div>
 					<button class="btn btn-light" id="p81" onclick="addPlayer('p81')" data-name="Craig Stammen" data-position="RP" data-salary="2250000" data-luxury="3380000">RP | Craig Stammen | $2,250,000 | $3,380,000</button>
+					<button class="btn btn-light" id="p87" onclick="addPlayer('p87')" data-name="Edwin Diaz" data-position="RP" data-salary="550000" data-luxury="1500000">RP | Edwin Diaz | $550,000 | $550,000</button>
+					<button class="btn btn-light" id="p88" onclick="addPlayer('p88')" data-name="Alex Colome" data-position="RP" data-salary="7300000" data-luxury="7300000">RP | Alex Colome | $7,300,000 | $7,300,000</button>
+					<button class="btn btn-light" id="p90" onclick="addPlayer('p90')"  data-name="Brad Boxberger" data-position="RP" data-salary="4900000" data-luxury="4900000">RP | Brad Boxberger | $4,900,000 | $4,900,000</button>		
 			</div>
 		</div>
 	</div>
