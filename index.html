@@ -1,3 +1,4 @@
+<!DOCTYPE HTML>
 <html>
 <style>
 	.indiv-player {
@@ -38,7 +39,7 @@
 	    display: inline;
 	    float: left;
 	    margin-bottom: 0.4em;
-	    margin-top: 1.5em;
+	    margin-top: 0.8em;
 	    letter-spacing: -0.05em;
 	}
 	.ytnumbers {
@@ -95,152 +96,190 @@
 	}
 </style>
 <script>
-function addPlayer(x) {
-	if(document.getElementById("p" + x.toString()).className == "indiv-player selectedyes"){
-		document.getElementById("p" + x.toString()).className = "indiv-player";
-		var removedplayer = document.getElementById("sp" + x.toString());
-		removedplayer.parentNode.removeChild(removedplayer);
-		var oldpay = Number(document.getElementById("payroll").innerHTML.replace(/[^0-9\.]+/g,""));
-		var newpay = oldpay - Number(document.getElementById("p" + x.toString()).innerHTML.split(" | ")[2].replace(/[^0-9\.]+/g,""));
-	    document.getElementById("payroll").innerHTML = "$" + numberWithCommas(newpay);
-	    var numofplayers = Number(document.getElementById("numoplayers").innerHTML) - 1;
-	    document.getElementById("numoplayers").innerHTML = numofplayers.toString();
-	    if(numofplayers < 7){
-			document.getElementById("teamok").style = "display: none;"
-		}
-	    var oldmoney = Number(document.getElementById("left").innerHTML.replace(/[^0-9\.]+/g,""));
-	    if(document.getElementById("left").innerHTML.indexOf("-") != -1){
-			oldmoney = oldmoney * -1;
-		}
-		var newmoney = oldmoney + Number(document.getElementById("p" + x.toString()).innerHTML.split(" | ")[2].replace(/[^0-9\.]+/g,""));
-		if(newmoney > 0){
-			document.getElementById("teamnotok").style = "display: none;"
-		}
-	    document.getElementById("left").innerHTML = "$" + numberWithCommas(newmoney);
+	var activeDisplay = "";
+	function addPlayer(x) {
+		
 	}
-	else{
-		if(Number(document.getElementById("numoplayers").innerHTML) == 7){
-			return;
-		}
-		document.getElementById("p" + x.toString()).className = "indiv-player selectedyes";
-		var addedplayer = document.createElement("div");
-		addedplayer.className = "myplayer";
-		addedplayer.id = "sp" + x.toString();
-		addedplayer.onclick = function() {addPlayer(x)};
-		var name = document.createElement("div");
-		name.className = "mypname";
-		name.innerHTML = document.getElementById("p" + x.toString()).innerHTML.split(" | ")[0];
-		var pos = document.createElement("div");
-		pos.className = "myppos";
-		if(document.getElementById("p" + x.toString()).innerHTML.split(" | ")[1] == "RHP"){
-			pos.innerHTML = "Right Handed Pitcher";
-		}
-		else{
-			pos.innerHTML = "Left Handed Pitcher";
-		}
-		var salary = document.createElement("div");
-		salary.className = "mypsalary";
-		salary.innerHTML = document.getElementById("p" + x.toString()).innerHTML.split(" | ")[2];
-		addedplayer.appendChild(name);
-		addedplayer.appendChild(pos);
-		addedplayer.appendChild(salary);
-		document.getElementById("mylist").appendChild(addedplayer);
-		var oldpay = Number(document.getElementById("payroll").innerHTML.replace(/[^0-9\.]+/g,""));
-		var newpay = oldpay + Number(salary.innerHTML.replace(/[^0-9\.]+/g,""));
-	    document.getElementById("payroll").innerHTML = "$" + numberWithCommas(newpay);
-	   	var numofplayers = Number(document.getElementById("numoplayers").innerHTML) + 1;
-	    document.getElementById("numoplayers").innerHTML = numofplayers.toString();
-	    if(numofplayers == 7){
-			document.getElementById("teamok").style = "display: inline;"
-		}
-	   	var oldmoney = Number(document.getElementById("left").innerHTML.replace(/[^0-9\.]+/g,""));
-	   	if(document.getElementById("left").innerHTML.indexOf("-") != -1){
-			oldmoney = oldmoney * -1;
-		}
-		var newmoney = oldmoney - Number(salary.innerHTML.replace(/[^0-9\.]+/g,""));
-		if(newmoney < 0){
-			document.getElementById("teamok").style = "display: none;"
-			document.getElementById("teamnotok").style = "display: inline;";
-		}
-	    document.getElementById("left").innerHTML = "$" + numberWithCommas(newmoney);
+	function displayPlayers(x) {
+		if(activeDisplay != "")document.getElementById(activeDisplay).style = "display: none;";
+		document.getElementById(x).style = "display: inline;";
+		activeDisplay = x;
 	}
-}
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 </script>
-<div id="your-team" class="chapter">
-		<div class="chapter" id="roster-price">
-			<div class="price-chap" id="final-price">
-				<div class="label">Current payroll</div>
-				<div id="payroll" class="ytnumbers">$0</div>
-			</div>
-			<div class="price-chap" id="money-left">
-				<div class="label">Money left</div>
-				<div id="left" class="ytnumbers">$35,000,000</div>
-			</div>
-			<div class="price-chap" id="numofplayers">
-				<div class="label">Players</div>
-				<div id="numoplayers" class="ytnumbers">0</div>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<div id="your-team" class="chapter">
+				<div class="chapter" id="roster-price">
+					<div class="price-chap" id="final-price">
+						<div class="label">Current payroll</div>
+						<div id="payroll" class="ytnumbers">$0</div>
+					</div>
+					<div class="price-chap" id="money-left">
+						<div class="label">Money left</div>
+						<div id="left" class="ytnumbers">$35,000,000</div>
+					</div>
+					<div class="price-chap" id="numofplayers">
+						<div class="label">Players</div>
+						<div id="numoplayers" class="ytnumbers">0</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<div style="display: inline;" id="confirm-team" class="chapter">
-		<div style="display: none;" class="label" id="teamok">Congratulations, you have a full bullpen, let's go win the NL East! </div>
-		<div style="display: none;" class="label" id="teamnotok">The Lerners are beyond tapped out, you need to pick some new players, fast!</div>
-</div>
-<div id="selposition" class="chapter">
-	<span style="cursor:pointer">
-	<div id="mylist">
-<!-- 		<div class="myplayer" id="sp13" onclick="addPlayer(13)">
-			<div style="visibility: hidden;" class="delplayer">CUT PLAYER</div>
-			<div class="mypname">Stephen Curry</div>
-			<div class="mypsalary">$9,887,642</div>
-		</div> -->
+	<div class="row">
+		<div class="col">
+			<div style="display: inline;" id="confirm-team" class="chapter">
+				<div style="display: none;" class="label" id="teamok">Congratulations, you have a full bullpen, let's go win the NL East! </div>
+				<div style="display: none;" class="label" id="teamnotok">The Lerners are beyond tapped out, you need to pick some new players, fast!</div>
+			</div>
+		</div>
 	</div>
-	</span>
-</div>
-<span style="cursor:pointer">
-<div class="label">Already Nationals</div>
-<div class="indiv-player" id="p10" onclick="addPlayer(10)">Jonathan Papelbon | RHP | $11,000,000</div>
-<div class="indiv-player" id="p11" onclick="addPlayer(11)">Drew Storen | RHP | $8,800,000</div>
-<div class="indiv-player" id="p12" onclick="addPlayer(12)">Craig Stammen | RHP | $2,400,000</div>
-<div class="indiv-player" id="p22" onclick="addPlayer(22)">Aaron Barrett | RHP | $507,500</div>
-<div class="indiv-player" id="p23" onclick="addPlayer(23)">Felipe Rivero | LHP | $507,500</div>
-<div class="indiv-player" id="p24" onclick="addPlayer(24)">Blake Treinen | RHP | $507,500</div>
-<div class="indiv-player" id="p25" onclick="addPlayer(25)">Matt Grace | LHP | $507,500</div>
-<div class="indiv-player" id="p26" onclick="addPlayer(26)">Sammy Solis | LHP | $507,500</div>
-<div class="indiv-player" id="p27" onclick="addPlayer(27)">Rafael Martin | RHP | $507,500</div>
-<div class="indiv-player" id="p28" onclick="addPlayer(28)">A.J. Cole | RHP | $507,500</div>
-<div class="indiv-player" id="p29" onclick="addPlayer(29)">Reynaldo Lopez | RHP | $507,500</div>
-<div class="indiv-player" id="p30" onclick="addPlayer(30)">Taylor Jordan | RHP | $507,500</div>
-<div class="indiv-player" id="p31" onclick="addPlayer(31)">Abel De Los Santos | RHP | $507,500</div>
-<div class="indiv-player" id="p32" onclick="addPlayer(32)">Taylor Hill | RHP | $507,500</div>
-<div class="indiv-player" id="p33" onclick="addPlayer(33)">Lucas Giolito | RHP | $507,500</div>
-<div class="indiv-player" id="p34" onclick="addPlayer(34)">Sean Burnett | LHP | $507,500</div>
-<div class="label">Free Agents</div>
-<div class="indiv-player" id="p14" onclick="addPlayer(14)">Darren O'Day | RHP | $7,000,000</div>
-<div class="indiv-player" id="p15" onclick="addPlayer(15)">Joakim Soria | RHP | $7,000,000</div>
-<div class="indiv-player" id="p16" onclick="addPlayer(16)">Tyler Clippard | RHP | $7,000,000</div>
-<div class="indiv-player" id="p46" onclick="addPlayer(46)">Tony Sipp | LHP | $5,000,000</div>
-<div class="indiv-player" id="p35" onclick="addPlayer(35)">Antonio Bastardo | LHP | $4,000,000</div>
-<div class="indiv-player" id="p36" onclick="addPlayer(36)">Shawn Kelley | RHP | $4,000,000</div>
-<div class="indiv-player" id="p37" onclick="addPlayer(37)">Tommy Hunter | RHP | $5,000,000</div>
-<div class="indiv-player" id="p38" onclick="addPlayer(38)">Trevor Cahill | RHP | $5,000,000</div>
-<div class="indiv-player" id="p39" onclick="addPlayer(39)">Ryan Madson | RHP | $5,000,000</div>
-<div class="indiv-player" id="p40" onclick="addPlayer(40)">Jonathan Broxton | RHP | $4,000,000</div>
-<div class="indiv-player" id="p41" onclick="addPlayer(41)">Matt Thornton | LHP | $2,000,000</div>
-<div class="label">Trade Candidates</div>
-<div class="indiv-player" id="p18" onclick="addPlayer(18)">Aroldis Chapman | LHP | $12,900,000</div>
-<div class="indiv-player" id="p19" onclick="addPlayer(19)">Brad Boxberger | RHP | $507,500</div>
-<div class="indiv-player" id="p20" onclick="addPlayer(20)">Jake McGee | LHP | $4,700,000</div>
-<div class="indiv-player" id="p21" onclick="addPlayer(21)">Andrew Miller | LHP | $9,000,000</div>
-<div class="indiv-player" id="p42" onclick="addPlayer(42)">Francisco Rodriguez | RHP | $5,500,000</div>
-<div class="indiv-player" id="p43" onclick="addPlayer(43)">Brad Ziegler | RHP | $5,500,000</div>
-<div class="indiv-player" id="p44" onclick="addPlayer(44)">Will Smith | LHP | $1,200,000</div>
-<div class="indiv-player" id="p45" onclick="addPlayer(45)">Ken Giles | RHP | $507,500</div>
-<div class="indiv-player" id="p47" onclick="addPlayer(47)">Mark Melancon | RHP | $10,000,000</div>
-<div class="indiv-player" id="p48" onclick="addPlayer(48)">Shawn Tolleson | RHP | $2,600,000</div>
-</span>
+	<div class="row">
+		<div class="col">
+			<div class="btn-group-vertical" id="mylist">
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('catcher')" data-position="C" data-salary="0" data-luxury="0">C</button>
+				<button class="btn btn-outline-dark btn-sm disabled" id="p1" data-position="1B" data-salary="18000000" data-luxury="16700000">1B | Ryan Zimmerman | $18,000,000 | $16,700,000</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('second')" data-position="2B" data-salary="0" data-luxury="0">2B</button>
+				<button class="btn btn-outline-dark btn-sm disabled" id="p3" data-position="3B" data-salary="17600000" data-luxury="17600000">3B | Anthony Rendon | $17,600,000 | $17,600,000</button>
+				<button class="btn btn-outline-dark btn-sm disabled" id="p4" data-position="SS" data-salary="5300000" data-luxury="5300000">SS | Trea Turner | $5,300,000 | $5,300,000</button>
+				<button class="btn btn-outline-dark btn-sm disabled" id="p5" data-position="LF" data-salary="550000" data-luxury="550000">LF | Juan Soto | $550,000 | $550,000</button>
+				<button class="btn btn-outline-dark btn-sm disabled" id="p6" data-position="CF" data-salary="550000" data-luxury="550000">CF | Victor Robles | $550,000 | $550,000</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('right')" data-position="RF" data-salary="0" data-luxury="0">RF</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('catcher')"  data-position="C" data-salary="0" data-luxury="0">C</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('infield')" data-position="IF" data-salary="0" data-luxury="0">IF</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('infield')" data-position="IF" data-salary="0" data-luxury="0">IF</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('outfield')" data-position="OF" data-salary="0" data-luxury="0">OF</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('outfield')" data-position="OF" data-salary="0" data-luxury="0">OF</button>
+			</div>
+		</div>
+		<div class="col">
+			<div class="btn-group-vertical" id="pitchers">
+				<button class="btn btn-outline-dark btn-sm disabled" id="p8" data-position="SP" data-salary="24300000" data-luxury="28700000">SP | Max Scherzer | $24,300,000 | $28,700,000</button>
+				<button class="btn btn-outline-dark btn-sm disabled" id="p9" data-position="SP" data-salary="15000000" data-luxury="25000000">SP | Stephen Strasburg |  $15,000,000 | $25,000,000</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('starter')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('starter')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('starter')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
+				<button class="btn btn-outline-dark btn-sm disabled" id="p13" data-position="RP" data-salary="6000000" data-luxury="6000000">RP | Sean Doolittle | $6,000,000 | $6,000,000</button>
+				<button class="btn btn-outline-dark btn-sm disabled" id="p14" data-position="RP" data-salary="6000000" data-luxury="6000000">RP | Trevor Rosenthal | $6,000,000 | $6,000,000</button>
+				<button class="btn btn-outline-dark btn-sm disabled" id="p15" data-position="RP" data-salary="1900000" data-luxury="1900000">RP | Kyle Barraclough | $1,900,000 | $1,900,000</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+			</div>
+		</div>
+		<div class="col">
+			<div style="display: none;" id="catcher"> 
+				<div class="label">Already Nationals</div>
+					<button class="btn btn-light btn-sm" id="p20" onclick="addPlayer(20)" data-position="C" data-salary="550000" data-luxury="550000">C | Spencer Kieboom | $550,000 | $550,000</button>
+				<div class="label">Free Agents</div>
+					<button class="btn btn-light btn-sm" id="p0" onclick="addPlayer(0)" data-position="C" data-salary="15000000" data-luxury="15000000">C | Yasmani Grandal | $15,000,000 | $15,000,000</button>
+					<button class="btn btn-light btn-sm" id="p27" onclick="addPlayer(27)" data-position="C" data-salary="2000000" data-luxury="2000000">C | Jeff Mathis | $2,000,000 | $2,000,000</button>
+					<button class="btn btn-light btn-sm" id="p31" onclick="addPlayer(31)" data-position="C" data-salary="12000000" data-luxury="12000000">C | Wilson Ramos | $12,000,000 | $12,000,000</button>
+					<button class="btn btn-light btn-sm" id="p34" onclick="addPlayer(34)" data-position="C" data-salary="6000000" data-luxury="6000000">C | Kurt Suzuki | $6,000,000 | $6,000,000</button>
+					<button class="btn btn-light btn-sm" id="p46" onclick="addPlayer(46)" data-position="C" data-salary="6000000" data-luxury="6000000">C | Jonathan Lucroy | $6,000,000 | $6,000,000</button>
+					<button class="btn btn-light btn-sm" id="p48" onclick="addPlayer(48)" data-position="C" data-salary="7000000" data-luxury="7000000">C | Brian McCann | $7,000,000 | $7,000,000</button>
+					<button class="btn btn-light btn-sm" id="p50" onclick="addPlayer(50)" data-position="C" data-salary="7500000" data-luxury="7500000">C | Robinson Chirinos | $7,500,000 | $7,500,000</button>
+					<button class="btn btn-light btn-sm" id="p53" onclick="addPlayer(53)" data-position="C" data-salary="5000000" data-luxury="5000000">C | Martin Maldonado | $5,000,000 | $5,000,000</button>
+				<div class="label">Trade Candidates</div>
+					<button class="btn btn-light btn-sm" id="p75" onclick="addPlayer(75)" data-position="C" data-salary="6100000" data-luxury="6100000">C | J.T. Realmuto | $6,100,000 | $6,100,000</button>
+					<button class="btn btn-light btn-sm" id="p80" onclick="addPlayer(80)" data-position="C" data-salary="11500000" data-luxury="10330000">C | Francisco Cervelli | $11,500,000 | $10,330,000</button>
+			</div>
+			<div style="display: none;" id="second"> 
+				<div class="label">Already Nationals</div>
+					<button class="btn btn-light btn-sm" id="p2" onclick="addPlayer(2)" data-position="2B/OF" data-salary="4000000" data-luxury="3500000">2B/OF | Howie Kendrick | $4,000,000 | $3,500,000</button>
+				<div class="label">Free Agents</div>
+					<button class="btn btn-light btn-sm" id="p29" onclick="addPlayer(29)" data-position="2B" data-salary="12000000" data-luxury="12000000">2B | Brian Dozier | $12,000,000 | $12,000,000</button>
+					<button class="btn btn-light btn-sm" id="p33" onclick="addPlayer(33)" data-position="2B" data-salary="9000000" data-luxury="9000000">2B | Asdrubal Cabrera | $9,000,000 | $9,000,000</button>
+					<button class="btn btn-light btn-sm" id="p35" onclick="addPlayer(35)" data-position="2B" data-salary="12000000" data-luxury="12000000">2B | DJ Lemahieu | $12,000,000 | $12,000,000</button>
+					<button class="btn btn-light btn-sm" id="p40" onclick="addPlayer(40)" data-position="2B" data-salary="14000000" data-luxury="14000000">2B | Daniel Murphy | $14,000,000 | $14,000,000</button>
+					<button class="btn btn-light btn-sm" id="p41" onclick="addPlayer(41)" data-position="2B" data-salary="12000000" data-luxury="12000000">2B | Jed Lowrie | $12,000,000 | $12,000,000</button>
+					<button class="btn btn-light btn-sm" id="p42" onclick="addPlayer(42)" data-position="2B" data-salary="8000000" data-luxury="8000000">2B | Ian Kinsler | $8,000,000 | $8,000,000</button>
+					<button class="btn btn-light btn-sm" id="p43" onclick="addPlayer(43)" data-position="2B" data-salary="10000000" data-luxury="10000000">2B | Marwin Gonzalez | $10,000,000 | $10,000,000</button>
+					<button class="btn btn-light btn-sm" id="p49" onclick="addPlayer(49)" data-position="2B" data-salary="7500000" data-luxury="7500000">2B | Josh Harrison | $7,500,000 | $7,500,000</button>
+			</div>
+			<div style="display: none;" id="right"> 
+				<div class="label">Already Nationals</div>
+					<button class="btn btn-light btn-sm" id="p25" onclick="addPlayer(25)" data-position="RF" data-salary="8400000" data-luxury="4700000">RF | Adam Eaton | $8,400,000 | $4,700,000</button>
+				<div class="label">Free Agents</div>
+					<button class="btn btn-light btn-sm" id="p7" onclick="addPlayer(7)" data-position="RF" data-salary="28000000" data-luxury="33000000">RF | Bryce Harper | $28,000,000 | $33,000,000</button>
+			</div>
+			<div style="display: none;" id="infield"> 
+				<div class="label">Already Nationals</div>
+					<button class="btn btn-light btn-sm" id="p22" onclick="addPlayer(22)" data-position="IF" data-salary="550000" data-luxury="550000">IF | Wilmer Difo | $550,000 | $550,000</button>
+				<div class="label">Free Agents</div>
+					<button class="btn btn-light btn-sm" id="p21" onclick="addPlayer(21)" data-position="IF" data-salary="3000000" data-luxury="3000000">IF | Matt Adams | $3,000,000 | $3,000,000</button>
+					<button class="btn btn-light btn-sm" id="p55" onclick="addPlayer(55)" data-position="IF" data-salary="4000000" data-luxury="4000000">IF | Lucas Duda | $4,000,000 | $4,000,000</button>
+					<button class="btn btn-light btn-sm" id="p57" onclick="addPlayer(57)" data-position="IF" data-salary="3000000" data-luxury="3000000">IF | Hanley Ramirez | $3,000,000 | $3,000,000</button>
+					<button class="btn btn-light btn-sm" id="p59" onclick="addPlayer(59)" data-position="IF" data-salary="2500000" data-luxury="2500000">IF | Logan Morrison | $2,500,000 | $2,500,000</button>
+					<button class="btn btn-light btn-sm" id="p64" onclick="addPlayer(64)" data-position="IF" data-salary="6500000" data-luxury="6500000">IF | Steve Pearce | $6,500,000 | $6,500,000</button>
+			</div>
+			<div style="display: none;" id="outfield"> 
+				<div class="label">Already Nationals</div>
+					<button class="btn btn-light btn-sm" id="p24" onclick="addPlayer(24)" data-position="OF" data-salary="550000" data-luxury="550000">OF | Andrew Stevenson | $550,000 | $550,000</button>
+					<button class="btn btn-light btn-sm" id="p26" onclick="addPlayer(26)" data-position="OF" data-salary="3200000" data-luxury="3200000">OF | Michael A. Taylor | $3,200,000 | $3,200,000</button>
+					<button class="btn btn-light btn-sm" id="p2" onclick="addPlayer(2)" data-position="2B/OF" data-salary="4000000" data-luxury="3500000">2B/OF | Howie Kendrick | $4,000,000 | $3,500,000</button>
+				<div class="label">Free Agents</div>
+					<button class="btn btn-light btn-sm" id="p23" onclick="addPlayer(23)" data-position="OF" data-salary="1000000" data-luxury="1000000">OF | Jose Bautista | $1,000,000 | $1,000,000</button>
+					<button class="btn btn-light btn-sm" id="p56" onclick="addPlayer(56)" data-position="OF" data-salary="3000000" data-luxury="3000000">OF | Matt Holliday | $3,000,000 | $3,000,000</button>
+					<button class="btn btn-light btn-sm" id="p58" onclick="addPlayer(58)" data-position="OF" data-salary="3000000" data-luxury="3000000">OF | Curtis Granderson | $3,000,000 | $3,000,000</button>
+					<button class="btn btn-light btn-sm" id="p60" onclick="addPlayer(60)" data-position="OF" data-salary="2000000" data-luxury="2000000">OF | Matt Joyce | $2,000,000 | $2,000,000</button>
+			</div>
+			<div style="display: none;" id="starter"> 
+				<div class="label">Already Nationals</div>
+					<button class="btn btn-light btn-sm" id="p11" onclick="addPlayer(11)" data-position="SP" data-salary="9800000" data-luxury="9800000">SP | Tanner Roark | $9,800,000 | $9,800,000</button>
+					<button class="btn btn-light btn-sm" id="p12" onclick="addPlayer(12)" data-position="SP/RP" data-salary="1500000" data-luxury="1500000">SP/RP | Joe Ross | $1,500,000 | $1,500,000</button>
+				<div class="label">Free Agents</div>
+					<button class="btn btn-light btn-sm" id="p28" onclick="addPlayer(28)" data-position="SP" data-salary="19000000" data-luxury="20000000">SP | Dallas Keuchel | $19,000,000 | $20,000,000</button>
+					<button class="btn btn-light btn-sm" id="p30" onclick="addPlayer(30)" data-position="SP" data-salary="14000000" data-luxury="14000000">SP | Nathan Eovaldi | $14,000,000 | $14,000,000</button>
+					<button class="btn btn-light btn-sm" id="p32" onclick="addPlayer(32)" data-position="SP" data-salary="13500000" data-luxury="13500000">SP | Hyun-Jin Ryu | $13,500,000 | $13,500,000</button>
+					<button class="btn btn-light btn-sm" id="p36" onclick="addPlayer(36)" data-position="SP" data-salary="18000000" data-luxury="20000000">SP | Patrick Corbin | $18,000,000 | $20,000,000</button>
+					<button class="btn btn-light btn-sm" id="p38" onclick="addPlayer(38)" data-position="SP" data-salary="15000000" data-luxury="15000000">SP | J.A. Happ | $15,000,000 | $15,000,000</button>
+					<button class="btn btn-light btn-sm" id="p39" onclick="addPlayer(39)" data-position="SP" data-salary="16000000" data-luxury="16000000">SP | Charlie Morton | $16,000,000 | $16,000,000</button>
+					<button class="btn btn-light btn-sm" id="p44" onclick="addPlayer(44)" data-position="SP" data-salary="8000000" data-luxury="8000000">SP | Anibal Sanchez | $8,000,000 | $8,000,000</button>
+					<button class="btn btn-light btn-sm" id="p45" onclick="addPlayer(45)" data-position="SP" data-salary="12000000" data-luxury="12000000">SP | Lance Lynn | $12,000,000 | $12,000,000</button>
+					<button class="btn btn-light btn-sm" id="p47" onclick="addPlayer(47)" data-position="SP" data-salary="7200000" data-luxury="7200000">SP | Trevor Cahill | $7,200,000 | $7,200,000</button>
+					<button class="btn btn-light btn-sm" id="p51" onclick="addPlayer(51)" data-position="SP" data-salary="6500000" data-luxury="6500000">SP | Wade Miley | $6,500,000 | $6,500,000</button>
+					<button class="btn btn-light btn-sm" id="p52" onclick="addPlayer(52)" data-position="SP" data-salary="12000000" data-luxury="12000000">SP | Gio Gonzalez | $12,000,000 | $12,000,000</button>
+					<button class="btn btn-light btn-sm" id="p54" onclick="addPlayer(54)" data-position="SP" data-salary="6000000" data-luxury="6000000">SP | Jeremy Hellickson | $6,000,000 | $6,000,000</button>
+					<button class="btn btn-light btn-sm" id="p65" onclick="addPlayer(65)" data-position="SP" data-salary="6500000" data-luxury="6500000">SP | Ervin Santana | $6,500,000 | $6,500,000</button>
+					<button class="btn btn-light btn-sm" id="p82" onclick="addPlayer(82)" data-position="SP" data-salary="6000000" data-luxury="6000000">SP | Clay Buchholz | $6,000,000 | $6,000,000</button>
+				<div class="label">Trade Candidates</div>
+					<button class="btn btn-light btn-sm" id="p10" onclick="addPlayer(10)" data-position="SP" data-salary="9100000" data-luxury="9100000">SP | Sonny Gray | $9,100,000 | $9,100,000</button>
+					<button class="btn btn-light btn-sm" id="p72" onclick="addPlayer(72)" data-position="SP" data-salary="9000000" data-luxury="9000000">SP | James Paxton | $9,000,000 | $9,000,000</button>
+					<button class="btn btn-light btn-sm" id="p73" onclick="addPlayer(73)" data-position="SP" data-salary="17000000" data-luxury="8460000">SP | Corey Kluber | $17,000,000 | $8,460,000</button>
+					<button class="btn btn-light btn-sm" id="p74" onclick="addPlayer(74)" data-position="SP" data-salary="9750000" data-luxury="6350000">SP | Carlos Carrasco | $9,750,000 | $6,350,000</button>
+					<button class="btn btn-light btn-sm" id="p76" onclick="addPlayer(76)" data-position="SP" data-salary="12000000" data-luxury="12000000">SP | Madison Bumgrarner | $12,000,000 | $12,000,000</button>
+					<button class="btn btn-light btn-sm" id="p77" onclick="addPlayer(77)" data-position="SP" data-salary="3000000" data-luxury="3000000">SP | Michael Fulmer | $3,000,000 | $3,000,000</button>
+					<button class="btn btn-light btn-sm" id="p78" onclick="addPlayer(78)" data-position="SP" data-salary="15000000" data-luxury="25000000">SP | Danny Duffy | $15,000,000 | $25,000,000</button>
+					<button class="btn btn-light btn-sm" id="p79" onclick="addPlayer(79)" data-position="SP" data-salary="9400000" data-luxury="9400000">SP | Jake Odorizzi | $9,400,000 | $9,400,000</button>
+			</div>
+			<div style="display: none;" id="reliever"> 
+				<div class="label">Already Nationals</div>
+					<button class="btn btn-light btn-sm" id="p16" onclick="addPlayer(16)" data-position="RP" data-salary="550000" data-luxury="550000">RP | Justin Miller | $550,000 | $550,000</button>
+					<button class="btn btn-light btn-sm" id="p17" onclick="addPlayer(17)" data-position="RP" data-salary="550000" data-luxury="550000">RP | Koda Glover | $550,000 | $550,000</button>
+					<button class="btn btn-light btn-sm" id="p18" onclick="addPlayer(18)" data-position="RP" data-salary="550000" data-luxury="550000">RP | Wander Suero | $550,000 | $550,000</button>
+					<button class="btn btn-light btn-sm" id="p19" onclick="addPlayer(19)" data-position="RP" data-salary="550000" data-luxury="550000">RP | Matt Grace | $550,000 | $550,000</button>
+					<button class="btn btn-light btn-sm" id="p12" onclick="addPlayer(12)" data-position="SP/RP" data-salary="1500000" data-luxury="1500000">SP/RP | Joe Ross | $1,500,000 | $1,500,000</button>			
+				<div class="label">Free Agents</div>
+					<button class="btn btn-light btn-sm" id="p37" onclick="addPlayer(37)" data-position="RP" data-salary="1000000" data-luxury="1000000">RP | Tim Collins | $1,000,000 | $1,000,000</button>
+					<button class="btn btn-light btn-sm" id="p61" onclick="addPlayer(61)" data-position="RP" data-salary="2000000" data-luxury="2000000">RP | Jerry Blevins | $2,000,000 | $2,000,000</button>
+					<button class="btn btn-light btn-sm" id="p62" onclick="addPlayer(62)" data-position="RP" data-salary="3000000" data-luxury="3000000">RP | Zach Duke | $3,000,000 | $3,000,000</button>
+					<button class="btn btn-light btn-sm" id="p63" onclick="addPlayer(63)" data-position="RP" data-salary="1750000" data-luxury="1750000">RP | Johnny Venters | $1,750,000 | $1,750,000</button>
+					<button class="btn btn-light btn-sm" id="p66" onclick="addPlayer(66)" data-position="RP" data-salary="5000000" data-luxury="5000000">RP | Tony Sipp | $5,000,000 | $5,000,000</button>
+					<button class="btn btn-light btn-sm" id="p67" onclick="addPlayer(67)" data-position="RP" data-salary="11000000" data-luxury="11000000">RP | Andrew Miller | $11,000,000 | $11,000,000</button>
+					<button class="btn btn-light btn-sm" id="p68" onclick="addPlayer(68)" data-position="RP" data-salary="6000000" data-luxury="6000000">RP | Justin Wilson | $6,000,000 | $6,000,000</button>
+					<button class="btn btn-light btn-sm" id="p69" onclick="addPlayer(69)" data-position="RP" data-salary="11000000" data-luxury="11000000">RP | David Robertson | $11,000,000 | $11,000,000</button>
+					<button class="btn btn-light btn-sm" id="p70" onclick="addPlayer(70)" data-position="RP" data-salary="10000000" data-luxury="10000000">RP | Adam Ottavino | $10,000,000 | $10,000,000</button>
+					<button class="btn btn-light btn-sm" id="p71" onclick="addPlayer(71)" data-position="RP" data-salary="10000000" data-luxury="10000000">RP | Jeurys Familia | $10,000,000 | $10,000,000</button>
+				<div class="label">Trade Candidates</div>
+					<button class="btn btn-light btn-sm" id="p81" onclick="addPlayer(81)" data-position="RP" data-salary="2250000" data-luxury="3380000">RP | Craig Stammen | $2,250,000 | $3,380,000</button>
+			</div>
+		</div>
+	</div>
 </html>
