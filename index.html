@@ -1,23 +1,6 @@
 <!DOCTYPE HTML>
 <html>
 <style>
-	.indiv-player {
-	    width: auto;
-	    display: inline;
-	    float: left;
-	    padding: 0.2em 0.4em;
-	    margin: 0.1em;
-	    background: #FFF none repeat scroll 0% 0%;
-	    border: 1px solid #EEE;
-	    font-family: Arial,Helvetica,sans-serif;
-	    font-size: 0.8em;
-	    color: #999;
-	    border-radius: 5px;
-	}
-	.selectedyes {
-	    background: #333 none repeat scroll 0% 0%;
-	    color: #FFF;
-	}
 	.chapter {
 	    width: 100%;
 	    display: inline;
@@ -33,81 +16,134 @@
 	    text-align: center;
 	    margin-right: 10px;
 	}
-	.label {
-	    font-family: "Benton Sans Bold",Arial,Helvetica,sans-serif;
-	    width: 100%;
-	    display: inline;
-	    float: left;
-	    margin-bottom: 0.4em;
-	    margin-top: 0.8em;
-	    letter-spacing: -0.05em;
-	}
 	.ytnumbers {
 	    font-family: "Miller Headline Bold","Times New Roman",Georgia,serif;
 	    font-size: 1.5em;
 	    letter-spacing: -0.05em;
 	}
-	.myplayer {
-	    display: inline-block;
-	    min-width: 100px;
-	    width: 17%;
-	    margin: 2.5em 2.5%;
-	    margin-right: 10px;
-	}
-	.mypname {
-	    font-family: "Miller Headline Bold","Times New Roman",Georgia,serif;
-	    font-size: 1.2em;
-	}
-	.myppos {
-    	font-family: "Miller Headline Bold","Times New Roman",Georgia,serif;
-    	font-style: italic;
-	}
-	.mypsalary {
-    	font-family: "Miller Headline Bold","Times New Roman",Georgia,serif;
-	}
-	.delplayer {
-	    position: absolute;
-	    background: #900 none repeat scroll 0% 0%;
-	        background-color: #900;
-	        background-image: none;
-	        background-repeat: repeat;
-	        background-attachment: scroll;
-	        background-position: 0% 0%;
-	        background-clip: border-box;
-	        background-origin: padding-box;
-	        background-size: auto auto;
-	    color: #FFF;
-	    text-align: center;
-	    width: auto;
-	    padding: 0.5em 2.5%;
-	        padding-top: 0.5em;
-	        padding-right: 2.5%;
-	        padding-bottom: 0.5em;
-	        padding-left: 2.5%;
-	    margin-top: 1em;
-	    margin-left: -5.5%;
-	    border-radius: 0px 15px 15px 0px;
-	        border-top-left-radius: 0px;
-	        border-top-right-radius: 15px;
-	        border-bottom-right-radius: 15px;
-	        border-bottom-left-radius: 0px;
-	    font-size: 0.8em;
-	    font-family: "Benton Sans Bold",Arial,Helvetica,sans-serif;
-	}
 </style>
 <script>
 	var activeDisplay = "";
+	var activeElement = null;
 	function addPlayer(x) {
-		
+		var player = document.getElementById(x);
+		var position = player.getAttribute("data-position");
+		var name = player.getAttribute("data-name");
+		var salary = player.getAttribute("data-salary");
+		var luxury = player.getAttribute("data-luxury");
+		disablePlayer(player);
+		switch(x){
+			case 'p2':
+				disablePlayer(document.getElementById('p83'));
+				break;
+			case 'p83':
+				disablePlayer(document.getElementById('p2'));
+				break;
+			case 'p12':
+				disablePlayer(document.getElementById('p84'));
+				break;
+			case 'p84':
+				disablePlayer(document.getElementById('p12'));
+				break;
+		}
+
+		if(activeElement.innerHTML != position){
+			enablePlayer(document.getElementById(activeElement.getAttribute("data-id")));
+			switch(activeElement.getAttribute("data-id")){
+				case 'p2':
+					enablePlayer(document.getElementById('p83'));
+					break;
+				case 'p83':
+					enablePlayer(document.getElementById('p2'));
+					break;
+				case 'p12':
+					enablePlayer(document.getElementById('p84'));
+					break;
+				case 'p84':
+					enablePlayer(document.getElementById('p12'));
+					break;
+			}
+			removePlayer(activeElement);
+		}
+		activeElement.innerHTML = position + " | " + name + " | $" + addCommasToString(salary) + " | $" + addCommasToString(luxury);
+		activeElement.setAttribute("data-salary",salary);
+		activeElement.setAttribute("data-luxury",luxury);
+		activeElement.setAttribute("data-id",x)
+
+		var payroll = document.getElementById("payroll");
+		var luxurytax = document.getElementById("luxury-tax");
+		var moneyleft = document.getElementById("left");
+		var newpayrollamount = Number(payroll.getAttribute("data-payroll")) + Number(salary);
+		var newluxuryamount = Number(luxurytax.getAttribute("data-lt")) + Number(luxury);
+		var newmoneyleft = Number(moneyleft.getAttribute("data-left")) - Number(luxury);
+		payroll.setAttribute("data-payroll",newpayrollamount.toString());
+		luxurytax.setAttribute("data-lt",newluxuryamount.toString());
+		moneyleft.setAttribute("data-left",newmoneyleft.toString());
+		payroll.innerHTML = "$" + numberWithCommas(newpayrollamount);
+		luxurytax.innerHTML = "$" + numberWithCommas(newluxuryamount);
+		moneyleft.innerHTML = "$" + numberWithCommas(newmoneyleft);
+
 	}
-	function displayPlayers(x) {
+	function displayPlayers(elem,x) {
+		if(elem.getAttribute("data-salary") != "0") {
+			enablePlayer(document.getElementById(elem.getAttribute("data-id")));
+			switch(elem.getAttribute("data-id")){
+				case 'p2':
+					enablePlayer(document.getElementById('p83'));
+					break;
+				case 'p83':
+					enablePlayer(document.getElementById('p2'));
+					break;
+				case 'p12':
+					enablePlayer(document.getElementById('p84'));
+					break;
+				case 'p84':
+					enablePlayer(document.getElementById('p12'));
+					break;
+			}
+			removePlayer(elem);
+		}
 		if(activeDisplay != "")document.getElementById(activeDisplay).style = "display: none;";
 		document.getElementById(x).style = "display: inline;";
 		activeDisplay = x;
+		activeElement = elem;
+
+	}
+	function removePlayer(elem) {
+		var payroll = document.getElementById("payroll");
+		var luxurytax = document.getElementById("luxury-tax");
+		var moneyleft = document.getElementById("left");
+		var newpayrollamount = Number(payroll.getAttribute("data-payroll")) - Number(elem.getAttribute('data-salary'));
+		var newluxuryamount = Number(luxurytax.getAttribute("data-lt")) - Number(elem.getAttribute('data-luxury'));
+		var newmoneyleft = Number(moneyleft.getAttribute("data-left")) + Number(elem.getAttribute('data-luxury'));
+		payroll.setAttribute("data-payroll",newpayrollamount.toString());
+		luxurytax.setAttribute("data-lt",newluxuryamount.toString());
+		moneyleft.setAttribute("data-left",newmoneyleft.toString());
+		payroll.innerHTML = "$" + numberWithCommas(newpayrollamount);
+		luxurytax.innerHTML = "$" + numberWithCommas(newluxuryamount);
+		moneyleft.innerHTML = "$" + numberWithCommas(newmoneyleft);
+
+		elem.setAttribute("data-salary","0");
+		elem.setAttribute("data-luxury","0");
+		elem.setAttribute("data-id","");
+		elem.innerHTML = elem.getAttribute("data-position");
+	}
+	function enablePlayer(player){	
+		player.setAttribute("class","btn btn-light btn-sm");
+		player.setAttribute("onclick","addPlayer(\'" + player.getAttribute("id") + "\')")
+	}
+	function disablePlayer(player){
+		player.setAttribute("class","btn btn-light btn-sm disabled");
+		player.setAttribute("onclick","");
 	}
 	function numberWithCommas(x) {
 	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
+
+	function addCommasToString(x) {
+	    return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
 </script>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <div class="container">
@@ -117,15 +153,15 @@
 				<div class="chapter" id="roster-price">
 					<div class="price-chap" id="final-price">
 						<div class="label">Current payroll</div>
-						<div id="payroll" class="ytnumbers">$0</div>
+						<div id="payroll" class="ytnumbers" data-payroll="109200000">$109,200,000</div>
+					</div>
+					<div class="price-chap" id="final-luxury">
+						<div class="label">Current luxury tax</div>
+						<div id="luxury-tax" class="ytnumbers" data-lt="122300000">$122,300,000</div>
 					</div>
 					<div class="price-chap" id="money-left">
-						<div class="label">Money left</div>
-						<div id="left" class="ytnumbers">$35,000,000</div>
-					</div>
-					<div class="price-chap" id="numofplayers">
-						<div class="label">Players</div>
-						<div id="numoplayers" class="ytnumbers">0</div>
+						<div class="label">Money remaining</div>
+						<div id="left" class="ytnumbers" data-left="83700000">$83,700,000</div>
 					</div>
 				</div>
 			</div>
@@ -142,143 +178,144 @@
 	<div class="row">
 		<div class="col">
 			<div class="btn-group-vertical" id="mylist">
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('catcher')" data-position="C" data-salary="0" data-luxury="0">C</button>
-				<button class="btn btn-outline-dark btn-sm disabled" id="p1" data-position="1B" data-salary="18000000" data-luxury="16700000">1B | Ryan Zimmerman | $18,000,000 | $16,700,000</button>
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('second')" data-position="2B" data-salary="0" data-luxury="0">2B</button>
-				<button class="btn btn-outline-dark btn-sm disabled" id="p3" data-position="3B" data-salary="17600000" data-luxury="17600000">3B | Anthony Rendon | $17,600,000 | $17,600,000</button>
-				<button class="btn btn-outline-dark btn-sm disabled" id="p4" data-position="SS" data-salary="5300000" data-luxury="5300000">SS | Trea Turner | $5,300,000 | $5,300,000</button>
-				<button class="btn btn-outline-dark btn-sm disabled" id="p5" data-position="LF" data-salary="550000" data-luxury="550000">LF | Juan Soto | $550,000 | $550,000</button>
-				<button class="btn btn-outline-dark btn-sm disabled" id="p6" data-position="CF" data-salary="550000" data-luxury="550000">CF | Victor Robles | $550,000 | $550,000</button>
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('right')" data-position="RF" data-salary="0" data-luxury="0">RF</button>
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('catcher')"  data-position="C" data-salary="0" data-luxury="0">C</button>
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('infield')" data-position="IF" data-salary="0" data-luxury="0">IF</button>
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('infield')" data-position="IF" data-salary="0" data-luxury="0">IF</button>
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('outfield')" data-position="OF" data-salary="0" data-luxury="0">OF</button>
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('outfield')" data-position="OF" data-salary="0" data-luxury="0">OF</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'catcher')" data-position="C" data-salary="0" data-luxury="0">C</button>
+				<button class="btn btn-outline-dark btn-sm disabled" data-position="1B" data-salary="18000000" data-luxury="16700000">1B | Ryan Zimmerman | $18,000,000 | $16,700,000</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'second')" data-position="2B" data-salary="0" data-luxury="0">2B</button>
+				<button class="btn btn-outline-dark btn-sm disabled" data-position="3B" data-salary="17600000" data-luxury="17600000">3B | Anthony Rendon | $17,600,000 | $17,600,000</button>
+				<button class="btn btn-outline-dark btn-sm disabled" data-position="SS" data-salary="5300000" data-luxury="5300000">SS | Trea Turner | $5,300,000 | $5,300,000</button>
+				<button class="btn btn-outline-dark btn-sm disabled" data-position="LF" data-salary="550000" data-luxury="550000">LF | Juan Soto | $550,000 | $550,000</button>
+				<button class="btn btn-outline-dark btn-sm disabled" data-position="CF" data-salary="550000" data-luxury="550000">CF | Victor Robles | $550,000 | $550,000</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'right')" data-position="RF" data-salary="0" data-luxury="0">RF</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'catcher')"  data-position="C" data-salary="0" data-luxury="0">C</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'infield')" data-position="IF" data-salary="0" data-luxury="0">IF</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'infield')" data-position="IF" data-salary="0" data-luxury="0">IF</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'outfield')" data-position="OF" data-salary="0" data-luxury="0">OF</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'outfield')" data-position="OF" data-salary="0" data-luxury="0">OF</button>
 			</div>
 		</div>
 		<div class="col">
 			<div class="btn-group-vertical" id="pitchers">
-				<button class="btn btn-outline-dark btn-sm disabled" id="p8" data-position="SP" data-salary="24300000" data-luxury="28700000">SP | Max Scherzer | $24,300,000 | $28,700,000</button>
-				<button class="btn btn-outline-dark btn-sm disabled" id="p9" data-position="SP" data-salary="15000000" data-luxury="25000000">SP | Stephen Strasburg |  $15,000,000 | $25,000,000</button>
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('starter')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('starter')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('starter')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
-				<button class="btn btn-outline-dark btn-sm disabled" id="p13" data-position="RP" data-salary="6000000" data-luxury="6000000">RP | Sean Doolittle | $6,000,000 | $6,000,000</button>
-				<button class="btn btn-outline-dark btn-sm disabled" id="p14" data-position="RP" data-salary="6000000" data-luxury="6000000">RP | Trevor Rosenthal | $6,000,000 | $6,000,000</button>
-				<button class="btn btn-outline-dark btn-sm disabled" id="p15" data-position="RP" data-salary="1900000" data-luxury="1900000">RP | Kyle Barraclough | $1,900,000 | $1,900,000</button>
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
-				<button type="button" class="btn btn-outline-dark btn-sm" onclick="displayPlayers('reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+				<button class="btn btn-outline-dark btn-sm disabled" data-position="SP" data-salary="24300000" data-luxury="28700000">SP | Max Scherzer | $24,300,000 | $28,700,000</button>
+				<button class="btn btn-outline-dark btn-sm disabled" data-position="SP" data-salary="15000000" data-luxury="25000000">SP | Stephen Strasburg |  $15,000,000 | $25,000,000</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'starter')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'starter')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'starter')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
+				<button class="btn btn-outline-dark btn-sm disabled" data-position="RP" data-salary="6000000" data-luxury="6000000">RP | Sean Doolittle | $6,000,000 | $6,000,000</button>
+				<button class="btn btn-outline-dark btn-sm disabled" data-position="RP" data-salary="6000000" data-luxury="6000000">RP | Trevor Rosenthal | $6,000,000 | $6,000,000</button>
+				<button class="btn btn-outline-dark btn-sm disabled" data-position="RP" data-salary="1900000" data-luxury="1900000">RP | Kyle Barraclough | $1,900,000 | $1,900,000</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+				<button type="button" class="btn btn-outline-dark btn-sm" data-id="" onclick="displayPlayers(this,'reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+				<button class="btn btn-outline-dark btn-sm disabled" data-position="PB" data-salary="14000000" data-luxury="14000000">Player Benefits | $14,000,000 | $14,000,000</button>
 			</div>
 		</div>
 		<div class="col">
 			<div style="display: none;" id="catcher"> 
 				<div class="label">Already Nationals</div>
-					<button class="btn btn-light btn-sm" id="p20" onclick="addPlayer(20)" data-position="C" data-salary="550000" data-luxury="550000">C | Spencer Kieboom | $550,000 | $550,000</button>
+					<button class="btn btn-light btn-sm" id="p20" onclick="addPlayer('p20')" data-name="Spencer Kieboom" data-position="C" data-salary="550000" data-luxury="550000">C | Spencer Kieboom | $550,000 | $550,000</button>
 				<div class="label">Free Agents</div>
-					<button class="btn btn-light btn-sm" id="p0" onclick="addPlayer(0)" data-position="C" data-salary="15000000" data-luxury="15000000">C | Yasmani Grandal | $15,000,000 | $15,000,000</button>
-					<button class="btn btn-light btn-sm" id="p27" onclick="addPlayer(27)" data-position="C" data-salary="2000000" data-luxury="2000000">C | Jeff Mathis | $2,000,000 | $2,000,000</button>
-					<button class="btn btn-light btn-sm" id="p31" onclick="addPlayer(31)" data-position="C" data-salary="12000000" data-luxury="12000000">C | Wilson Ramos | $12,000,000 | $12,000,000</button>
-					<button class="btn btn-light btn-sm" id="p34" onclick="addPlayer(34)" data-position="C" data-salary="6000000" data-luxury="6000000">C | Kurt Suzuki | $6,000,000 | $6,000,000</button>
-					<button class="btn btn-light btn-sm" id="p46" onclick="addPlayer(46)" data-position="C" data-salary="6000000" data-luxury="6000000">C | Jonathan Lucroy | $6,000,000 | $6,000,000</button>
-					<button class="btn btn-light btn-sm" id="p48" onclick="addPlayer(48)" data-position="C" data-salary="7000000" data-luxury="7000000">C | Brian McCann | $7,000,000 | $7,000,000</button>
-					<button class="btn btn-light btn-sm" id="p50" onclick="addPlayer(50)" data-position="C" data-salary="7500000" data-luxury="7500000">C | Robinson Chirinos | $7,500,000 | $7,500,000</button>
-					<button class="btn btn-light btn-sm" id="p53" onclick="addPlayer(53)" data-position="C" data-salary="5000000" data-luxury="5000000">C | Martin Maldonado | $5,000,000 | $5,000,000</button>
+					<button class="btn btn-light btn-sm" id="p0" onclick="addPlayer('p0')" data-name="Yasmani Grandal" data-position="C" data-salary="15000000" data-luxury="15000000">C | Yasmani Grandal | $15,000,000 | $15,000,000</button>
+					<button class="btn btn-light btn-sm" id="p27" onclick="addPlayer('p27')" data-name="Jeff Mathis" data-position="C" data-salary="2000000" data-luxury="2000000">C | Jeff Mathis | $2,000,000 | $2,000,000</button>
+					<button class="btn btn-light btn-sm" id="p31" onclick="addPlayer('p31')" data-name="Wilson Ramos" data-position="C" data-salary="12000000" data-luxury="12000000">C | Wilson Ramos | $12,000,000 | $12,000,000</button>
+					<button class="btn btn-light btn-sm" id="p34" onclick="addPlayer('p34')" data-name="Kurt Suzuki" data-position="C" data-salary="6000000" data-luxury="6000000">C | Kurt Suzuki | $6,000,000 | $6,000,000</button>
+					<button class="btn btn-light btn-sm" id="p46" onclick="addPlayer('p46')" data-name="Jonathan Lucroy" data-position="C" data-salary="6000000" data-luxury="6000000">C | Jonathan Lucroy | $6,000,000 | $6,000,000</button>
+					<button class="btn btn-light btn-sm" id="p48" onclick="addPlayer('p48')" data-name="Brian McCann" data-position="C" data-salary="7000000" data-luxury="7000000">C | Brian McCann | $7,000,000 | $7,000,000</button>
+					<button class="btn btn-light btn-sm" id="p50" onclick="addPlayer('p50')" data-name="Robinson Chirinos" data-position="C" data-salary="7500000" data-luxury="7500000">C | Robinson Chirinos | $7,500,000 | $7,500,000</button>
+					<button class="btn btn-light btn-sm" id="p53" onclick="addPlayer('p53')"  data-name="Martin Maldonado" data-position="C" data-salary="5000000" data-luxury="5000000">C | Martin Maldonado | $5,000,000 | $5,000,000</button>
 				<div class="label">Trade Candidates</div>
-					<button class="btn btn-light btn-sm" id="p75" onclick="addPlayer(75)" data-position="C" data-salary="6100000" data-luxury="6100000">C | J.T. Realmuto | $6,100,000 | $6,100,000</button>
-					<button class="btn btn-light btn-sm" id="p80" onclick="addPlayer(80)" data-position="C" data-salary="11500000" data-luxury="10330000">C | Francisco Cervelli | $11,500,000 | $10,330,000</button>
+					<button class="btn btn-light btn-sm" id="p75" onclick="addPlayer('p75')" data-name="J.T. Realmuto" data-position="C" data-salary="6100000" data-luxury="6100000">C | J.T. Realmuto | $6,100,000 | $6,100,000</button>
+					<button class="btn btn-light btn-sm" id="p80" onclick="addPlayer('p80')"  data-name="Francisco Cervelli" data-position="C" data-salary="11500000" data-luxury="10330000">C | Francisco Cervelli | $11,500,000 | $10,330,000</button>
 			</div>
 			<div style="display: none;" id="second"> 
 				<div class="label">Already Nationals</div>
-					<button class="btn btn-light btn-sm" id="p2" onclick="addPlayer(2)" data-position="2B/OF" data-salary="4000000" data-luxury="3500000">2B/OF | Howie Kendrick | $4,000,000 | $3,500,000</button>
+					<button class="btn btn-light btn-sm" id="p2" onclick="addPlayer('p2')" data-name="Howie Kendrick" data-position="2B" data-salary="4000000" data-luxury="3500000">2B | Howie Kendrick | $4,000,000 | $3,500,000</button>
 				<div class="label">Free Agents</div>
-					<button class="btn btn-light btn-sm" id="p29" onclick="addPlayer(29)" data-position="2B" data-salary="12000000" data-luxury="12000000">2B | Brian Dozier | $12,000,000 | $12,000,000</button>
-					<button class="btn btn-light btn-sm" id="p33" onclick="addPlayer(33)" data-position="2B" data-salary="9000000" data-luxury="9000000">2B | Asdrubal Cabrera | $9,000,000 | $9,000,000</button>
-					<button class="btn btn-light btn-sm" id="p35" onclick="addPlayer(35)" data-position="2B" data-salary="12000000" data-luxury="12000000">2B | DJ Lemahieu | $12,000,000 | $12,000,000</button>
-					<button class="btn btn-light btn-sm" id="p40" onclick="addPlayer(40)" data-position="2B" data-salary="14000000" data-luxury="14000000">2B | Daniel Murphy | $14,000,000 | $14,000,000</button>
-					<button class="btn btn-light btn-sm" id="p41" onclick="addPlayer(41)" data-position="2B" data-salary="12000000" data-luxury="12000000">2B | Jed Lowrie | $12,000,000 | $12,000,000</button>
-					<button class="btn btn-light btn-sm" id="p42" onclick="addPlayer(42)" data-position="2B" data-salary="8000000" data-luxury="8000000">2B | Ian Kinsler | $8,000,000 | $8,000,000</button>
-					<button class="btn btn-light btn-sm" id="p43" onclick="addPlayer(43)" data-position="2B" data-salary="10000000" data-luxury="10000000">2B | Marwin Gonzalez | $10,000,000 | $10,000,000</button>
-					<button class="btn btn-light btn-sm" id="p49" onclick="addPlayer(49)" data-position="2B" data-salary="7500000" data-luxury="7500000">2B | Josh Harrison | $7,500,000 | $7,500,000</button>
+					<button class="btn btn-light btn-sm" id="p29" onclick="addPlayer('p29')" data-name="Brian Dozier" data-position="2B" data-salary="12000000" data-luxury="12000000">2B | Brian Dozier | $12,000,000 | $12,000,000</button>
+					<button class="btn btn-light btn-sm" id="p33" onclick="addPlayer('p33')" data-name="Asdrubal Cabrera" data-position="2B" data-salary="9000000" data-luxury="9000000">2B | Asdrubal Cabrera | $9,000,000 | $9,000,000</button>
+					<button class="btn btn-light btn-sm" id="p35" onclick="addPlayer('p35')"  data-name="DJ Lemahieu" data-position="2B" data-salary="12000000" data-luxury="12000000">2B | DJ Lemahieu | $12,000,000 | $12,000,000</button>
+					<button class="btn btn-light btn-sm" id="p40" onclick="addPlayer('p40')" data-name="Daniel Murphy" data-position="2B" data-salary="14000000" data-luxury="14000000">2B | Daniel Murphy | $14,000,000 | $14,000,000</button>
+					<button class="btn btn-light btn-sm" id="p41" onclick="addPlayer('p41')" data-name="Jed Lowrie" data-position="2B" data-salary="12000000" data-luxury="12000000">2B | Jed Lowrie | $12,000,000 | $12,000,000</button>
+					<button class="btn btn-light btn-sm" id="p42" onclick="addPlayer('p42')" data-name="Ian Kinsler" data-position="2B" data-salary="8000000" data-luxury="8000000">2B | Ian Kinsler | $8,000,000 | $8,000,000</button>
+					<button class="btn btn-light btn-sm" id="p43" onclick="addPlayer('p43')" data-name="Marwin Gonzalez" data-position="2B" data-salary="10000000" data-luxury="10000000">2B | Marwin Gonzalez | $10,000,000 | $10,000,000</button>
+					<button class="btn btn-light btn-sm" id="p49" onclick="addPlayer('p49')"  data-name="Josh Harrison" data-position="2B" data-salary="7500000" data-luxury="7500000">2B | Josh Harrison | $7,500,000 | $7,500,000</button>
 			</div>
 			<div style="display: none;" id="right"> 
 				<div class="label">Already Nationals</div>
-					<button class="btn btn-light btn-sm" id="p25" onclick="addPlayer(25)" data-position="RF" data-salary="8400000" data-luxury="4700000">RF | Adam Eaton | $8,400,000 | $4,700,000</button>
+					<button class="btn btn-light btn-sm" id="p25" onclick="addPlayer('p25')" data-name="Adam Eaton" data-position="RF" data-salary="8400000" data-luxury="4700000">RF | Adam Eaton | $8,400,000 | $4,700,000</button>
 				<div class="label">Free Agents</div>
-					<button class="btn btn-light btn-sm" id="p7" onclick="addPlayer(7)" data-position="RF" data-salary="28000000" data-luxury="33000000">RF | Bryce Harper | $28,000,000 | $33,000,000</button>
+					<button class="btn btn-light btn-sm" id="p7" onclick="addPlayer('p7')" data-name="Bryce Harper" data-position="RF" data-salary="28000000" data-luxury="33000000">RF | Bryce Harper | $28,000,000 | $33,000,000</button>
 			</div>
 			<div style="display: none;" id="infield"> 
 				<div class="label">Already Nationals</div>
-					<button class="btn btn-light btn-sm" id="p22" onclick="addPlayer(22)" data-position="IF" data-salary="550000" data-luxury="550000">IF | Wilmer Difo | $550,000 | $550,000</button>
+					<button class="btn btn-light btn-sm" id="p22" onclick="addPlayer('p22')" data-name="Wilmer Difo" data-position="IF" data-salary="550000" data-luxury="550000">IF | Wilmer Difo | $550,000 | $550,000</button>
 				<div class="label">Free Agents</div>
-					<button class="btn btn-light btn-sm" id="p21" onclick="addPlayer(21)" data-position="IF" data-salary="3000000" data-luxury="3000000">IF | Matt Adams | $3,000,000 | $3,000,000</button>
-					<button class="btn btn-light btn-sm" id="p55" onclick="addPlayer(55)" data-position="IF" data-salary="4000000" data-luxury="4000000">IF | Lucas Duda | $4,000,000 | $4,000,000</button>
-					<button class="btn btn-light btn-sm" id="p57" onclick="addPlayer(57)" data-position="IF" data-salary="3000000" data-luxury="3000000">IF | Hanley Ramirez | $3,000,000 | $3,000,000</button>
-					<button class="btn btn-light btn-sm" id="p59" onclick="addPlayer(59)" data-position="IF" data-salary="2500000" data-luxury="2500000">IF | Logan Morrison | $2,500,000 | $2,500,000</button>
-					<button class="btn btn-light btn-sm" id="p64" onclick="addPlayer(64)" data-position="IF" data-salary="6500000" data-luxury="6500000">IF | Steve Pearce | $6,500,000 | $6,500,000</button>
+					<button class="btn btn-light btn-sm" id="p21" onclick="addPlayer('p21')" data-name="Matt Adams" data-position="IF" data-salary="3000000" data-luxury="3000000">IF | Matt Adams | $3,000,000 | $3,000,000</button>
+					<button class="btn btn-light btn-sm" id="p55" onclick="addPlayer('p55')" data-name="Lucas Duda" data-position="IF" data-salary="4000000" data-luxury="4000000">IF | Lucas Duda | $4,000,000 | $4,000,000</button>
+					<button class="btn btn-light btn-sm" id="p57" onclick="addPlayer('p57')" data-name="Hanley Ramirez" data-position="IF" data-salary="3000000" data-luxury="3000000">IF | Hanley Ramirez | $3,000,000 | $3,000,000</button>
+					<button class="btn btn-light btn-sm" id="p59" onclick="addPlayer('p59')" data-name="Logan Morrison" data-position="IF" data-salary="2500000" data-luxury="2500000">IF | Logan Morrison | $2,500,000 | $2,500,000</button>
+					<button class="btn btn-light btn-sm" id="p64" onclick="addPlayer('p64')" data-name="Steve Pearce" data-position="IF" data-salary="6500000" data-luxury="6500000">IF | Steve Pearce | $6,500,000 | $6,500,000</button>
 			</div>
 			<div style="display: none;" id="outfield"> 
 				<div class="label">Already Nationals</div>
-					<button class="btn btn-light btn-sm" id="p24" onclick="addPlayer(24)" data-position="OF" data-salary="550000" data-luxury="550000">OF | Andrew Stevenson | $550,000 | $550,000</button>
-					<button class="btn btn-light btn-sm" id="p26" onclick="addPlayer(26)" data-position="OF" data-salary="3200000" data-luxury="3200000">OF | Michael A. Taylor | $3,200,000 | $3,200,000</button>
-					<button class="btn btn-light btn-sm" id="p2" onclick="addPlayer(2)" data-position="2B/OF" data-salary="4000000" data-luxury="3500000">2B/OF | Howie Kendrick | $4,000,000 | $3,500,000</button>
+					<button class="btn btn-light btn-sm" id="p24" onclick="addPlayer('p24')" data-name="Andrew Stevenson" data-position="OF" data-salary="550000" data-luxury="550000">OF | Andrew Stevenson | $550,000 | $550,000</button>
+					<button class="btn btn-light btn-sm" id="p26" onclick="addPlayer('p26')" data-name="Michael A. Taylor" data-position="OF" data-salary="3200000" data-luxury="3200000">OF | Michael A. Taylor | $3,200,000 | $3,200,000</button>
+					<button class="btn btn-light btn-sm" id="p83" onclick="addPlayer('p83')" data-name="Howie Kendrick" data-position="OF" data-salary="4000000" data-luxury="3500000">OF | Howie Kendrick | $4,000,000 | $3,500,000</button>
 				<div class="label">Free Agents</div>
-					<button class="btn btn-light btn-sm" id="p23" onclick="addPlayer(23)" data-position="OF" data-salary="1000000" data-luxury="1000000">OF | Jose Bautista | $1,000,000 | $1,000,000</button>
-					<button class="btn btn-light btn-sm" id="p56" onclick="addPlayer(56)" data-position="OF" data-salary="3000000" data-luxury="3000000">OF | Matt Holliday | $3,000,000 | $3,000,000</button>
-					<button class="btn btn-light btn-sm" id="p58" onclick="addPlayer(58)" data-position="OF" data-salary="3000000" data-luxury="3000000">OF | Curtis Granderson | $3,000,000 | $3,000,000</button>
-					<button class="btn btn-light btn-sm" id="p60" onclick="addPlayer(60)" data-position="OF" data-salary="2000000" data-luxury="2000000">OF | Matt Joyce | $2,000,000 | $2,000,000</button>
+					<button class="btn btn-light btn-sm" id="p23" onclick="addPlayer('p23')" data-name="Jose Bautista" data-position="OF" data-salary="1000000" data-luxury="1000000">OF | Jose Bautista | $1,000,000 | $1,000,000</button>
+					<button class="btn btn-light btn-sm" id="p56" onclick="addPlayer('p56')" data-name="Matt Holliday" data-position="OF" data-salary="3000000" data-luxury="3000000">OF | Matt Holliday | $3,000,000 | $3,000,000</button>
+					<button class="btn btn-light btn-sm" id="p58" onclick="addPlayer('p58')" data-name="Curtis Granderson" data-position="OF" data-salary="3000000" data-luxury="3000000">OF | Curtis Granderson | $3,000,000 | $3,000,000</button>
+					<button class="btn btn-light btn-sm" id="p60" onclick="addPlayer('p60')" data-name="Matt Joyce" data-position="OF" data-salary="2000000" data-luxury="2000000">OF | Matt Joyce | $2,000,000 | $2,000,000</button>
 			</div>
 			<div style="display: none;" id="starter"> 
 				<div class="label">Already Nationals</div>
-					<button class="btn btn-light btn-sm" id="p11" onclick="addPlayer(11)" data-position="SP" data-salary="9800000" data-luxury="9800000">SP | Tanner Roark | $9,800,000 | $9,800,000</button>
-					<button class="btn btn-light btn-sm" id="p12" onclick="addPlayer(12)" data-position="SP/RP" data-salary="1500000" data-luxury="1500000">SP/RP | Joe Ross | $1,500,000 | $1,500,000</button>
+					<button class="btn btn-light btn-sm" id="p11" onclick="addPlayer('p11')" data-name="Tanner Roark" data-position="SP" data-salary="9800000" data-luxury="9800000">SP | Tanner Roark | $9,800,000 | $9,800,000</button>
+					<button class="btn btn-light btn-sm" id="p12" onclick="addPlayer('p12')" data-name="Joe Ross" data-position="SP" data-salary="1500000" data-luxury="1500000">SP | Joe Ross | $1,500,000 | $1,500,000</button>
 				<div class="label">Free Agents</div>
-					<button class="btn btn-light btn-sm" id="p28" onclick="addPlayer(28)" data-position="SP" data-salary="19000000" data-luxury="20000000">SP | Dallas Keuchel | $19,000,000 | $20,000,000</button>
-					<button class="btn btn-light btn-sm" id="p30" onclick="addPlayer(30)" data-position="SP" data-salary="14000000" data-luxury="14000000">SP | Nathan Eovaldi | $14,000,000 | $14,000,000</button>
-					<button class="btn btn-light btn-sm" id="p32" onclick="addPlayer(32)" data-position="SP" data-salary="13500000" data-luxury="13500000">SP | Hyun-Jin Ryu | $13,500,000 | $13,500,000</button>
-					<button class="btn btn-light btn-sm" id="p36" onclick="addPlayer(36)" data-position="SP" data-salary="18000000" data-luxury="20000000">SP | Patrick Corbin | $18,000,000 | $20,000,000</button>
-					<button class="btn btn-light btn-sm" id="p38" onclick="addPlayer(38)" data-position="SP" data-salary="15000000" data-luxury="15000000">SP | J.A. Happ | $15,000,000 | $15,000,000</button>
-					<button class="btn btn-light btn-sm" id="p39" onclick="addPlayer(39)" data-position="SP" data-salary="16000000" data-luxury="16000000">SP | Charlie Morton | $16,000,000 | $16,000,000</button>
-					<button class="btn btn-light btn-sm" id="p44" onclick="addPlayer(44)" data-position="SP" data-salary="8000000" data-luxury="8000000">SP | Anibal Sanchez | $8,000,000 | $8,000,000</button>
-					<button class="btn btn-light btn-sm" id="p45" onclick="addPlayer(45)" data-position="SP" data-salary="12000000" data-luxury="12000000">SP | Lance Lynn | $12,000,000 | $12,000,000</button>
-					<button class="btn btn-light btn-sm" id="p47" onclick="addPlayer(47)" data-position="SP" data-salary="7200000" data-luxury="7200000">SP | Trevor Cahill | $7,200,000 | $7,200,000</button>
-					<button class="btn btn-light btn-sm" id="p51" onclick="addPlayer(51)" data-position="SP" data-salary="6500000" data-luxury="6500000">SP | Wade Miley | $6,500,000 | $6,500,000</button>
-					<button class="btn btn-light btn-sm" id="p52" onclick="addPlayer(52)" data-position="SP" data-salary="12000000" data-luxury="12000000">SP | Gio Gonzalez | $12,000,000 | $12,000,000</button>
-					<button class="btn btn-light btn-sm" id="p54" onclick="addPlayer(54)" data-position="SP" data-salary="6000000" data-luxury="6000000">SP | Jeremy Hellickson | $6,000,000 | $6,000,000</button>
-					<button class="btn btn-light btn-sm" id="p65" onclick="addPlayer(65)" data-position="SP" data-salary="6500000" data-luxury="6500000">SP | Ervin Santana | $6,500,000 | $6,500,000</button>
-					<button class="btn btn-light btn-sm" id="p82" onclick="addPlayer(82)" data-position="SP" data-salary="6000000" data-luxury="6000000">SP | Clay Buchholz | $6,000,000 | $6,000,000</button>
+					<button class="btn btn-light btn-sm" id="p28" onclick="addPlayer('p28')" data-name="Dallas Keuchel" data-position="SP" data-salary="19000000" data-luxury="20000000">SP | Dallas Keuchel | $19,000,000 | $20,000,000</button>
+					<button class="btn btn-light btn-sm" id="p30" onclick="addPlayer('p30')" data-name="Nathan Eovaldi" data-position="SP" data-salary="14000000" data-luxury="14000000">SP | Nathan Eovaldi | $14,000,000 | $14,000,000</button>
+					<button class="btn btn-light btn-sm" id="p32" onclick="addPlayer('p32')" data-name="Hyun-Jin Ryu" data-position="SP" data-salary="13500000" data-luxury="13500000">SP | Hyun-Jin Ryu | $13,500,000 | $13,500,000</button>
+					<button class="btn btn-light btn-sm" id="p36" onclick="addPlayer('p36')"  data-name="Patrick Corbin" data-position="SP" data-salary="18000000" data-luxury="20000000">SP | Patrick Corbin | $18,000,000 | $20,000,000</button>
+					<button class="btn btn-light btn-sm" id="p38" onclick="addPlayer('p38')" data-name="J.A. Happ" data-position="SP" data-salary="15000000" data-luxury="15000000">SP | J.A. Happ | $15,000,000 | $15,000,000</button>
+					<button class="btn btn-light btn-sm" id="p39" onclick="addPlayer('p39')" data-name="Charlie Morton" data-position="SP" data-salary="16000000" data-luxury="16000000">SP | Charlie Morton | $16,000,000 | $16,000,000</button>
+					<button class="btn btn-light btn-sm" id="p44" onclick="addPlayer('p44')" data-name="Anibal Sanchez" data-position="SP" data-salary="8000000" data-luxury="8000000">SP | Anibal Sanchez | $8,000,000 | $8,000,000</button>
+					<button class="btn btn-light btn-sm" id="p45" onclick="addPlayer('p45')" data-name="Lance Lynn" data-position="SP" data-salary="12000000" data-luxury="12000000">SP | Lance Lynn | $12,000,000 | $12,000,000</button>
+					<button class="btn btn-light btn-sm" id="p47" onclick="addPlayer('p47')" data-name="Trevor Cahill" data-position="SP" data-salary="7200000" data-luxury="7200000">SP | Trevor Cahill | $7,200,000 | $7,200,000</button>
+					<button class="btn btn-light btn-sm" id="p51" onclick="addPlayer('p51')" data-name="Wade Miley" data-position="SP" data-salary="6500000" data-luxury="6500000">SP | Wade Miley | $6,500,000 | $6,500,000</button>
+					<button class="btn btn-light btn-sm" id="p52" onclick="addPlayer('p52')" data-name="Gio Gonzalez" data-position="SP" data-salary="12000000" data-luxury="12000000">SP | Gio Gonzalez | $12,000,000 | $12,000,000</button>
+					<button class="btn btn-light btn-sm" id="p54" onclick="addPlayer('p54')" data-name="Jeremy Hellickson" data-position="SP" data-salary="6000000" data-luxury="6000000">SP | Jeremy Hellickson | $6,000,000 | $6,000,000</button>
+					<button class="btn btn-light btn-sm" id="p65" onclick="addPlayer('p65')" data-name="Ervin Santana" data-position="SP" data-salary="6500000" data-luxury="6500000">SP | Ervin Santana | $6,500,000 | $6,500,000</button>
+					<button class="btn btn-light btn-sm" id="p82" onclick="addPlayer('p82')" data-name="Clay Buchholz" data-position="SP" data-salary="6000000" data-luxury="6000000">SP | Clay Buchholz | $6,000,000 | $6,000,000</button>
 				<div class="label">Trade Candidates</div>
-					<button class="btn btn-light btn-sm" id="p10" onclick="addPlayer(10)" data-position="SP" data-salary="9100000" data-luxury="9100000">SP | Sonny Gray | $9,100,000 | $9,100,000</button>
-					<button class="btn btn-light btn-sm" id="p72" onclick="addPlayer(72)" data-position="SP" data-salary="9000000" data-luxury="9000000">SP | James Paxton | $9,000,000 | $9,000,000</button>
-					<button class="btn btn-light btn-sm" id="p73" onclick="addPlayer(73)" data-position="SP" data-salary="17000000" data-luxury="8460000">SP | Corey Kluber | $17,000,000 | $8,460,000</button>
-					<button class="btn btn-light btn-sm" id="p74" onclick="addPlayer(74)" data-position="SP" data-salary="9750000" data-luxury="6350000">SP | Carlos Carrasco | $9,750,000 | $6,350,000</button>
-					<button class="btn btn-light btn-sm" id="p76" onclick="addPlayer(76)" data-position="SP" data-salary="12000000" data-luxury="12000000">SP | Madison Bumgrarner | $12,000,000 | $12,000,000</button>
-					<button class="btn btn-light btn-sm" id="p77" onclick="addPlayer(77)" data-position="SP" data-salary="3000000" data-luxury="3000000">SP | Michael Fulmer | $3,000,000 | $3,000,000</button>
-					<button class="btn btn-light btn-sm" id="p78" onclick="addPlayer(78)" data-position="SP" data-salary="15000000" data-luxury="25000000">SP | Danny Duffy | $15,000,000 | $25,000,000</button>
-					<button class="btn btn-light btn-sm" id="p79" onclick="addPlayer(79)" data-position="SP" data-salary="9400000" data-luxury="9400000">SP | Jake Odorizzi | $9,400,000 | $9,400,000</button>
+					<button class="btn btn-light btn-sm" id="p10" onclick="addPlayer('p10')" data-name="Sonny Gray" data-position="SP" data-salary="9100000" data-luxury="9100000">SP | Sonny Gray | $9,100,000 | $9,100,000</button>
+					<button class="btn btn-light btn-sm" id="p72" onclick="addPlayer('p72')" data-name="James Paxton" data-position="SP" data-salary="9000000" data-luxury="9000000">SP | James Paxton | $9,000,000 | $9,000,000</button>
+					<button class="btn btn-light btn-sm" id="p73" onclick="addPlayer('p73')" data-name="Corey Kluber" data-position="SP" data-salary="17000000" data-luxury="8460000">SP | Corey Kluber | $17,000,000 | $8,460,000</button>
+					<button class="btn btn-light btn-sm" id="p74" onclick="addPlayer('p74')" data-name="Carlos Carrasco" data-position="SP" data-salary="9750000" data-luxury="6350000">SP | Carlos Carrasco | $9,750,000 | $6,350,000</button>
+					<button class="btn btn-light btn-sm" id="p76" onclick="addPlayer('p76')" data-name="Madison Bumgrarner" data-position="SP" data-salary="12000000" data-luxury="12000000">SP | Madison Bumgrarner | $12,000,000 | $12,000,000</button>
+					<button class="btn btn-light btn-sm" id="p77" onclick="addPlayer('p77')" data-name="Michael Fulmer" data-position="SP" data-salary="3000000" data-luxury="3000000">SP | Michael Fulmer | $3,000,000 | $3,000,000</button>
+					<button class="btn btn-light btn-sm" id="p78" onclick="addPlayer('p78')" data-name="Danny Duffy" data-position="SP" data-salary="15000000" data-luxury="25000000">SP | Danny Duffy | $15,000,000 | $25,000,000</button>
+					<button class="btn btn-light btn-sm" id="p79" onclick="addPlayer('p79')" data-name="Jake Odorizzi" data-position="SP" data-salary="9400000" data-luxury="9400000">SP | Jake Odorizzi | $9,400,000 | $9,400,000</button>
 			</div>
 			<div style="display: none;" id="reliever"> 
 				<div class="label">Already Nationals</div>
-					<button class="btn btn-light btn-sm" id="p16" onclick="addPlayer(16)" data-position="RP" data-salary="550000" data-luxury="550000">RP | Justin Miller | $550,000 | $550,000</button>
-					<button class="btn btn-light btn-sm" id="p17" onclick="addPlayer(17)" data-position="RP" data-salary="550000" data-luxury="550000">RP | Koda Glover | $550,000 | $550,000</button>
-					<button class="btn btn-light btn-sm" id="p18" onclick="addPlayer(18)" data-position="RP" data-salary="550000" data-luxury="550000">RP | Wander Suero | $550,000 | $550,000</button>
-					<button class="btn btn-light btn-sm" id="p19" onclick="addPlayer(19)" data-position="RP" data-salary="550000" data-luxury="550000">RP | Matt Grace | $550,000 | $550,000</button>
-					<button class="btn btn-light btn-sm" id="p12" onclick="addPlayer(12)" data-position="SP/RP" data-salary="1500000" data-luxury="1500000">SP/RP | Joe Ross | $1,500,000 | $1,500,000</button>			
+					<button class="btn btn-light btn-sm" id="p16" onclick="addPlayer('p16')" data-name="Justin Miller" data-position="RP" data-salary="550000" data-luxury="550000">RP | Justin Miller | $550,000 | $550,000</button>
+					<button class="btn btn-light btn-sm" id="p17" onclick="addPlayer('p17')" data-name="Koda Glover" data-position="RP" data-salary="550000" data-luxury="550000">RP | Koda Glover | $550,000 | $550,000</button>
+					<button class="btn btn-light btn-sm" id="p18" onclick="addPlayer('p18')" data-name="Wander Suero" data-position="RP" data-salary="550000" data-luxury="550000">RP | Wander Suero | $550,000 | $550,000</button>
+					<button class="btn btn-light btn-sm" id="p19" onclick="addPlayer('p19')" data-name="Matt Grace" data-position="RP" data-salary="550000" data-luxury="550000">RP | Matt Grace | $550,000 | $550,000</button>
+					<button class="btn btn-light btn-sm" id="p84" onclick="addPlayer('p84')" data-name="Joe Ross" data-position="RP" data-salary="1500000" data-luxury="1500000">RP | Joe Ross | $1,500,000 | $1,500,000</button>			
 				<div class="label">Free Agents</div>
-					<button class="btn btn-light btn-sm" id="p37" onclick="addPlayer(37)" data-position="RP" data-salary="1000000" data-luxury="1000000">RP | Tim Collins | $1,000,000 | $1,000,000</button>
-					<button class="btn btn-light btn-sm" id="p61" onclick="addPlayer(61)" data-position="RP" data-salary="2000000" data-luxury="2000000">RP | Jerry Blevins | $2,000,000 | $2,000,000</button>
-					<button class="btn btn-light btn-sm" id="p62" onclick="addPlayer(62)" data-position="RP" data-salary="3000000" data-luxury="3000000">RP | Zach Duke | $3,000,000 | $3,000,000</button>
-					<button class="btn btn-light btn-sm" id="p63" onclick="addPlayer(63)" data-position="RP" data-salary="1750000" data-luxury="1750000">RP | Johnny Venters | $1,750,000 | $1,750,000</button>
-					<button class="btn btn-light btn-sm" id="p66" onclick="addPlayer(66)" data-position="RP" data-salary="5000000" data-luxury="5000000">RP | Tony Sipp | $5,000,000 | $5,000,000</button>
-					<button class="btn btn-light btn-sm" id="p67" onclick="addPlayer(67)" data-position="RP" data-salary="11000000" data-luxury="11000000">RP | Andrew Miller | $11,000,000 | $11,000,000</button>
-					<button class="btn btn-light btn-sm" id="p68" onclick="addPlayer(68)" data-position="RP" data-salary="6000000" data-luxury="6000000">RP | Justin Wilson | $6,000,000 | $6,000,000</button>
-					<button class="btn btn-light btn-sm" id="p69" onclick="addPlayer(69)" data-position="RP" data-salary="11000000" data-luxury="11000000">RP | David Robertson | $11,000,000 | $11,000,000</button>
-					<button class="btn btn-light btn-sm" id="p70" onclick="addPlayer(70)" data-position="RP" data-salary="10000000" data-luxury="10000000">RP | Adam Ottavino | $10,000,000 | $10,000,000</button>
-					<button class="btn btn-light btn-sm" id="p71" onclick="addPlayer(71)" data-position="RP" data-salary="10000000" data-luxury="10000000">RP | Jeurys Familia | $10,000,000 | $10,000,000</button>
+					<button class="btn btn-light btn-sm" id="p37" onclick="addPlayer('p37')" data-name="Tim Collins" data-position="RP" data-salary="1000000" data-luxury="1000000">RP | Tim Collins | $1,000,000 | $1,000,000</button>
+					<button class="btn btn-light btn-sm" id="p61" onclick="addPlayer('p61')" data-name="Jerry Blevins" data-position="RP" data-salary="2000000" data-luxury="2000000">RP | Jerry Blevins | $2,000,000 | $2,000,000</button>
+					<button class="btn btn-light btn-sm" id="p62" onclick="addPlayer('p62')" data-name="Zach Duke" data-position="RP" data-salary="3000000" data-luxury="3000000">RP | Zach Duke | $3,000,000 | $3,000,000</button>
+					<button class="btn btn-light btn-sm" id="p63" onclick="addPlayer('p63')" data-name="Johnny Venters" data-position="RP" data-salary="1750000" data-luxury="1750000">RP | Johnny Venters | $1,750,000 | $1,750,000</button>
+					<button class="btn btn-light btn-sm" id="p66" onclick="addPlayer('p66')" data-name="Tony Sipp" data-position="RP" data-salary="5000000" data-luxury="5000000">RP | Tony Sipp | $5,000,000 | $5,000,000</button>
+					<button class="btn btn-light btn-sm" id="p67" onclick="addPlayer('p67')" data-name="Andrew Miller" data-position="RP" data-salary="11000000" data-luxury="11000000">RP | Andrew Miller | $11,000,000 | $11,000,000</button>
+					<button class="btn btn-light btn-sm" id="p68" onclick="addPlayer('p68')" data-name="Justin Wilson" data-position="RP" data-salary="6000000" data-luxury="6000000">RP | Justin Wilson | $6,000,000 | $6,000,000</button>
+					<button class="btn btn-light btn-sm" id="p69" onclick="addPlayer('p69')" data-name="David Robertson" data-position="RP" data-salary="11000000" data-luxury="11000000">RP | David Robertson | $11,000,000 | $11,000,000</button>
+					<button class="btn btn-light btn-sm" id="p70" onclick="addPlayer('p70')" data-name="Adam Ottavino" data-position="RP" data-salary="10000000" data-luxury="10000000">RP | Adam Ottavino | $10,000,000 | $10,000,000</button>
+					<button class="btn btn-light btn-sm" id="p71" onclick="addPlayer('p71')" data-name="Jeurys Familia" data-position="RP" data-salary="10000000" data-luxury="10000000">RP | Jeurys Familia | $10,000,000 | $10,000,000</button>
 				<div class="label">Trade Candidates</div>
-					<button class="btn btn-light btn-sm" id="p81" onclick="addPlayer(81)" data-position="RP" data-salary="2250000" data-luxury="3380000">RP | Craig Stammen | $2,250,000 | $3,380,000</button>
+					<button class="btn btn-light btn-sm" id="p81" onclick="addPlayer('p81')" data-name="Craig Stammen" data-position="RP" data-salary="2250000" data-luxury="3380000">RP | Craig Stammen | $2,250,000 | $3,380,000</button>
 			</div>
 		</div>
 	</div>
