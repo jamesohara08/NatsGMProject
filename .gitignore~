@@ -1,0 +1,11 @@
+*~
+*.pyc
+*.log
+*.log.*
+*.tap
+log/
+results/
+violations/
+node_modules/
+.idea/
+
