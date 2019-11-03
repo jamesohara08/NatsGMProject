@@ -11,7 +11,7 @@
 <script>
 	var activeDisplay = "";
 	var activeElement = null;
-	var data = d3.csv('/nats.csv');
+	var data = d3.csv('https://raw.githubusercontent.com/jamesohara08/NatsGMProject/master/nats.csv');
 
 	function addPlayer(x) {
 		var player = document.getElementById(x);
@@ -52,14 +52,18 @@
 		document.getElementById(x).hidden = false;
 		activeDisplay = x;
 		activeElement = elem;
-		if(x == "third"){
-			newplayer = document.createElement("button");
-			newplayer.setAttribute("data-salary","550000");
-			newplayer.setAttribute("data-luxury","550000");
-			newplayer.setAttribute("class","btn btn-light");
-			newplayer.setAttribute("onclick","addPlayer(\"p2\")");
-			newplayer.innerHTML = "2B/3B | Carter Kieboom | $550,000 | $550,000";
-			document.getElementById(x).appendChild(newplayer);
+		var i;
+		for(i = 0;i < data.length;i++){
+			if(data[i].Position.includes(x)){
+				newplayer = document.createElement("button");
+				newplayer.setAttribute("data-salary","550000");
+				newplayer.setAttribute("data-luxury","550000");
+				newplayer.setAttribute("class","btn btn-light");
+				newplayer.setAttribute("onclick","addPlayer(\"p2\")");
+				newplayer.innerHTML = "2B/3B | Carter Kieboom | $550,000 | $550,000";
+				document.getElementById(x).appendChild(newplayer);
+			}
+			
 		}
 	}
 	function removePlayer(elem) {
@@ -136,53 +140,53 @@
 		<div class="col">
 			<div class="btn-group-vertical" id="mylist">
 				<button class="btn btn-outline-dark disabled" data-position="C" data-salary="6000000" data-luxury="50000000">C | Kurt Suzuki | $6,000,000 | $5,000,000</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'catcher')" data-position="C" data-salary="0" data-luxury="0">C</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'first')" data-position="1B" data-salary="0" data-luxury="0">1B</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'second')" data-position="2B" data-salary="0" data-luxury="0">2B</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'third')" data-position="3B" data-salary="0" data-luxury="0">3B</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'C')" data-position="C" data-salary="0" data-luxury="0">C</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'1B')" data-position="1B" data-salary="0" data-luxury="0">1B</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'2B')" data-position="2B" data-salary="0" data-luxury="0">2B</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'3B')" data-position="3B" data-salary="0" data-luxury="0">3B</button>
 				<button class="btn btn-outline-dark disabled" data-position="SS" data-salary="7500000" data-luxury="7500000">SS | Trea Turner | $7,500,000 | $7,500,000</button>
 				<button class="btn btn-outline-dark disabled" data-position="LF" data-salary="550000" data-luxury="550000">LF | Juan Soto | $550,000 | $550,000</button>
 				<button class="btn btn-outline-dark disabled" data-position="CF" data-salary="550000" data-luxury="550000">CF | Victor Robles | $550,000 | $550,000</button>
 				<button class="btn btn-outline-dark disabled" data-position="RF" data-salary="9500000" data-luxury="9500000">RF | Adam Eaton | $9,500,000 | $9,500,000</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'infield')" data-position="IF" data-salary="0" data-luxury="0">IF</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'infield')" data-position="IF" data-salary="0" data-luxury="0">IF</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'outfield')" data-position="OF" data-salary="0" data-luxury="0">OF</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'outfield')" data-position="OF" data-salary="0" data-luxury="0">OF</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'IF')" data-position="IF" data-salary="0" data-luxury="0">IF</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'IF')" data-position="IF" data-salary="0" data-luxury="0">IF</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'OF')" data-position="OF" data-salary="0" data-luxury="0">OF</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'OF')" data-position="OF" data-salary="0" data-luxury="0">OF</button>
 			</div>
 		</div>
 		<div class="col">
 			<div class="btn-group-vertical" id="pitchers">
 				<button class="btn btn-outline-dark disabled" data-position="SP" data-salary="35920000" data-luxury="29700000">SP | Max Scherzer | $35,920,000 | $29,700,000</button>
 				<button class="btn btn-outline-dark disabled" data-position="SP" data-salary="19400000" data-luxury="23333000">SP | Patrick Corbin | $19,400,000 | $23,333,000</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'starter')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'SP')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
 				<button class="btn btn-light" id="p44" onclick="addPlayer('p44')" data-position="SP" data-salary="9000000" data-luxury="9500000">SP | Anibal Sanchez | $9,000,000 | $9,500,000</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'starter')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'SP')" data-position="SP" data-salary="0" data-luxury="0">SP</button>
 				<button class="btn btn-outline-dark disabled" data-position="RP" data-salary="6500000" data-luxury="6500000">RP | Sean Doolittle | $6,500,000 | $6,500,000</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
-				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'reliever')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
+				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button>
 				<button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'all')" data-position="26th" data-salary="0" data-luxury="0">26th man</button>
 			</div>
 		</div>
 		<div class="col">
-			<div id="catcher" hidden> 
+			<div id="C" hidden> 
 			</div>
-			<div id="first" hidden>
+			<div id="1B" hidden>
 			</div>
-			<div id="second" hidden> 
+			<div id="2B" hidden> 
 			</div>
-			<div id="third" hidden>
+			<div id="3B" hidden>
 			</div>
-			<div id="infield" hidden> 
+			<div id="IF" hidden> 
 			</div>
-			<div id="outfield" hidden> 
+			<div id="OF" hidden> 
 			</div>
-			<div id="starter" hidden>
+			<div id="SP" hidden>
 			</div>
-			<div id="reliever" hidden> 
+			<div id="RP" hidden> 
 			</div>
 			<div id="all" hidden></div>
 	</div>
