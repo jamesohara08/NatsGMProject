@@ -1,10 +1,11 @@
 Position,Player,Actual,Luxury,Category,ID
+1B,Carlos Santana,20000000,2000000,Trade Candidates,p79
 1B,Jose Abreu,15000000,15000000,Free Agent,p74
 1B/IF,Howie Kendrick,7000000,7000000,Free Agent,p3
-1B/IF,Justin Smoak,5500000,5500000,Free Agent,p70
-1B/IF,Mitch Moreland,5000000,5000000,Free Agent,p72
-1B/IF,Eric Thams,5000000,5000000,Free Agent,p75
-1B/IF,Ryan Zimmerman,4000000,4000000,Free Agent,p2
+1B,Justin Smoak,5500000,5500000,Free Agent,p70
+1B,Mitch Moreland,5000000,5000000,Free Agent,p72
+1B,Eric Thames,5000000,5000000,Free Agent,p75
+1B,Ryan Zimmerman,4000000,4000000,Free Agent,p2
 2B,Brian Dozier,9000000,9000000,Free Agent,p13
 2B,Jonathan Schoop,8000000,8000000,Free Agent,p33
 2B,Asdrubal Cabrera,6000000,6000000,Free Agent,p14
@@ -21,6 +22,7 @@ C,Yasmani Grandal,16000000,16000000,Free Agent,p1
 C,Robinson Chirinos,6000000,6000000,Free Agent,p16
 C,Jason Castro,6000000,6000000,Free Agent,p67
 C,Jonathan Lucroy,5000000,5000000,Free Agent,p15
+C,James McCann,4900000,4900000,Trade Candidates,p78
 C,Martin Maldonado,4500000,4500000,Free Agent,p18
 C,Yan Gomes,4500000,4500000,Free Agent,p28
 C,Travis d'Arnaud,4000000,4000000,Free Agent,p29
@@ -72,5 +74,6 @@ SP,Jordan Lyles,6000000,6000000,Free Agent,p65
 SP,Brett Anderson,5000000,5000000,Free Agent,p64
 SP,Jeremy Hellickson,2000000,2000000,Free Agent,p19
 SP/RP,Joe Ross,1500000,1500000,Already Nationals,p6
+SP/RP,Drew Pomeranz,6000000,6000000,Free Agent,p80
 SP/RP,Erick Fedde,565000,565000,Already Nationals,p43
 SP/RP,Austin Voth,565000,565000,Already Nationals,p44
