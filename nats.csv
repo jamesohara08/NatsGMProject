@@ -1,5 +1,7 @@
 Position,Player,Actual,Luxury,Category,ID
+1B,Jose Abreu,15000000,15000000,Free Agent,p74
 1B/IF,Ryan Zimmerman,4000000,4000000,Free Agent,p2
+1B/IF,Eric Thams,5000000,5000000,Free Agent,p75
 2B,Brian Dozier,9000000,9000000,Free Agent,p13
 2B,Asdrubal Cabrera,6000000,6000000,Free Agent,p14
 2B,Scooter Gennett,5000000,5000000,Free Agent,p31
@@ -71,3 +73,4 @@ SP,Zack Wheeler,18000000,18000000,Free Agent,p48
 SP,Brett Anderson,5000000,5000000,Free Agent,p64
 SP,Jordan Lyles,6000000,6000000,Free Agent,p65
 SP,Rick Porcello,12000000,12000000,Free Agent,p66
+SP,Julio Teheran,12000000,12000000,Free Agent,p76
