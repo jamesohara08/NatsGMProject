@@ -89,7 +89,7 @@
 			
 		}
 		for(i = 0;i < playerdata.length;i++){
-			if(playerdata[i].Position.includes(x) || (x.includes("all") && (playerdata[i].Position.includes("IF") || playerdata[i].Position.includes("OF") || playerdata[i].Position.includes("RP"))) || (x.includes("IF") && (playerdata[i].Position.includes("1B") || playerdata[i].Position.includes("2B") || playerdata[i].Position.includes("3B"))) || (x.includes("OF") && (playerdata[i].Position.includes("RF")))){
+			if(playerdata[i].Position.includes(x) || (x.includes("all") && (playerdata[i].Position.includes("IF") || playerdata[i].Position.includes("OF") || playerdata[i].Position.includes("RP")) && playerdata[i].Luxury < 10000000) || (x.includes("IF") && (playerdata[i].Position.includes("1B") || playerdata[i].Position.includes("2B") || playerdata[i].Position.includes("3B")) && playerdata[i].Luxury < 10000000) || (x.includes("OF") && (playerdata[i].Position.includes("RF")) && playerdata[i].Luxury < 10000000)){
 				if(document.getElementById(playerdata[i].ID) != null){
 					document.getElementById(playerdata[i].ID).removeAttribute("hidden");
 				}
