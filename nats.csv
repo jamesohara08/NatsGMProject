@@ -7,7 +7,7 @@ Position,Player,Actual,Luxury,Category,ID
 1B,Eric Thames,1000000,1000000,Free Agent,p4
 1B/3B,Jedd Gyorko,3500000,3500000,Free Agent,p11
 1B/RF,Wil Myers,22500000,13833333,Trade Candidates,p105
-1B/3B,DJ LeMahieu,14000000,14000000,Free Agent,p3
+1B/3B,DJ LeMahieu (QO),14000000,14000000,Free Agent,p3
 1B/3B,Tommy La Stella,7000000,7000000,Free Agent,p7
 3B,Carter Kieboom,575000,575000,Already Nationals,p13
 3B/RF,Enrique Hernandez,6000000,6000000,Free Agent,p17
@@ -21,7 +21,7 @@ Position,Player,Actual,Luxury,Category,ID
 3B,Luis Garcia,575000,575000,Already Nationals,p18
 3B/RF,Marwin Gonzalez,8000000,8000000,Free Agent,p14
 3B/RF,Miguel Andujar,575000,575000,Trade Candidates,p97
-C,J.T. Realmuto,22000000,22000000,Free Agent,p19
+C,J.T. Realmuto (QO),22000000,22000000,Free Agent,p19
 C,Yadier Molina,12000000,12000000,Free Agent,p20
 C,James McCann,6000000,6000000,Free Agent,p23
 C,Mike Zunino,5000000,5000000,Free Agent,p21
@@ -36,7 +36,7 @@ IF,Howie Kendrick,2000000,2000000,Free Agent,p93
 IF,Jake Noll,575000,575000,Already Nationals,p111
 OF,Michael A. Taylor,1500000,1500000,Free Agent,p94
 OF,Yadiel Hernandez,575000,575000,Already Nationals,p108
-RF,George Springer,22000000,22000000,Free Agent,p30
+RF,George Springer (QO),22000000,22000000,Free Agent,p30
 RF,Marcell Ozuna,17500000,17500000,Free Agent,p36
 RF,Michael Brantley,15000000,15000000,Free Agent,p37
 RF,Starling Marte,12500000,12500000,Trade Candidates,p100
@@ -52,16 +52,16 @@ RF,Cameron Maybin,4000000,4000000,Free Agent,p40
 RF,Hunter Renfroe,3700000,3700000,Trade Candidates,p103
 RF,Clint Frazier,1600000,1600000,Trade Candidates,p98
 RF/OF,Andrew Stevenson,575000,575000,Already Nationals,p92
-SP,Trevor Bauer,29000000,29000000,Free Agent,p42
+SP,Trevor Bauer (QO),29000000,29000000,Free Agent,p42
 SP,Masahiro Tanaka,18000000,18000000,Free Agent,p43
-SP,Marcus Stroman,16000000,16000000,Free Agent,p46
+SP,Marcus Stroman (QO),16000000,16000000,Free Agent,p46
 SP,James Paxton,15000000,15000000,Free Agent,p48
 SP,Cole Hamels,14000000,14000000,Free Agent,p61
 SP,Jake Odorizzi,13000000,13000000,Free Agent,p51
 SP,JA Happ,13000000,13000000,Free Agent,p59
 SP,Corey Kluber,12000000,12000000,Free Agent,p44
 SP,Charlie Morton,12000000,12000000,Free Agent,p45
-SP,Kevin Gausman,12000000,12000000,Free Agent,p47
+SP,Kevin Gausman (QO),12000000,12000000,Free Agent,p47
 SP,Rick Porcello,11000000,11000000,Free Agent,p50
 SP,Mike Minor,10000000,10000000,Free Agent,p49
 SP,Jose Quintana,10000000,10000000,Free Agent,p52
