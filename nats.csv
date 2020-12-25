@@ -10,6 +10,7 @@ Position,Player,Actual,Luxury,Category,ID
 1B/RF,Wil Myers,22500000,13833333,Trade Candidates,p105
 3B,Kris Bryant,18600000,18600000,Trade Candidates,p15
 3B,Justin Turner,16000000,16000000,Free Agent,p12
+3B,Eugenio Suarez,10785714,9428571,Trade Candidates,p116
 3B,Eduardo Escobar,7666667,7000000,Trade Candidates,p95
 3B,Todd Frazier,3000000,3000000,Free Agent,p16
 3B,Carter Kieboom,575000,575000,Already Nationals,p13
@@ -62,6 +63,7 @@ SP,JA Happ,13000000,13000000,Free Agent,p59
 SP,Corey Kluber,12000000,12000000,Free Agent,p44
 SP,Kevin Gausman (QO),12000000,12000000,Free Agent,p47
 SP,Rick Porcello,11000000,11000000,Free Agent,p50
+SP,Sonny Gray,10866667,10866667,Trade Candidates,p117
 SP,Jose Quintana,10000000,10000000,Free Agent,p52
 SP,Lance Lynn,9333333,10000000,Trade Candidates,p96
 SP,Taijuan Walker,9000000,9000000,Free Agent,p62
@@ -95,5 +97,3 @@ RHRP,Wander Suero,575000,575000,Already Nationals,p57
 RHRP,Ryne Harper,575000,575000,Already Nationals,p107
 RHRP/SP,Trevor Cahill,6000000,6000000,Free Agent,p73
 RHRP/SP,Kyle McGowin,575000,575000,Already Nationals,p109
-3B,Eugenio Suarez,10785714,9428571,Trade Candidates,p116
-SP,Sonny Gray,10866667,10866667,Trade Candidates,p117
