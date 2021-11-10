@@ -90,6 +90,7 @@
 		}
 		for(i = 0;i < playerdata.length;i++){
 			if(playerdata[i].Position.includes(x) || (x.includes("all") && (playerdata[i].Position.includes("IF") || playerdata[i].Position.includes("OF") || playerdata[i].Position.includes("RP")) && playerdata[i].Luxury < 10000000) || (x.includes("IF") && (playerdata[i].Position.includes("1B") || playerdata[i].Position.includes("2B") || playerdata[i].Position.includes("3B")) && playerdata[i].Luxury < 10000000) || (x.includes("OF") && (playerdata[i].Position.includes("RF")) && playerdata[i].Luxury < 10000000)){
+				console.log(playerdata[i]);
 				if(document.getElementById(playerdata[i].ID) != null){
 					document.getElementById(playerdata[i].ID).removeAttribute("hidden");
 				}
@@ -157,7 +158,7 @@
 	</div>
 	<div class="row mt-3">
 		<div class = "col text-center">
-			<p>Select an open position on the left and players who can fill that role will appear on the right (or below on mobile). Select a player and they'll be added to your roster along with their 2021 salary and luxury tax hit. Clicking on that spot again will remove them, or you can select a new player and they'll fill it. <b> To make things easier I have Juan Soto in LF and all the corner outfield candidates listed in RF, even if they are left fielders.</b> Trade candidates are included sans prospect cost, so choose what you think is reasonable. <b>Luxury tax number automatically includes $17,250,000 for minor leaguers on the 40-man roster and player benefits.</b> Be careful, the Lerners don't want to exceed the luxury tax and won't be happy if you try to!</p>
+			<p>Select an open position on the left and players who can fill that role will appear on the right (or below on mobile). Select a player and they'll be added to your roster along with their 2022 salary and luxury tax hit. Clicking on that spot again will remove them, or you can select a new player and they'll fill it. Trade candidates are included sans prospect cost, so choose what you think is reasonable. <b>Luxury tax number automatically includes $17,250,000 for minor leaguers on the 40-man roster and player benefits.</b> Be careful, the Lerners don't want to exceed the luxury tax and won't be happy if you try to!</p>
 		</div>
 	</div>
 	<div class="row mt-3">
@@ -183,38 +184,40 @@
 	</div>
 	<div class="row mt-3">
 		<div class="col">
-			<div class="btn-group-vertical" id="batters"
-				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'C')" data-position="C" data-salary="0" data-luxury="0">C</button
-				><button class="btn btn-outline-dark disabled" data-position="C" data-salary="6000000" data-luxury="5000000">C | Yan Gomes | $6,000,000 | $5,000,000</button
-				><button class="btn btn-outline-dark disabled" data-position="1B" data-salary="5700000" data-luxury="5700000">1B | Josh Bell | $5,700,000 | $5,700,000</button
-				><button class="btn btn-outline-dark disabled" data-position="2B" data-salary="7000000" data-luxury="6000000">2B | Starlin Castro | $7,000,000 | $6,000,000</button
+			<div class="btn-group-vertical" id="batters">
+				<button class="btn btn-outline-dark disabled" data-position="C" data-salary="575000" data-luxury="575000">C | Keibert Ruiz | $575,000 | $575,000</button
+				><button class="btn btn-outline-dark disabled" data-position="C" data-salary="575000" data-luxury="575000">C | Riley Adams | $575,000 | $575,000</button
+				><button class="btn btn-outline-dark disabled" data-position="1B" data-salary="5700000" data-luxury="5700000">1B | Josh Bell | $10,000,000 | $10,000,000</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'2B')" data-position="2B" data-salary="0" data-luxury="0">2B</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'3B')" data-position="3B" data-salary="0" data-luxury="0">3B</button
-				><button class="btn btn-outline-dark disabled" data-position="SS" data-salary="10800000" data-luxury="10800000">SS | Trea Turner | $10,800,000 | $10,800,000</button
-				><button class="btn btn-outline-dark disabled" data-position="LF" data-salary="4500000" data-luxury="4500000">LF | Juan Soto | $4,500,000 | $4,500,000</button
-				><button class="btn btn-outline-dark disabled" data-position="CF" data-salary="575000" data-luxury="575000">CF | Victor Robles | $575,000 | $575,000</button
-				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RF')" data-position="RF" data-salary="0" data-luxury="0">RF</button
-				><button class="btn btn-outline-dark disabled" data-position="IF" data-salary="1000000" data-luxury="1000000">IF | Josh Harrison | $1,000,000 | $1,000,000</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'SS')" data-position="SS" data-salary="0" data-luxury="0">SS</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'LF')" data-position="LF" data-salary="0" data-luxury="0">LF</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'CF')" data-position="CF" data-salary="0" data-luxury="0">CF</button
+				><button class="btn btn-outline-dark disabled" data-position="RF" data-salary="16200000" data-luxury="16200000">RF | Juan Soto | $16,200,000 | $16,200,000</button
+				><button class="btn btn-outline-dark disabled" data-position="IF" data-salary="1000000" data-luxury="1000000">IF | Alcides Escobar | $1,000,000 | $1,000,000</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'IF')" data-position="IF" data-salary="0" data-luxury="0">IF</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'OF')" data-position="OF" data-salary="0" data-luxury="0">OF</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'OF')" data-position="OF" data-salary="0" data-luxury="0">OF</button
-			></div>
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'all')" data-position="26th man" data-salary="0" data-luxury="0">26th man</button>
+			</div>
 		</div>
 		<div class="col">
 			<div class="btn-group-vertical" id="pitchers"
-				><button class="btn btn-outline-dark disabled" data-position="SP" data-salary="34503480" data-luxury="28689376">SP | Max Scherzer | $34,503,480 | $28,689,376</button
-				><button class="btn btn-outline-dark disabled" data-position="SP" data-salary="35000000" data-luxury="35000000">SP | Stephen Strasburg | $35,000,000 | $35,000,000</button
-				><button class="btn btn-outline-dark disabled" data-position="SP" data-salary="24416667" data-luxury="23333000">SP | Patrick Corbin | $24,416,667 | $23,333,000</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'SP')" data-position="SP" data-salary="0" data-luxury="0">SP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'SP')" data-position="SP" data-salary="0" data-luxury="0">SP</button
-				><button class="btn btn-outline-dark disabled" data-position="RP" data-salary="6000000" data-luxury="5500000">RHRP | Daniel Hudson | $6,000,000 | $5,500,000</button
-				><button class="btn btn-outline-dark disabled" data-position="RP" data-salary="8000000" data-luxury="8000000">RHRP | Will Harris | $8,000,000 | $8,000,000</button
-				><button class="btn btn-outline-dark disabled" data-position="RP" data-salary="575000" data-luxury="575000">RHRP | Tanner Rainey | $575,000 | $575,000</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'SP')" data-position="SP" data-salary="0" data-luxury="0">SP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
-				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'all')" data-position="26th man" data-salary="0" data-luxury="0">26th man</button
-			></div>
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
+				><button type = "button" class="btn btn-outline-dark" onclick="displayPlayers(this,'none')" data-position="INA" data-salary="35000000" data-luxury="35000000">Inactive | Stephen Strasburg | $35,000,000 | $35,000,000</button
+				><button type = "button" class="btn btn-outline-dark" onclick="displayPlayers(this,'none')" data-position="INA" data-salary="24416667" data-luxury="23333000">Inactive | Patrick Corbin | $24,416,667 | $23,333,000</button
+				><button type = "button" class="btn btn-outline-dark" onclick="displayPlayers(this,'none')" data-position="INA" data-salary="8000000" data-luxury="8000000">Inactive | Will Harris | $8,000,000 | $8,000,000</button
+				>
+			</div>
 		</div>
 		<div class="col">
 			<div id="players"><div class="label" id="Already Nationals" hidden>Already Nationals</div><div class="label" id="Free Agent" hidden>Free Agents</div><div class="label" id="Trade Candidates" hidden>Trade Candidates</div></div>
