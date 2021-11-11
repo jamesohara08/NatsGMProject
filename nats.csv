@@ -1,26 +1,126 @@
 Position,Player,Actual,Luxury,Category,ID
-1B,Ryan Zimmerman,2000000,2000000,Free Agent,p1
-1B,Justin Smoak,1000000,1000000,Free Agent,p2
-3B,Kris Bryant,18600000,18600000,Trade Candidates,p3
-3B,Eugenio Suarez,10785714,9428571,Trade Candidates,p4
-3B,Eduardo Escobar,7666667,7000000,Trade Candidates,p5
-3B,Carter Kieboom,575000,575000,Already Nationals,p6
-2B,Luis Garcia,575000,575000,Already Nationals,p7
-IF,Jake Noll,575000,575000,Already Nationals,p8
-LHRP,Sean Doolittle,5000000,5000000,Free Agent,p9
-OF,Yadiel Hernandez,575000,575000,Already Nationals,p10
-LF,Kyle Schwarber,8000000,8000000,Free Agent,p11
-OF,Andrew Stevenson,900000,900000,Already Nationals,p12
-CF/OF,Lane Thomas,575000,575000,Already Nationals,p13
-SP/RHRP,Joe Ross,3000000,3000000,Already Nationals,p14
-SP/RHRP,Erick Fedde,1900000,1900000,Already Nationals,p15
-SP/RHRP,Austin Voth,1000000,1000000,Already Nationals,p16
-RHRP,Kyle Finnegan,1000000,1000000,Already Nationals,p17
-RHRP,Wander Suero,900000,900000,Already Nationals,p18
-RHRP,Ryne Harper,800000,800000,Already Nationals,p19
-RHRP/SP,Kyle McGowin,575000,575000,Already Nationals,p20
-CF,Victor Robles,1700000,1700000,Already Nationals,p21
-RHRP,Tanner Rainey,800000,800000,Already Nationals,p22
-SP,Stephen Strasburg,35000000,35000000,Already Nationals,p23
-SP,Patrick Corbin,24416667,23333000,Already Nationals,p24
-RHRP,Will Harris,8000000,8000000,Already Nationals,p25
+INF,Ryan Zimmerman,1000000,1000000,Free Agent,p4
+3B,Eugenio Suarez,11285714,9428571,Trade Candidates,p5
+3B,Carter Kieboom,580000,580000,Already Nationals,p6
+2B,Luis Garcia,580000,580000,Already Nationals,p7
+IF,Jake Noll,580000,580000,Already Nationals,p8
+LHRP,Sean Doolittle,2000000,2000000,Free Agent,p9
+OF,Yadiel Hernandez,580000,580000,Already Nationals,p10
+OF,Andrew Stevenson,900000,900000,Already Nationals,p11
+CF/OF,Lane Thomas,580000,580000,Already Nationals,p12
+SP/RHRP,Joe Ross,3000000,3000000,Already Nationals,p13
+SP/RHRP,Erick Fedde,1900000,1900000,Already Nationals,p14
+SP/RHRP,Austin Voth,1000000,1000000,Already Nationals,p15
+RHRP,Kyle Finnegan,1000000,1000000,Already Nationals,p16
+RHRP,Wander Suero,900000,900000,Already Nationals,p17
+RHRP,Ryne Harper,800000,800000,Already Nationals,p18
+RHRP/SP,Kyle McGowin,580000,580000,Already Nationals,p19
+CF,Victor Robles,1700000,1700000,Already Nationals,p20
+RHRP,Tanner Rainey,800000,800000,Already Nationals,p21
+SP,Stephen Strasburg,35000000,35000000,Already Nationals,p22
+SP,Patrick Corbin,24416667,23333000,Already Nationals,p23
+RHRP,Will Harris,8000000,8000000,Already Nationals,p24
+SS,Carlos Correa (QO),30000000,30000000,Free Agent,p25
+SS,Corey Seager (QO),28000000,28000000,Free Agent,p26
+2B/SS,Marcus Semien (QO),23000000,23000000,Free Agent,p27
+SP,Max Scherzer,32000000,32000000,Free Agent,p28
+3B/LF,Kris Bryant,25000000,25000000,Free Agent,p29
+SP,Robbie Ray (QO),22400000,22400000,Free Agent,p30
+SP,Marcus Stroman (QO),20700000,20700000,Free Agent,p31
+CF/LF,Starling Marte,18000000,18000000,Free Agent,p32
+SS,Trevor Story (QO),25000000,25000000,Free Agent,p33
+LF,Nick Castellanos (QO),16000000,16000000,Free Agent,p34
+SS/2B,Javy Baez,20000000,20000000,Free Agent,p35
+SP,Eduardo Rodriguez (QO),18000000,18000000,Free Agent,p36
+SP,Kevin Gausman,19000000,19000000,Free Agent,p37
+SP,Noah Syndergaard (QO),18400000,18400000,Free Agent,p38
+2B/3B/SS/OF,Chris Taylor (QO),15000000,15000000,Free Agent,p39
+SP,Carlos Rodon,19000000,19000000,Free Agent,p40
+SP,Clayton Kershaw,26000000,26000000,Free Agent,p41
+SP,Justin Verlander (QO),20000000,20000000,Free Agent,p42
+LF,Kyle Schwarber,15000000,15000000,Free Agent,p43
+LF,Avisail Garcia,9000000,9000000,Free Agent,p44
+LF,Michael Conforto (QO),17000000,17000000,Free Agent,p45
+LF/OF,Mark Canha,10000000,10000000,Free Agent,p46
+RHRP,Raisel Iglesias (QO),10000000,10000000,Free Agent,p47
+RHRP,Kenley Jansen,12000000,12000000,Free Agent,p48
+3B,Kyle Seager,12000000,12000000,Free Agent,p49
+SP,Steven Matz,12800000,12800000,Free Agent,p50
+SP,Jon Gray,15000000,15000000,Free Agent,p51
+RHRP/SP,Collin McHugh,5500000,5500000,Free Agent,p52
+LF,Seiya Suzuki,11000000,11000000,Free Agent,p53
+SP,Kwang Hyun Kim,7000000,7000000,Free Agent,p54
+SP,Anthony DeSclafani,9500000,9500000,Free Agent,p55
+SP,Corey Kluber,10000000,10000000,Free Agent,p56
+SP,Alex Cobb,11000000,11000000,Free Agent,p57
+3B/2B,Eduardo Escobar,10000000,10000000,Free Agent,p58
+SP,Zack Greinke,11500000,11500000,Free Agent,p59
+RHRP,Mark Melancon,7000000,7000000,Free Agent,p60
+LF,Joc Pederson,9000000,9000000,Free Agent,p61
+RHRP,Kirby Yates,6000000,6000000,Free Agent,p62
+LF,Andrew McCutchen,9700000,9700000,Free Agent,p63
+RHRP,Kendall Graveman,6500000,6500000,Free Agent,p64
+LHRP,Aaron Loup,5000000,5000000,Free Agent,p65
+SP,Michael Pineda,9100000,9100000,Free Agent,p66
+3B/2B/SS,Jonathan Villar,6000000,6000000,Free Agent,p67
+OF,Jorge Soler,9000000,9000000,Free Agent,p68
+SP,Yusei Kikuchi,8000000,8000000,Free Agent,p69
+SP,Danny Duffy,10000000,10000000,Free Agent,p70
+RHRP,Ryan Tepera,6000000,6000000,Free Agent,p71
+RHRP,Hector Neris,7500000,7500000,Free Agent,p72
+RHRP,Corey Knebel,9000000,9000000,Free Agent,p73
+2B,Cesar Hernandez,3000000,3000000,Free Agent,p74
+2B/3B/LF,Josh Harrison,2000000,2000000,Free Agent,p75
+SS/2B,Jose Iglesias,3500000,3500000,Free Agent,p76
+SS/2B/3B,Freddy Galvis,2000000,2000000,Free Agent,p77
+2B/3B,Donovan Solano,4000000,4000000,Free Agent,p78
+2B/SS/3B/OF,Leury Garcia,3500000,3500000,Free Agent,p79
+3B/2B/LF,Brad Miller,3500000,3500000,Free Agent,p80
+SP,Alex Wood,11000000,11000000,Free Agent,p81
+SP,Michael Wacha,4000000,4000000,Free Agent,p82
+SP,Dylan Bundy,6000000,6000000,Free Agent,p83
+SP,Garrett Richards,5000000,5000000,Free Agent,p84
+SP/LHRP,Martin Perez,5000000,5000000,Free Agent,p85
+SP,Tyler Anderson,2500000,2500000,Free Agent,p86
+SP,Wily Peralta,2250000,2250000,Free Agent,p87
+RHRP,Daniel Hudson,5000000,5000000,Free Agent,p88
+RHRP,Andrew Chafin,5000000,5000000,Free Agent,p89
+RHRP,Jimmy Nelson,2000000,2000000,Free Agent,p90
+RHRP,Joe Kelly,3000000,3000000,Free Agent,p91
+RHRP,Adam Ottavino,3000000,3000000,Free Agent,p92
+RHRP,Luis Garcia,3000000,3000000,Free Agent,p93
+LHRP,Tony Watson,3000000,3000000,Free Agent,p94
+RHRP,Steve Cishek,2000000,2000000,Free Agent,p95
+3B,Maikel Franco,1000000,1000000,Free Agent,p96
+LF,Tommy Pham,10000000,10000000,Free Agent,p97
+LF,Eddie Rosario,8000000,8000000,Free Agent,p98
+SS,Andrelton Simmons,6000000,6000000,Free Agent,p99
+OF,Corey Dickerson,5000000,5000000,Free Agent,p100
+OF,Kole Calhoun,3000000,3000000,Free Agent,p101
+OF,Brett Gardner,3000000,3000000,Free Agent,p102
+LHRP,Josh Rogers,580000,580000,Already Nationals,p103
+LHRP,Seth Romero,580000,580000,Already Nationals,p104
+SP/RHRP,Joan Adon,580000,580000,Already Nationals,p105
+SP/RHRP,Paolo Espino,580000,580000,Already Nationals,p106
+SP,Josiah Gray,580000,580000,Already Nationals,p107
+LHRP,Sam Clay,580000,580000,Already Nationals,p108
+RHRP,Gabe Klobosits,580000,580000,Already Nationals,p109
+RHRP,Andres Machado,580000,580000,Already Nationals,p110
+RHRP,Patrick Murphy,580000,580000,Already Nationals,p111
+RHRP,Jhon Romero,580000,580000,Already Nationals,p112
+RHRP,Mason Thompson,580000,580000,Already Nationals,p113
+CF/2B,Ketel Marte,8400000,4800000,Trade Candidates,p114
+SP,Sonny Gray,10866667,10866667,Trade Candidates,p115
+2B,Whit Merrifield,2750000,4062000,Trade Candidates,p116
+SS,Paul DeJong,6166667,4333333,Trade Candidates,p117
+3B,Matt Chapman,9500000,9500000,Trade Candidates,p118
+SP/RHRP,Michael Fulmer,5100000,5100000,Trade Candidates,p119
+SP,Tyler Glasnow,5800000,5800000,Trade Candidates,p120
+CF,Byron Buxton,7300000,7300000,Trade Candidates,p121
+CF,Kevin Kiermaier,12166667,8916667,Trade Candidates,p122
+3B,Jose Ramirez,12000000,12000000,Trade Candidates,p123
+RHRP,Craig Kimbrel,16000000,16000000,Trade Candidates,p124
+CF,Bryan Reynolds,4500000,4500000,Trade Candidates,p125
+LHRP,Taylor Rogers,6700000,6700000,Trade Candidates,p126
+2B/3B/SS,Joey Wendle,4000000,4000000,Trade Candidates,p127
+SP,Sean Manaea,10200000,10200000,Trade Candidates,p128
