@@ -23,7 +23,7 @@ SS,Corey Seager*,28000000,28000000,Free Agent,p23
 SP,Max Scherzer,32000000,32000000,Free Agent,p25
 3B/LF,Kris Bryant,25000000,25000000,Free Agent,p26
 SP,Robbie Ray*,22400000,22400000,Free Agent,p27
-SP,Marcus Stroman*,20700000,20700000,Free Agent,p28
+SP,Marcus Stroman,20700000,20700000,Free Agent,p28
 CF/LF,Starling Marte,18000000,18000000,Free Agent,p29
 SS,Trevor Story*,25000000,25000000,Free Agent,p30
 LF,Nick Castellanos*,16000000,16000000,Free Agent,p31
@@ -121,3 +121,4 @@ CF,Bryan Reynolds,4500000,4500000,Trade Candidates,p122
 LHRP,Taylor Rogers,6700000,6700000,Trade Candidates,p123
 2B/3B/SS,Joey Wendle,4000000,4000000,Trade Candidates,p124
 SP,Sean Manaea,10200000,10200000,Trade Candidates,p125
+RHRP,Francisco Perez,580000,580000,Already Nationals,p126
