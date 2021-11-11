@@ -148,7 +148,7 @@
 			
 		}
 		for(i = 0;i < playerdata.length;i++){
-			if(playerdata[i].Position.includes(x) || (x.includes("all") && (playerdata[i].Position.includes("IF") || playerdata[i].Position.includes("OF") || playerdata[i].Position.includes("RP")) && playerdata[i].Luxury < 10000000) || (x.includes("IF") && (playerdata[i].Position.includes("SS") || playerdata[i].Position.includes("2B") || playerdata[i].Position.includes("3B")) && playerdata[i].Luxury < 10000000) || (x.includes("OF") && (playerdata[i].Position.includes("LF") || playerdata[i].Position.includes("CF")) && playerdata[i].Luxury < 10000000)){
+			if(playerdata[i].Position.includes(x) || (x.includes("all") && (playerdata[i].Position.includes("IF") || playerdata[i].Position.includes("OF") || playerdata[i].Position.includes("RP")) && playerdata[i].Luxury < 10000000) || (x.includes("IF") && (playerdata[i].Position.includes("1B") || playerdata[i].Position.includes("SS") || playerdata[i].Position.includes("2B") || playerdata[i].Position.includes("3B")) && playerdata[i].Luxury < 10000000) || (x.includes("OF") && (playerdata[i].Position.includes("LF") || playerdata[i].Position.includes("RF") || playerdata[i].Position.includes("CF")) && playerdata[i].Luxury < 10000000)){
 				if(document.getElementById(playerdata[i].ID) != null){
 					document.getElementById(playerdata[i].ID).removeAttribute("hidden");
 				}
@@ -215,8 +215,8 @@
 		</div>
 	</div>
 	<div class="row mt-3">
-		<div class = "col text-center">
-			<p>Select an open position on the left and players who can fill that role will appear on the right (or below on mobile). Select a player and they'll be added to your roster along with their 2022 salary and luxury tax hit. Clicking on that spot again will remove them, or you can select a new player and they'll fill it. <b>I've added a new feature this year called inactive to account for three problem players. </b> Two are injured pitchers who it's unsure whether they'll start the season healthy (Stephen Strasburg and Will Harris) and one is someone many probably don't want on the team but realistically the Nats can't trade and save on salary (Patrick Corbin). Clicking on them will activate them onto the roster if there is space available for them at their position, clicking that button again will deactivate them and open the roster spot again. Trade candidates are included sans prospect cost, so choose what you think is reasonable. <b>Luxury tax number automatically includes $18,250,000 for minor leaguers on the 40-man roster and player benefits.</b> Be careful, the Lerners don't want to exceed the luxury tax and won't be happy if you try to!</p>
+		<div class = "col">
+			<p>Select an open position on the left and players who can fill that role will appear on the right (or below on mobile). Select a player and they'll be added to your roster along with their 2022 salary and luxury tax hit. Clicking on that spot again will remove them, or you can select a new player and they'll fill it. <br><br> <b>I've added a new feature this year called inactive to account for three problem players. </b> Two are injured pitchers who it's unsure whether they'll start the season healthy (Stephen Strasburg and Will Harris) and one is someone many probably don't want on the team but realistically the Nats can't trade and save on salary (Patrick Corbin). Clicking on them will activate them onto the roster if there is space available for them at their position, clicking that button again will deactivate them and open the roster spot again. <br><br> Trade candidates are included sans prospect cost, so choose what you think is reasonable. Asterisk (*) means that player received a Qualifying Offer. <b>Luxury tax number automatically includes $18,250,000 for minor leaguers on the 40-man roster and player benefits.</b> Be careful, the Lerners don't want to exceed the luxury tax and won't be happy if you try to!</p>
 		</div>
 	</div>
 	<div class="row mt-3">
