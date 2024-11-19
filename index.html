@@ -148,7 +148,7 @@
 			
 		}
 		for(i = 0;i < playerdata.length;i++){
-			if(playerdata[i].Position.includes(x) || (x.includes("all") && (playerdata[i].Position.includes("IF") || playerdata[i].Position.includes("OF") || playerdata[i].Position.includes("RP")) && playerdata[i].Luxury < 10000000) || (x.includes("IF") && (playerdata[i].Position.includes("1B") || playerdata[i].Position.includes("SS") || playerdata[i].Position.includes("2B") || playerdata[i].Position.includes("3B")) && playerdata[i].Luxury < 10000000) || (x.includes("OF") && (playerdata[i].Position.includes("LF") || playerdata[i].Position.includes("RF") || playerdata[i].Position.includes("CF")) && playerdata[i].Luxury < 10000000)){
+			if(playerdata[i].Position.includes(x) || (x.includes("RF") && playerdata[i].Position.includes("OF")) || (x.includes("all") && playerdata[i].Luxury < 10000000) || (x.includes("BE") && (playerdata[i].Position.includes("1B") || playerdata[i].Position.includes("SS") || playerdata[i].Position.includes("2B") || playerdata[i].Position.includes("3B") || playerdata[i].Position.includes("LF") || playerdata[i].Position.includes("RF") || playerdata[i].Position.includes("CF") || playerdata[i].Position.includes("IF") || playerdata[i].Position.includes("OF")) && playerdata[i].Luxury < 10000000)){
 				if(document.getElementById(playerdata[i].ID) != null){
 					document.getElementById(playerdata[i].ID).removeAttribute("hidden");
 				}
@@ -211,12 +211,12 @@
 	<div class="row mt-3">
 		<div class ="col text-center">
 			<h2>Be Your Own Nats GM</h2>
-			<p>Created by James O'Hara (<a href="https://twitter.com/nextyeardc">@nextyeardc</a>)</p>
+			<p>Created by James O'Hara (<a href="https://bsky.app/profile/nextyeardc.bsky.social">@nextyeardc</a>)</p>
 		</div>
 	</div>
 	<div class="row mt-3">
 		<div class = "col">
-			<p>Select an open position on the left and players who can fill that role will appear on the right (or below on mobile). Select a player and they'll be added to your roster along with their 2024 salary and luxury tax hit. Clicking on that spot again will remove them, or you can select a new player and they'll fill it. <br><br> Victor Robles and Trevor Williams can either be left off the roster and only be a salary/luxury tax hit, or can be activated into CF and SP respectively. You are not allowed to trade any of our precious prospects so choose between a free agent or one of our many pre-arb players. Asterisk (*) means that player received a Qualifying Offer. <br><br> <b>Luxury tax number automatically includes $19,250,000 for minor leaguers on the 40-man roster and player benefits.</b> Be careful, Mr. Lerner doesn't want to exceed the luxury tax and won't be happy if you try to!</p>
+			<p>Select an open position on the left and players who can fill that role will appear on the right (or below on mobile). Select a player and they'll be added to your roster along with their 2025 salary and luxury tax hit. Clicking on that spot again will remove them, or you can select a new player and they'll fill it. You are not allowed to trade any of our precious prospects so choose between a free agent or one of our many pre-arb players. Asterisk (*) means that player received a Qualifying Offer. <br><br> <b>Luxury tax number automatically includes $20,100,000 for minor leaguers on the 40-man roster and player benefits.</b> Be careful, Mr. Lerner doesn't want to exceed the luxury tax and won't be happy if you try to!</p>
 		</div>
 	</div>
 	<div class="row mt-3">
@@ -244,37 +244,35 @@
 		<div class="col">
 			<div class="btn-group-vertical" id="batters"
 				><button class="btn btn-outline-dark disabled" data-position="C" data-salary="6375000" data-luxury="6250000">C | Keibert Ruiz | $6,375,000 | $6,250,000</button
-				><button class="btn btn-outline-dark disabled" data-position="C" data-salary="580000" data-luxury="580000">C | Riley Adams | $580,000 | $580,000</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'C')" data-position="C" data-salary="0" data-luxury="0">C</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'1B')" data-position="1B" data-salary="0" data-luxury="0">1B</button
-				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'2B')" data-position="2B" data-salary="0" data-luxury="0">2B</button
+				><button class="btn btn-outline-dark disabled" data-position="2B" data-salary="4800000" data-luxury="4800000">2B | Luis Garcia Jr. | $4,800,000 | $4,800,000</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'3B')" data-position="3B" data-salary="0" data-luxury="0">3B</button
-				><button class="btn btn-outline-dark disabled" data-position="SS" data-salary="580000" data-luxury="580000">SS | CJ Abrams | $580,000 | $580,000</button
-				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'LF')" data-position="LF" data-salary="0" data-luxury="0">LF</button
-				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'CF')" data-position="CF" data-salary="0" data-luxury="0">CF</button
-				><button class="btn btn-outline-dark disabled" data-position="RF" data-salary="7000000" data-luxury="7000000">RF | Lane Thomas | $7,000,000 | $7,000,000</button
+				><button class="btn btn-outline-dark disabled" data-position="SS" data-salary="760000" data-luxury="760000">SS | CJ Abrams | $760,000 | $760,000</button
+				><button class="btn btn-outline-dark disabled" data-position="LF" data-salary="760000" data-luxury="760000">LF | James Wood | $760,000 | $760,000</button
+				><button class="btn btn-outline-dark disabled" data-position="CF" data-salary="760000" data-luxury="760000">CF | Dylan Crews | $760,000 | $760,000</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RF')" data-position="RF" data-salary="0" data-luxury="0">RF</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'DH')" data-position="DH" data-salary="0" data-luxury="0">DH</button
-				><button class="btn btn-outline-dark disabled" data-position="IF" data-salary="3750000" data-luxury="3750000">IF | Ildemaro Vargas | $3,750,000 | $3,750,000</button
-				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'OF')" data-position="OF" data-salary="0" data-luxury="0">OF</button
-				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'OF')" data-position="OF" data-salary="0" data-luxury="0">OF</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'BE')" data-position="Bench" data-salary="0" data-luxury="0">Bench</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'BE')" data-position="Bench" data-salary="0" data-luxury="0">Bench</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'BE')" data-position="Bench" data-salary="0" data-luxury="0">Bench</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'all')" data-position="26th man" data-salary="0" data-luxury="0">26th man</button></div>
 		</div>
 		<div class="col">
 			<div class="btn-group-vertical" id="pitchers"
-				><button class="btn btn-outline-dark disabled" data-position="SP" data-salary="580000" data-luxury="580000">SP | MacKenzie Gore | $580,000 | $580,000</button
-				><button class="btn btn-outline-dark disabled" data-position="SP" data-salary="580000" data-luxury="580000">SP | Josiah Gray | $580,000 | $580,000</button
-				><button class="btn btn-outline-dark disabled" data-position="SP" data-salary="35416667" data-luxury="22500000">SP | Patrick Corbin | $35,416,667 | $22,500,000</button
+				><button class="btn btn-outline-dark disabled" data-position="SP" data-salary="3500000" data-luxury="3500000">SP | MacKenzie Gore | $3,500,000 | $3,500,000</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'SP')" data-position="SP" data-salary="0" data-luxury="0">SP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'SP')" data-position="SP" data-salary="0" data-luxury="0">SP</button
-				><button class="btn btn-outline-dark disabled" data-position="RP" data-salary="5100000" data-luxury="5100000">RP | Kyle Finnegan | $5,100,000 | $5,100,000</button
-				><button class="btn btn-outline-dark disabled" data-position="RP" data-salary="1500000" data-luxury="1500000">RP | Tanner Rainey | $1,500,000 | $1,500,000</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'SP')" data-position="SP" data-salary="0" data-luxury="0">SP</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'SP')" data-position="SP" data-salary="0" data-luxury="0">SP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
-				><button type = "button" class="btn btn-outline-dark" onclick="activatePlayer(this)" data-position="CF" data-salary="2650000" data-luxury="2650000" data-id="p2"><b>Inactive</b> | Victor Robles | $2,650,000 | $2,650,000</button
-				><button type = "button" class="btn btn-outline-dark" onclick="activatePlayer(this)" data-position="SP" data-salary="7000000" data-luxury="6500000" data-id="p3"><b>Inactive</b> | Trevor Williams | $7,000,000 | $6,500,000</button
-				><button type = "button" class="btn btn-outline-dark" data-position="INA" data-salary="32500000" data-luxury="35000000" data-id="p1"><b>Inactive</b> | Stephen Strasburg | $32,500,000 | $35,000,000</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
+				><button type = "button" class="btn btn-outline-dark" data-position="INA" data-salary="32811200" data-luxury="35000000" data-id="p1"><b>Inactive</b> | Stephen Strasburg | $32,811,200 | $35,000,000</button
 				></div>
 		</div>
 		<div class="col">
@@ -283,7 +281,7 @@
 	</div>
 	<div class="row mt-5">
 		<div class = "col text-center">
-			<p>Contract and salary data, including player benefits, 40-man minor league player salaries and deferred salary values referenced from <a href="https://docs.google.com/spreadsheets/d/1Au_xTIni1eJbDGzravS1482wBbzN9DBQaOY1wwo2Mr0/edit#gid=1520401900">Cot's Baseball Contracts</a>. Arbitration projections referenced from <a href="https://www.mlbtraderumors.com/2023/10/projected-arbitration-salaries-for-2024.html">MLB Trade Rumors</a>. Free agent salary estimates by <a href="https://www.fangraphs.com/roster-resource/free-agent-tracker">FanGraphs</a> or <a href="https://docs.google.com/spreadsheets/d/1JpcZYzHtUgUdUsWTfIWzGHb9YIMqgro6jrTbsgnvE-E/edit#gid=1246965402">Jon Becker's MLB Matrix</a> for outside top 50, low salary free agents.</p>
+			<p>Contract and salary data, including player benefits, 40-man minor league player salaries and deferred salary values referenced from <a href="https://docs.google.com/spreadsheets/d/1Au_xTIni1eJbDGzravS1482wBbzN9DBQaOY1wwo2Mr0/edit?gid=1520401900#gid=1520401900">Cot's Baseball Contracts</a>. Arbitration projections referenced from <a href="https://www.mlbtraderumors.com/2024/10/projected-arbitration-salaries-for-2025.html">MLB Trade Rumors</a>. Free agent salary estimates by <a href="https://www.fangraphs.com/roster-resource/free-agent-tracker">FanGraphs</a> or <a href="https://docs.google.com/spreadsheets/d/1rOPYSEkIppeiOv7PECMgvCgdaYwr8WwAFP4dUKXIhd8/edit?gid=4719179#gid=4719179">Jon Becker's MLB Matrix</a> for outside top 50, low salary free agents.</p>
 		</div>
 	</div>
 </html>
