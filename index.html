@@ -148,7 +148,23 @@
 			
 		}
 		for(i = 0;i < playerdata.length;i++){
-			if(playerdata[i].Position.includes(x) || (x.includes("RF") && playerdata[i].Position.includes("OF")) || (x.includes("all") && playerdata[i].Luxury < 10000000) || (x.includes("BE") && (playerdata[i].Position.includes("1B") || playerdata[i].Position.includes("SS") || playerdata[i].Position.includes("2B") || playerdata[i].Position.includes("3B") || playerdata[i].Position.includes("LF") || playerdata[i].Position.includes("RF") || playerdata[i].Position.includes("CF") || playerdata[i].Position.includes("IF") || playerdata[i].Position.includes("OF")) && playerdata[i].Luxury < 10000000)){
+			if(x == 'C' && playerdata[i].Position == 'C'){
+				if(document.getElementById(playerdata[i].ID) != null){
+					document.getElementById(playerdata[i].ID).removeAttribute("hidden");
+				}
+				else{
+					newplayer = document.createElement("button");
+					newplayer.setAttribute("data-salary",playerdata[i].Actual);
+					newplayer.setAttribute("data-luxury",playerdata[i].Luxury);
+					newplayer.setAttribute("id",playerdata[i].ID)
+					newplayer.setAttribute("class","btn btn-light");
+					newplayer.setAttribute("onclick","addPlayer(\'" + playerdata[i].ID + "\')");
+					newplayer.innerHTML = playerdata[i].Position + " | " + playerdata[i].Player + " | $" + numberWithCommas(playerdata[i].Actual) + " | $" + numberWithCommas(playerdata[i].Luxury);
+					document.getElementById(playerdata[i].Category).appendChild(newplayer);
+				}
+				document.getElementById(playerdata[i].ID).parentNode.removeAttribute("hidden");
+			}
+			else if(playerdata[i].Position.includes(x) || (x.includes("RF") && playerdata[i].Position.includes("OF")) || (x.includes("all") && playerdata[i].Luxury < 10000000) || (x.includes("BE") && (playerdata[i].Position.includes("1B") || playerdata[i].Position.includes("SS") || playerdata[i].Position.includes("2B") || playerdata[i].Position.includes("3B") || playerdata[i].Position.includes("LF") || playerdata[i].Position.includes("RF") || playerdata[i].Position.includes("CF") || playerdata[i].Position.includes("IF") || playerdata[i].Position.includes("OF")) && playerdata[i].Luxury < 10000000)){
 				if(document.getElementById(playerdata[i].ID) != null){
 					document.getElementById(playerdata[i].ID).removeAttribute("hidden");
 				}
