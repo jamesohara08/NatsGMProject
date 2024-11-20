@@ -3,9 +3,9 @@ Position,Player,Actual,Luxury,Category,ID
 1B,Christian Walker*,18000000,18000000,Free Agent Signings,p53
 1B,Paul Goldschmidt,14000000,14000000,Free Agent Signings,p45
 1B,Carlos Santana,7000000,7000000,Free Agent Signings,p86
-1B/3B,Yandy DÌaz,10000000,10000000,Trade Candidates,p131
+1B/3B,Yandy D√≠az,10000000,10000000,Trade Candidates,p131
 1B/DH,Juan Yepez,760000,760000,Already Nationals,p13
-1B/DH,AndrÈs Chaparro,760000,760000,Already Nationals,p25
+1B/DH,Andr√©s Chaparro,760000,760000,Already Nationals,p25
 1B/DH,Justin Turner,8000000,8000000,Free Agent Signings,p90
 1B/DH,Josh Naylor,12000000,12000000,Trade Candidates,p140
 1B/OF,LaMonte Wade Jr.,4700000,4700000,Trade Candidates,p135
@@ -16,25 +16,25 @@ Position,Player,Actual,Luxury,Category,ID
 3B,Trey Lipscomb,760000,760000,Already Nationals,p28
 3B,Brady House,760000,760000,Already Nationals,p153
 3B,Alex Bregman*,27000000,27000000,Free Agent Signings,p67
-3B,Yo·n Moncada,5000000,5000000,Free Agent Signings,p112
+3B,Yo√°n Moncada,5000000,5000000,Free Agent Signings,p112
 3B,Paul DeJong,5000000,5000000,Free Agent Signings,p114
 3B,Nolan Arenado,32000000,30555555,Trade Candidates,p138
 3B,Alec Bohm,8100000,8100000,Trade Candidates,p132
-3B/2B/SS/OF,Enrique Hern·ndez,5000000,5000000,Free Agent Signings,p77
+3B/2B/SS/OF,Enrique Hern√°ndez,5000000,5000000,Free Agent Signings,p77
 C,Drew Millas,760000,760000,Already Nationals,p20
 C,Danny Jansen,8000000,8000000,Free Agent Signings,p91
 C,Kyle Higashioka,7000000,7000000,Free Agent Signings,p103
 C,Carson Kelly,7000000,7000000,Free Agent Signings,p105
 C,Jacob Stallings,5000000,5000000,Free Agent Signings,p115
-C,Gary S·nchez,4500000,4500000,Free Agent Signings,p116
-C,Elias DÌaz,3000000,3000000,Free Agent Signings,p125
+C,Gary S√°nchez,4500000,4500000,Free Agent Signings,p116
+C,Elias D√≠az,3000000,3000000,Free Agent Signings,p125
 C,Willson Contreras,18000000,17500000,Trade Candidates,p149
 C,Christian Vazquez,10000000,10000000,Trade Candidates,p151
 C/DH,Riley Adams,1100000,1100000,Already Nationals,p4
 DH,J.D. Martinez,9000000,9000000,Free Agent Signings,p97
 DH,Andrew McCutchen,5000000,5000000,Free Agent Signings,p113
 DH/OF,Joc Pederson,14000000,14000000,Free Agent Signings,p46
-IF,Nasim NuÒez,760000,760000,Already Nationals,p14
+IF,Nasim Nu√±ez,760000,760000,Already Nationals,p14
 IF,Jose Iglesias,6500000,6500000,Free Agent Signings,p106
 IF,Donovan Solano,3000000,3000000,Free Agent Signings,p124
 IF,Kyle Farmer,3000000,3000000,Free Agent Signings,p128
@@ -49,7 +49,7 @@ OF,Mike Yastrzemski,9500000,9500000,Trade Candidates,p136
 OF,Lane Thomas,8300000,8300000,Trade Candidates,p144
 OF/1B,Cody Bellinger,27500000,26666667,Trade Candidates,p133
 OF/1B/DH,Mark Canha,8000000,8000000,Free Agent Signings,p92
-RF,Teoscar Hern·ndez*,23000000,23000000,Free Agent Signings,p63
+RF,Teoscar Hern√°ndez*,23000000,23000000,Free Agent Signings,p63
 RF,Anthony Santander*,20000000,20000000,Free Agent Signings,p58
 RF,Max Kepler,11000000,11000000,Free Agent Signings,p38
 RF,Alex Verdugo,8000000,8000000,Free Agent Signings,p93
@@ -79,13 +79,13 @@ RP,David Robertson,10000000,10000000,Free Agent Signings,p33
 RP,Clay Holmes,10000000,10000000,Free Agent Signings,p34
 RP,Aroldis Chapman,10000000,10000000,Free Agent Signings,p35
 RP,Kirby Yates,9000000,9000000,Free Agent Signings,p98
-RP,Carlos EstÈvez,9000000,9000000,Free Agent Signings,p99
+RP,Carlos Est√©vez,9000000,9000000,Free Agent Signings,p99
 RP,Blake Treinen,8000000,8000000,Free Agent Signings,p94
 RP,Chris Martin,7000000,7000000,Free Agent Signings,p88
 RP,Tommy Kahnle,7000000,7000000,Free Agent Signings,p104
 RP,Paul Sewald,6500000,6500000,Free Agent Signings,p85
-RP,JosÈ Leclerc,6000000,6000000,Free Agent Signings,p83
-RP,Yimi GarcÌa,5000000,5000000,Free Agent Signings,p78
+RP,Jos√© Leclerc,6000000,6000000,Free Agent Signings,p83
+RP,Yimi Garc√≠a,5000000,5000000,Free Agent Signings,p78
 RP,Phil Maton,5000000,5000000,Free Agent Signings,p110
 RP,Ryne Stanek,5000000,5000000,Free Agent Signings,p111
 RP,Brooks Raley,4000000,4000000,Free Agent Signings,p75
@@ -97,10 +97,10 @@ RP,Jalen Beeks,4000000,4000000,Free Agent Signings,p121
 RP,Drew Smyly,4000000,4000000,Free Agent Signings,p122
 RP,Dylan Floro,3000000,3000000,Free Agent Signings,p68
 RP,Andrew Kittredge,3000000,3000000,Free Agent Signings,p69
-RP,Luis GarcÌa,3000000,3000000,Free Agent Signings,p70
+RP,Luis Garc√≠a,3000000,3000000,Free Agent Signings,p70
 RP,Caleb Ferguson,3000000,3000000,Free Agent Signings,p71
-RP,HÈctor Neris,3000000,3000000,Free Agent Signings,p126
-RP,Jorge LÛpez,3000000,3000000,Free Agent Signings,p127
+RP,H√©ctor Neris,3000000,3000000,Free Agent Signings,p126
+RP,Jorge L√≥pez,3000000,3000000,Free Agent Signings,p127
 RP,Ryan Pressly,14000000,14000000,Trade Candidates,p150
 RP,Devin Williams,7700000,7700000,Trade Candidates,p143
 RP,Ryan Helsey,6900000,6900000,Trade Candidates,p142
@@ -135,7 +135,7 @@ SP,Trevor Williams,9000000,9000000,Free Agent Signings,p100
 SP,Matthew Boyd,9000000,9000000,Free Agent Signings,p101
 SP,Lance Lynn,8000000,8000000,Free Agent Signings,p95
 SP,John Means,8000000,8000000,Free Agent Signings,p96
-SP,MartÌn PÈrez,7000000,7000000,Free Agent Signings,p89
+SP,Mart√≠n P√©rez,7000000,7000000,Free Agent Signings,p89
 SP,Jakob Junis,6000000,6000000,Free Agent Signings,p84
 SP,Michael Lorenzen,5500000,5500000,Free Agent Signings,p80
 SP,Spencer Turnbull,5000000,5000000,Free Agent Signings,p79
