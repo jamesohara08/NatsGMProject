@@ -1,5 +1,5 @@
 Position,Player,Actual,Luxury,Category,ID
-RF/DH,Juan Soto*,45000000,45000000,Free Agents,p76
+OF/DH,Juan Soto*,45000000,45000000,Free Agents,p76
 3B,Nolan Arenado,32000000,30555555,Trade Candidates,p138
 SP,Corbin Burnes*,30000000,30000000,Free Agents,p72
 SP,Blake Snell,30000000,30000000,Free Agents,p73
@@ -8,11 +8,11 @@ OF/1B,Cody Bellinger,27500000,26666667,Trade Candidates,p133
 1B,Pete Alonso*,25000000,25000000,Free Agents,p64
 SP,Max Fried*,25000000,25000000,Free Agents,p65
 SP,Sonny Gray,25000000,25000000,Trade Candidates,p134
-RF,Teoscar Hernández*,23000000,23000000,Free Agents,p63
+OF,Teoscar Hernández*,23000000,23000000,Free Agents,p63
 SP,Jordan Montgomery,22500000,22500000,Trade Candidates,p130
 SP,Jack Flaherty,22000000,22000000,Free Agents,p62
 SP,Luis Castillo,24150000,21600000,Trade Candidates,p141
-RF,Anthony Santander*,20000000,20000000,Free Agents,p58
+OF,Anthony Santander*,20000000,20000000,Free Agents,p58
 SP,Sean Manaea*,20000000,20000000,Free Agents,p59
 SP,Nathan Eovaldi,20000000,20000000,Free Agents,p60
 SP,Shane Bieber,20000000,20000000,Free Agents,p61
@@ -23,7 +23,7 @@ SP,Max Scherzer,18000000,18000000,Free Agents,p56
 C,Willson Contreras,18000000,17500000,Trade Candidates,p149
 OF,Tyler O'Neill,17000000,17000000,Free Agents,p52
 SP,Luis Severino*,16000000,16000000,Free Agents,p51
-LF,Jurickson Profar,15000000,15000000,Free Agents,p48
+OF,Jurickson Profar,15000000,15000000,Free Agents,p48
 SP,Nick Pivetta*,15000000,15000000,Free Agents,p49
 SP,Justin Verlander,15000000,15000000,Free Agents,p50
 1B,Paul Goldschmidt,14000000,14000000,Free Agents,p45
@@ -34,11 +34,11 @@ SP,Frankie Montas,13000000,13000000,Free Agents,p44
 SP,Andrew Heaney,12500000,12500000,Free Agents,p43
 SP,Tomoyuki Sugano,12250000,12250000,Free Agents,p107
 1B/DH,Josh Naylor,12000000,12000000,Trade Candidates,p140
-RF/DH,Michael Conforto,12000000,12000000,Free Agents,p39
+OF/DH,Michael Conforto,12000000,12000000,Free Agents,p39
 RP,Tanner Scott,12000000,12000000,Free Agents,p40
 RP,Kenley Jansen,12000000,12000000,Free Agents,p41
 SP,Jose Quintana,12000000,12000000,Free Agents,p42
-RF,Max Kepler,11000000,11000000,Free Agents,p38
+OF,Max Kepler,11000000,11000000,Free Agents,p38
 1B/3B,Yandy Díaz,10000000,10000000,Trade Candidates,p131
 C,Christian Vazquez,10000000,10000000,Trade Candidates,p151
 OF,Harrison Bader,10000000,10000000,Free Agents,p31
@@ -61,7 +61,7 @@ OF,Lane Thomas,8300000,8300000,Trade Candidates,p144
 1B/DH,Justin Turner,8000000,8000000,Free Agents,p90
 C,Danny Jansen,8000000,8000000,Free Agents,p91
 OF/1B/DH,Mark Canha,8000000,8000000,Free Agents,p92
-RF,Alex Verdugo,8000000,8000000,Free Agents,p93
+OF,Alex Verdugo,8000000,8000000,Free Agents,p93
 RP,Blake Treinen,8000000,8000000,Free Agents,p94
 RP/SP,Michael Soroka,8000000,8000000,Free Agents,p102
 SP,Lance Lynn,8000000,8000000,Free Agents,p95
@@ -80,7 +80,7 @@ RP,Ryan Helsey,6900000,6900000,Trade Candidates,p142
 IF,Jose Iglesias,6500000,6500000,Free Agents,p106
 RP,Paul Sewald,6500000,6500000,Free Agents,p85
 2B,Thairo Estrada,6000000,6000000,Free Agents,p81
-RF,Jason Heyward,6000000,6000000,Free Agents,p82
+OF,Jason Heyward,6000000,6000000,Free Agents,p82
 RP,José Leclerc,6000000,6000000,Free Agents,p83
 SP,Jakob Junis,6000000,6000000,Free Agents,p84
 SP,Jesus Luzardo,6000000,6000000,Trade Candidates,p146
@@ -134,8 +134,8 @@ RP,Mason Thompson,800000,800000,Already Nationals,p6
 C,Drew Millas,760000,760000,Already Nationals,p20
 IF,Nasim Nuñez,760000,760000,Already Nationals,p14
 OF,Jacob Young,760000,760000,Already Nationals,p19
-RF/DH,Alex Call,760000,760000,Already Nationals,p10
-RF/DH,Stone Garrett,760000,760000,Already Nationals,p12
+OF/DH,Alex Call,760000,760000,Already Nationals,p10
+OF/DH,Stone Garrett,760000,760000,Already Nationals,p12
 RP,Jose Ferrer,760000,760000,Already Nationals,p9
 RP,Robert Garcia,760000,760000,Already Nationals,p11
 RP,Joan Adon,760000,760000,Already Nationals,p15
