@@ -148,23 +148,7 @@
 			
 		}
 		for(i = 0;i < playerdata.length;i++){
-			if(x == 'C' && playerdata[i].Position == 'C'){
-				if(document.getElementById(playerdata[i].ID) != null){
-					document.getElementById(playerdata[i].ID).removeAttribute("hidden");
-				}
-				else{
-					newplayer = document.createElement("button");
-					newplayer.setAttribute("data-salary",playerdata[i].Actual);
-					newplayer.setAttribute("data-luxury",playerdata[i].Luxury);
-					newplayer.setAttribute("id",playerdata[i].ID)
-					newplayer.setAttribute("class","btn btn-light");
-					newplayer.setAttribute("onclick","addPlayer(\'" + playerdata[i].ID + "\')");
-					newplayer.innerHTML = playerdata[i].Position + " | " + playerdata[i].Player + " | $" + numberWithCommas(playerdata[i].Actual) + " | $" + numberWithCommas(playerdata[i].Luxury);
-					document.getElementById(playerdata[i].Category).appendChild(newplayer);
-				}
-				document.getElementById(playerdata[i].ID).parentNode.removeAttribute("hidden");
-			}
-			else if(playerdata[i].Position.includes(x) || (x.includes("RF") && playerdata[i].Position.includes("OF")) || (x.includes("all") && playerdata[i].Luxury < 10000000) || (x.includes("BE") && (playerdata[i].Position.includes("1B") || playerdata[i].Position.includes("SS") || playerdata[i].Position.includes("2B") || playerdata[i].Position.includes("3B") || playerdata[i].Position.includes("LF") || playerdata[i].Position.includes("RF") || playerdata[i].Position.includes("CF") || playerdata[i].Position.includes("IF") || playerdata[i].Position.includes("OF")) && playerdata[i].Luxury < 10000000)){
+			if(playerdata[i].Position.includes(x) || (x.includes("RF") && playerdata[i].Position.includes("OF")) || (x.includes("all") && playerdata[i].Luxury < 10000000) || (x.includes("BE") && (playerdata[i].Position.includes("1B") || playerdata[i].Position.includes("SS") || playerdata[i].Position.includes("2B") || playerdata[i].Position.includes("3B") || playerdata[i].Position.includes("LF") || playerdata[i].Position.includes("RF") || playerdata[i].Position.includes("CF") || playerdata[i].Position.includes("IF") || playerdata[i].Position.includes("OF")) && playerdata[i].Luxury < 10000000)){
 				if(document.getElementById(playerdata[i].ID) != null){
 					document.getElementById(playerdata[i].ID).removeAttribute("hidden");
 				}
@@ -262,7 +246,7 @@
 				><button class="btn btn-outline-dark disabled" data-position="C" data-salary="6375000" data-luxury="6250000">C | Keibert Ruiz | $6,375,000 | $6,250,000</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'C')" data-position="C" data-salary="0" data-luxury="0">C</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'1B')" data-position="1B" data-salary="0" data-luxury="0">1B</button
-				><button class="btn btn-outline-dark disabled" data-position="2B" data-salary="4800000" data-luxury="4800000">2B | Luis Garcia Jr. | $4,800,000 | $4,800,000</button
+				><button class="btn btn-outline-dark disabled" data-position="2B" data-salary="4800000" data-luxury="4800000">2B | Luis García Jr. | $4,800,000 | $4,800,000</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'3B')" data-position="3B" data-salary="0" data-luxury="0">3B</button
 				><button class="btn btn-outline-dark disabled" data-position="SS" data-salary="760000" data-luxury="760000">SS | CJ Abrams | $760,000 | $760,000</button
 				><button class="btn btn-outline-dark disabled" data-position="LF" data-salary="760000" data-luxury="760000">LF | James Wood | $760,000 | $760,000</button
