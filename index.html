@@ -37,9 +37,9 @@
 		payroll.setAttribute("data-payroll",payrollamount.toString());
 		luxurytax.setAttribute("data-lt",luxuryamount.toString());
 		moneyleft.setAttribute("data-left",money.toString());
-		payroll.innerHTML = "$" + numberWithCommas(payrollamount);
-		luxurytax.innerHTML = "$" + numberWithCommas(luxuryamount);
-		moneyleft.innerHTML = "$" + numberWithCommas(money);
+		payroll.innerText = "$" + numberWithCommas(payrollamount);
+		luxurytax.innerText = "$" + numberWithCommas(luxuryamount);
+		moneyleft.innerText = "$" + numberWithCommas(money);
 	}
 
 	function addPlayer(x) {
@@ -48,11 +48,11 @@
 		var luxury = player.getAttribute("data-luxury");
 		disablePlayer(player);
 
-		if(activeElement.innerHTML != activeElement.getAttribute("data-position")){
+		if(activeElement.innerText != activeElement.getAttribute("data-position")){
 			enablePlayer(document.getElementById(activeElement.getAttribute("data-id")));
 			removePlayer(activeElement);
 		}
-		activeElement.innerHTML = player.innerHTML;
+		activeElement.innerText = player.innerText;
 		activeElement.setAttribute("data-salary",salary);
 		activeElement.setAttribute("data-luxury",luxury);
 		activeElement.setAttribute("data-id",x)
@@ -66,9 +66,9 @@
 		payroll.setAttribute("data-payroll",newpayrollamount.toString());
 		luxurytax.setAttribute("data-lt",newluxuryamount.toString());
 		moneyleft.setAttribute("data-left",newmoneyleft.toString());
-		payroll.innerHTML = "$" + numberWithCommas(newpayrollamount);
-		luxurytax.innerHTML = "$" + numberWithCommas(newluxuryamount);
-		moneyleft.innerHTML = "$" + numberWithCommas(newmoneyleft);
+		payroll.innerText = "$" + numberWithCommas(newpayrollamount);
+		luxurytax.innerText = "$" + numberWithCommas(newluxuryamount);
+		moneyleft.innerText = "$" + numberWithCommas(newmoneyleft);
 
 		if(newmoneyleft < 0) document.getElementById("error").hidden = false;
 	}
@@ -85,8 +85,8 @@
 			if(activeElement.getAttribute("data-position") == player.getAttribute("data-position") && 
 				activeElement.getAttribute("data-salary") == "0"){
 				activated = true;
-				var split = player.innerHTML.split(" | ");
-				activeElement.innerHTML = activeElement.getAttribute("data-position") + " | " + split[1] + " | " + split[2] + " | " + split[3];
+				var split = player.innerText.split(" | ");
+				activeElement.innerText = activeElement.getAttribute("data-position") + " | " + split[1] + " | " + split[2] + " | " + split[3];
 				activeElement.setAttribute("data-salary",player.getAttribute("data-salary"));
 				activeElement.setAttribute("data-luxury",player.getAttribute("data-luxury"));
 				activeElement.setAttribute("data-id",player.getAttribute("data-id"));
@@ -99,8 +99,8 @@
 		if(activated){
 			player.setAttribute("data-salary","0");
 			player.setAttribute("data-luxury","0");
-			playername = player.innerHTML.split(" | ")[1];
-			player.innerHTML = "Click to deactivate " + playername;
+			playername = player.innerText.split(" | ")[1];
+			player.innerText = "Click to deactivate " + playername;
 			player.setAttribute("onclick","deactivatePlayer(this,\'" + player.getAttribute("data-id") + "\')")
 			player.setAttribute("data-id", "")
 		}
@@ -119,14 +119,14 @@
 				player.setAttribute("data-luxury", activeElement.getAttribute("data-luxury"));
 				player.setAttribute("onclick","activatePlayer(this)");
 				player.setAttribute("data-id", activeElement.getAttribute("data-id"))
-				var split = activeElement.innerHTML.split(" | ");
-				player.innerHTML = "<b>Inactive</b>" + " | " + split[1] + " | " + split[2] + " | " + split[3];
+				var split = activeElement.innerText.split(" | ");
+				player.innerText = "<b>Inactive</b>" + " | " + split[1] + " | " + split[2] + " | " + split[3];
 				activeElement.setAttribute("data-salary","0");
 				activeElement.setAttribute("data-luxury","0");
 				activeElement.setAttribute("data-id","")
 				activeElement.setAttribute("class","btn btn-outline-dark");
 				activeElement.setAttribute("onclick","displayPlayers(this,\'" + activeElement.getAttribute("data-position") + "\')");
-				activeElement.innerHTML = activeElement.getAttribute("data-position");
+				activeElement.innerText = activeElement.getAttribute("data-position");
 				break;
 			}
 		}
@@ -160,7 +160,7 @@
 					newplayer.setAttribute("id",playerdata[i].ID)
 					newplayer.setAttribute("class","btn btn-light");
 					newplayer.setAttribute("onclick","addPlayer(\'" + playerdata[i].ID + "\')");
-					newplayer.innerHTML = playerdata[i].Position + " | " + playerdata[i].Player + " | $" + numberWithCommas(playerdata[i].Actual) + " | $" + numberWithCommas(playerdata[i].Luxury);
+					newplayer.innerText = playerdata[i].Position + " | " + playerdata[i].Player + " | $" + numberWithCommas(playerdata[i].Actual) + " | $" + numberWithCommas(playerdata[i].Luxury);
 					document.getElementById(playerdata[i].Category).appendChild(newplayer);
 				}
 				document.getElementById(playerdata[i].ID).parentNode.removeAttribute("hidden");
@@ -179,14 +179,14 @@
 		payroll.setAttribute("data-payroll",newpayrollamount.toString());
 		luxurytax.setAttribute("data-lt",newluxuryamount.toString());
 		moneyleft.setAttribute("data-left",newmoneyleft.toString());
-		payroll.innerHTML = "$" + numberWithCommas(newpayrollamount);
-		luxurytax.innerHTML = "$" + numberWithCommas(newluxuryamount);
-		moneyleft.innerHTML = "$" + numberWithCommas(newmoneyleft);
+		payroll.innerText = "$" + numberWithCommas(newpayrollamount);
+		luxurytax.innerText = "$" + numberWithCommas(newluxuryamount);
+		moneyleft.innerText = "$" + numberWithCommas(newmoneyleft);
 
 		elem.setAttribute("data-salary","0");
 		elem.setAttribute("data-luxury","0");
 		elem.setAttribute("data-id","");
-		elem.innerHTML = elem.getAttribute("data-position");
+		elem.innerText = elem.getAttribute("data-position");
 
 		if(newmoneyleft >= 0) document.getElementById("error").hidden = true;
 	}
