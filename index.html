@@ -60,20 +60,22 @@
 		activeElement.setAttribute("data-luxury",luxury);
 		activeElement.setAttribute("data-id",x)
 
-		var payroll = document.getElementById("payroll");
-		var luxurytax = document.getElementById("luxury-tax");
-		var moneyleft = document.getElementById("left");
-		var newpayrollamount = Number(payroll.getAttribute("data-payroll")) + Number(salary);
-		var newluxuryamount = Number(luxurytax.getAttribute("data-lt")) + Number(luxury);
-		var newmoneyleft = Number(moneyleft.getAttribute("data-left")) - Number(luxury);
-		payroll.setAttribute("data-payroll",newpayrollamount.toString());
-		luxurytax.setAttribute("data-lt",newluxuryamount.toString());
-		moneyleft.setAttribute("data-left",newmoneyleft.toString());
-		payroll.innerText = "$" + numberWithCommas(newpayrollamount);
-		luxurytax.innerText = "$" + numberWithCommas(newluxuryamount);
-		moneyleft.innerText = "$" + numberWithCommas(newmoneyleft);
+		if(x != 'p1' && x != 'p3' && x != 'p8'){
+			var payroll = document.getElementById("payroll");
+			var luxurytax = document.getElementById("luxury-tax");
+			var moneyleft = document.getElementById("left");
+			var newpayrollamount = Number(payroll.getAttribute("data-payroll")) + Number(salary);
+			var newluxuryamount = Number(luxurytax.getAttribute("data-lt")) + Number(luxury);
+			var newmoneyleft = Number(moneyleft.getAttribute("data-left")) - Number(luxury);
+			payroll.setAttribute("data-payroll",newpayrollamount.toString());
+			luxurytax.setAttribute("data-lt",newluxuryamount.toString());
+			moneyleft.setAttribute("data-left",newmoneyleft.toString());
+			payroll.innerText = "$" + numberWithCommas(newpayrollamount);
+			luxurytax.innerText = "$" + numberWithCommas(newluxuryamount);
+			moneyleft.innerText = "$" + numberWithCommas(newmoneyleft);
 
-		if(newmoneyleft < 0) document.getElementById("error").hidden = false;
+			if(newmoneyleft < 0) document.getElementById("error").hidden = false;
+		}
 	}
 	function activatePlayer(player) {
 		if(player.getAttribute("data-position").includes("P")){
@@ -173,18 +175,20 @@
 		
 	}
 	function removePlayer(elem) {
-		var payroll = document.getElementById("payroll");
-		var luxurytax = document.getElementById("luxury-tax");
-		var moneyleft = document.getElementById("left");
-		var newpayrollamount = Number(payroll.getAttribute("data-payroll")) - Number(elem.getAttribute('data-salary'));
-		var newluxuryamount = Number(luxurytax.getAttribute("data-lt")) - Number(elem.getAttribute('data-luxury'));
-		var newmoneyleft = Number(moneyleft.getAttribute("data-left")) + Number(elem.getAttribute('data-luxury'));
-		payroll.setAttribute("data-payroll",newpayrollamount.toString());
-		luxurytax.setAttribute("data-lt",newluxuryamount.toString());
-		moneyleft.setAttribute("data-left",newmoneyleft.toString());
-		payroll.innerText = "$" + numberWithCommas(newpayrollamount);
-		luxurytax.innerText = "$" + numberWithCommas(newluxuryamount);
-		moneyleft.innerText = "$" + numberWithCommas(newmoneyleft);
+		if(x != 'p1' && x != 'p3' && x != 'p8'){
+			var payroll = document.getElementById("payroll");
+			var luxurytax = document.getElementById("luxury-tax");
+			var moneyleft = document.getElementById("left");
+			var newpayrollamount = Number(payroll.getAttribute("data-payroll")) - Number(elem.getAttribute('data-salary'));
+			var newluxuryamount = Number(luxurytax.getAttribute("data-lt")) - Number(elem.getAttribute('data-luxury'));
+			var newmoneyleft = Number(moneyleft.getAttribute("data-left")) + Number(elem.getAttribute('data-luxury'));
+			payroll.setAttribute("data-payroll",newpayrollamount.toString());
+			luxurytax.setAttribute("data-lt",newluxuryamount.toString());
+			moneyleft.setAttribute("data-left",newmoneyleft.toString());
+			payroll.innerText = "$" + numberWithCommas(newpayrollamount);
+			luxurytax.innerText = "$" + numberWithCommas(newluxuryamount);
+			moneyleft.innerText = "$" + numberWithCommas(newmoneyleft);
+		}
 
 		elem.setAttribute("data-salary","0");
 		elem.setAttribute("data-luxury","0");
