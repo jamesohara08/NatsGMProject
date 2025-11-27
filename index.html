@@ -23,8 +23,8 @@
 		var batters = document.getElementById("batters");
 		var pitchers = document.getElementById("pitchers");
 		var i;
-		var payrollamount = 0;
-		var luxuryamount = 20100000;
+		var payrollamount = 15375000;
+		var luxuryamount = 19666667 + 14250000 + 1750000;
 		for(i=0;i < batters.childNodes.length;i++){
 			payrollamount += Number(batters.childNodes[i].getAttribute("data-salary"));
 			luxuryamount += Number(batters.childNodes[i].getAttribute("data-luxury"));
@@ -152,7 +152,7 @@
 			
 		}
 		for(i = 0;i < playerdata.length;i++){
-			if(playerdata[i].Position.includes(x) || (x.includes("all") && playerdata[i].Luxury < 10000000) || (x.includes("BE") && (playerdata[i].Position.includes("1B") || playerdata[i].Position.includes("SS") || playerdata[i].Position.includes("2B") || playerdata[i].Position.includes("3B") || playerdata[i].Position.includes("OF") || playerdata[i].Position.includes("IF")) && playerdata[i].Luxury < 10000000)){
+			if(playerdata[i].Position.includes(x) || (x.includes("all") && playerdata[i].Luxury < 10000000) || (x.includes("BE") && (playerdata[i].Position.includes("1B") || playerdata[i].Position.includes("SS") || playerdata[i].Position.includes("2B") || playerdata[i].Position.includes("3B") || playerdata[i].Position.includes("OF") || playerdata[i].Position.includes("IF")) && playerdata[i].Luxury < 10000000) || (x.includes("DH") && (playerdata[i].Position.includes("1B") || playerdata[i].Position.includes("SS") || playerdata[i].Position.includes("2B") || playerdata[i].Position.includes("3B") || playerdata[i].Position.includes("OF") || playerdata[i].Position.includes("IF")))){
 				if(document.getElementById(playerdata[i].ID) != null){
 					document.getElementById(playerdata[i].ID).removeAttribute("hidden");
 				}
@@ -221,13 +221,13 @@
 	</div>
 	<div class="row mt-3">
 		<div class = "col">
-			<p>Select an open position on the left and players who can fill that role will appear on the right (or below on mobile). Select a player and they'll be added to your roster along with their 2025 salary and luxury tax hit. Clicking on that spot again will remove them, or you can select a new player and they'll fill it. To keep this from being too unwieldy I assumed the CJ Abrams shenanigans are over and I made the starting outfield positionless so you can imagine your set of three anywhere you want. Asterisk (*) means that player received a Qualifying Offer. <br><br> <b>Luxury tax number automatically includes $20,100,000 for minor leaguers on the 40-man roster and player benefits.</b> Be careful, Mr. Lerner doesn't want to exceed the luxury tax and won't be happy if you try to!</p>
+			<p>Select an open position on the left and players who can fill that role will appear on the right (or below on mobile). Select a player and they'll be added to your roster along with their 2026 salary and luxury tax hit. Clicking on that spot again will remove them, or you can select a new player and they'll fill it. You're allowed to not include Keibert Ruiz, Trevor Williams and Riley Adams on your team but their $13,375,000 in salary ($14,250,000 luxury tax) have automatically been added because there's no way anyone takes them in a trade. Shinnosuke Ogasawara being outrighted adds another $2 mil/$1.75 mil. I kept the starting outfield positionless so you can imagine your set of three anywhere you want. Asterisk (*) means that player received a Qualifying Offer. <br><br> <b>Luxury tax number automatically includes $19,666,667 for minor leaguers on the 40-man roster and player benefits.</b> Be careful, Mr. Lerner just fired a GM, he doesn't want to have to fire another one so soon!</p>
 		</div>
 	</div>
 	<div class="row mt-3">
 		<div class="col">
 			<div class="alert alert-danger" id="error" role="alert" hidden>
- 				We've already won the World Series, why are you spending like we haven't?!
+ 				I didn't hire you to spend money!
 			</div>
 		</div>
 	</div>
@@ -248,12 +248,12 @@
 	<div class="row mt-3">
 		<div class="col">
 			<div class="btn-group-vertical" id="batters"
-				><button class="btn btn-outline-dark disabled" data-position="C" data-salary="6375000" data-luxury="6250000">C | Keibert Ruiz | $6,375,000 | $6,250,000</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'C')" data-position="C" data-salary="0" data-luxury="0">C</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'C')" data-position="C" data-salary="0" data-luxury="0">C</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'1B')" data-position="1B" data-salary="0" data-luxury="0">1B</button
-				><button class="btn btn-outline-dark disabled" data-position="2B" data-salary="4800000" data-luxury="4800000">2B | Luis García Jr. | $4,800,000 | $4,800,000</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'2B')" data-position="2B" data-salary="0" data-luxury="0">2B</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'3B')" data-position="3B" data-salary="0" data-luxury="0">3B</button
-				><button class="btn btn-outline-dark disabled" data-position="SS" data-salary="760000" data-luxury="760000">SS | CJ Abrams | $760,000 | $760,000</button
+				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'SS')" data-position="SS" data-salary="0" data-luxury="0">SS</button
 				><button class="btn btn-outline-dark disabled" data-position="LF" data-salary="760000" data-luxury="760000">OF | James Wood | $760,000 | $760,000</button
 				><button class="btn btn-outline-dark disabled" data-position="CF" data-salary="760000" data-luxury="760000">OF | Dylan Crews | $760,000 | $760,000</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'OF')" data-position="OF" data-salary="0" data-luxury="0">OF</button
@@ -265,7 +265,7 @@
 		</div>
 		<div class="col">
 			<div class="btn-group-vertical" id="pitchers"
-				><button class="btn btn-outline-dark disabled" data-position="SP" data-salary="3500000" data-luxury="3500000">SP | MacKenzie Gore | $3,500,000 | $3,500,000</button
+				><button class="btn btn-outline-dark disabled" data-position="SP" data-salary="4700000" data-luxury="4700000">SP | MacKenzie Gore | $4,700,000 | $4,700,000</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'SP')" data-position="SP" data-salary="0" data-luxury="0">SP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'SP')" data-position="SP" data-salary="0" data-luxury="0">SP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'SP')" data-position="SP" data-salary="0" data-luxury="0">SP</button
@@ -277,7 +277,7 @@
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
 				><button type="button" class="btn btn-outline-dark" data-id="" onclick="displayPlayers(this,'RP')" data-position="RP" data-salary="0" data-luxury="0">RP</button
-				><button type = "button" class="btn btn-outline-dark" data-position="INA" data-salary="32811200" data-luxury="35000000" data-id="p1"><b>Inactive</b> | Stephen Strasburg | $32,811,200 | $35,000,000</button
+				><button type = "button" class="btn btn-outline-dark" data-position="INA" data-salary="32811200" data-luxury="35000000" data-id="p0"><b>Inactive</b> | Stephen Strasburg | $32,811,200 | $35,000,000</button
 				></div>
 		</div>
 		<div class="col">
@@ -286,7 +286,7 @@
 	</div>
 	<div class="row mt-5">
 		<div class = "col text-center">
-			<p>Contract and salary data, including player benefits, 40-man minor league player salaries and deferred salary values referenced from <a href="https://docs.google.com/spreadsheets/d/1Au_xTIni1eJbDGzravS1482wBbzN9DBQaOY1wwo2Mr0/edit?gid=1520401900#gid=1520401900">Cot's Baseball Contracts</a>. Arbitration projections referenced from <a href="https://www.mlbtraderumors.com/2024/10/projected-arbitration-salaries-for-2025.html">MLB Trade Rumors</a>. Free agent salary estimates by <a href="https://www.fangraphs.com/roster-resource/free-agent-tracker">FanGraphs</a> or <a href="https://docs.google.com/spreadsheets/d/1rOPYSEkIppeiOv7PECMgvCgdaYwr8WwAFP4dUKXIhd8/edit?gid=4719179#gid=4719179">Jon Becker's MLB Matrix</a> for outside top 50, low salary free agents.</p>
+			<p>Contract and salary data, including player benefits, 40-man minor league player salaries and deferred salary values referenced from <a href="https://docs.google.com/spreadsheets/d/1A7XlAdd094f4mgiYP1Hs3FFsKiuS5KWQRK0eiMP_V5M/edit?gid=1520401900#gid=1520401900">Cot's Baseball Contracts</a>. Arbitration projections referenced from <a href="https://www.mlbtraderumors.com/2025/10/projected-arbitration-salaries-for-2026.html">MLB Trade Rumors</a>. Free agent salary estimates by <a href="https://www.fangraphs.com/roster-resource/free-agent-tracker">FanGraphs</a>. Trade candidates from <a href="https://docs.google.com/spreadsheets/d/1CCCyT6-OfT8eNdpt4ext4VCGeoVPj5LZbYl4Csx47x8/edit?gid=283686906#gid=283686906">Jon Becker's MLB Matrix</a>.</p>
 		</div>
 	</div>
 </html>
