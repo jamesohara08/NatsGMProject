@@ -175,7 +175,8 @@
 		
 	}
 	function removePlayer(elem) {
-		if(x != 'p1' && x != 'p3' && x != 'p8'){
+		id = elem.getAttribute("data-id")
+		if(id != 'p1' && id != 'p3' && id != 'p8'){
 			var payroll = document.getElementById("payroll");
 			var luxurytax = document.getElementById("luxury-tax");
 			var moneyleft = document.getElementById("left");
